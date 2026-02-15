@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {SettingsProps} from "@/types";
+import { SettingsProps } from "@/types";
 
 /**
  * Hero — Section d'accroche plein écran, split en 2 colonnes.
@@ -16,7 +16,7 @@ import {SettingsProps} from "@/types";
  * où chaque élément apparaît l'un après l'autre.
  */
 
-export default function Hero({settings}: SettingsProps) {
+export default function Hero({ settings }: SettingsProps) {
     return (
         <section className="relative grid min-h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
             {/* Colonne gauche — Contenu */}
@@ -30,8 +30,8 @@ export default function Hero({settings}: SettingsProps) {
                 >
                     <span className="h-px w-10 bg-taupe" />
                     <span className="text-[0.7rem] font-normal uppercase tracking-[0.35em] text-taupe">
-            Manucure professionnelle
-          </span>
+                        Manucure professionnelle
+                    </span>
                 </motion.div>
 
                 {/* Titre */}
@@ -112,7 +112,7 @@ export default function Hero({settings}: SettingsProps) {
 
             {/* Colonne droite — Image placeholder */}
             <div className="relative hidden overflow-hidden bg-nude md:block">
-                { settings.heroImageUrl && (
+                {settings.heroImageUrl && (
                     <img
                         src={settings.heroImageUrl}
                         alt="Beauty by Aude"
@@ -129,9 +129,7 @@ export default function Hero({settings}: SettingsProps) {
                 className="absolute bottom-10 left-[8%] z-3 hidden items-center gap-3 md:flex"
             >
                 <div className="h-[50px] w-px origin-top animate-pulse bg-gradient-to-b from-taupe to-transparent" />
-                <span className="text-[0.65rem] uppercase tracking-[0.3em] text-taupe">
-          Scroll
-        </span>
+                <span className="text-[0.65rem] uppercase tracking-[0.3em] text-taupe">Scroll</span>
             </motion.div>
         </section>
     );

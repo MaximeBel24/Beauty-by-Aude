@@ -27,21 +27,21 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-      <html
-          lang="fr"
-          className={`${cormorant.variable} ${jost.variable}`}
-          suppressHydrationWarning // nécessaire si tu gères le dark mode côté client
-      >
-          <body className="font-body bg-cream text-burgundy antialiased">
-          <Navbar />
-            {children}
-          <Footer />
-          </body>
-      </html>
-  );
+    return (
+        <html
+            lang="fr"
+            className={`${cormorant.variable} ${jost.variable}`}
+            suppressHydrationWarning // nécessaire si tu gères le dark mode côté client
+        >
+            <body className="font-body bg-cream text-burgundy antialiased">
+                <Navbar />
+                {children}
+                <Footer />
+            </body>
+        </html>
+    );
 }

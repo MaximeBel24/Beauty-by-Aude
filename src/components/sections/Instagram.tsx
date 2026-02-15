@@ -14,11 +14,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 export default function Instagram() {
     return (
         <section className="bg-[#FFF7EF] px-[4%] py-28 text-center">
-            <SectionHeader
-                label="Instagram"
-                title="Suivez-moi sur"
-                titleAccent="Instagram"
-            />
+            <SectionHeader label="Instagram" title="Suivez-moi sur" titleAccent="Instagram" />
 
             {/* Grille 6 colonnes (3 sur mobile) */}
             <div className="mx-auto grid max-w-[1200px] grid-cols-3 gap-2 md:grid-cols-6">

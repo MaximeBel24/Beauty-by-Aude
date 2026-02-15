@@ -54,21 +54,17 @@ export default function Navbar() {
           px-[4%] py-5
           backdrop-blur-[20px]
           border-b transition-all duration-300
-          ${
-                    isScrolled
-                        ? "border-taupe/15 bg-[#FFFBF6]/90"
-                        : "border-taupe/10 bg-[#FFFBF6]/85"
-                }
+          ${isScrolled ? "border-taupe/15 bg-[#FFFBF6]/90" : "border-taupe/10 bg-[#FFFBF6]/85"}
         `}
             >
                 {/* Logo */}
                 <Link href="/" className="no-underline">
-          <span className="font-heading text-2xl font-medium tracking-[0.15em] text-burgundy">
-            BEAUTY
-          </span>
+                    <span className="font-heading text-2xl font-medium tracking-[0.15em] text-burgundy">
+                        BEAUTY
+                    </span>
                     <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-taupe">
-            BY AUDE
-          </span>
+                        BY AUDE
+                    </span>
                 </Link>
 
                 {/* Liens desktop */}

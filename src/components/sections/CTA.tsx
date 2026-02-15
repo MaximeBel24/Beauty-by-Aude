@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import {SettingsProps} from "@/types";
+import { SettingsProps } from "@/types";
 
 /**
  * CTA — Section d'appel à l'action avec fond burgundy.
@@ -13,7 +13,7 @@ import {SettingsProps} from "@/types";
  * donc on utilise des divs dédiées pour les effets de fond.
  */
 
-export default function CTA({settings}: SettingsProps)  {
+export default function CTA({ settings }: SettingsProps) {
     return (
         <section
             id="contact"

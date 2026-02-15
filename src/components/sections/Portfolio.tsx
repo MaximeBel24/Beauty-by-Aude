@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import {PortfolioItem} from "@/types";
+import { PortfolioItem } from "@/types";
 
 /**
  * Portfolio — Grille de photos asymétrique (masonry-like).
@@ -12,14 +12,10 @@ interface PortfolioProps {
     portfolioItems: PortfolioItem[];
 }
 
-export default function Portfolio({portfolioItems}: PortfolioProps) {
+export default function Portfolio({ portfolioItems }: PortfolioProps) {
     return (
         <section id="portfolio" className="bg-[#FFF7EF] px-[4%] py-28">
-            <SectionHeader
-                label="Réalisations"
-                title="Mon"
-                titleAccent="portfolio"
-            />
+            <SectionHeader label="Réalisations" title="Mon" titleAccent="portfolio" />
 
             {/* Grille asymétrique */}
             <div
@@ -60,10 +56,10 @@ export default function Portfolio({portfolioItems}: PortfolioProps) {
                             opacity-0 transition-opacity duration-400
                             group-hover:opacity-100
                           "
-                                    >
-                          <span className="font-heading text-lg italic text-cream">
-                            {item.title}
-                          </span>
+                        >
+                            <span className="font-heading text-lg italic text-cream">
+                                {item.title}
+                            </span>
                         </div>
                     </motion.div>
                 ))}

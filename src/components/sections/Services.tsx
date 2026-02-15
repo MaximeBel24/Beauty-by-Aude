@@ -2,26 +2,21 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import {Service} from "@/types";
-import {formatPrice} from "@/lib/utils";
+import { Service } from "@/types";
+import { formatPrice } from "@/lib/utils";
 
 /**
  * Services — Grille de cartes de prestations.
  */
 
-interface ServicesProps{
+interface ServicesProps {
     services: Service[];
 }
 
-
-export default function Services({services}: ServicesProps) {
+export default function Services({ services }: ServicesProps) {
     return (
         <section id="services" className="bg-[#FFFBF6] px-[8%] py-28">
-            <SectionHeader
-                label="Prestations"
-                title="Nos"
-                titleAccent="services"
-            />
+            <SectionHeader label="Prestations" title="Nos" titleAccent="services" />
 
             {/* Grille de cartes */}
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -88,13 +83,13 @@ export default function Services({services}: ServicesProps) {
 
                         {/* Prix + Durée */}
                         <div className="flex items-baseline gap-2">
-              <span className="font-heading text-[1.4rem] font-medium text-taupe">
-                {formatPrice(service.price)}
-              </span>
+                            <span className="font-heading text-[1.4rem] font-medium text-taupe">
+                                {formatPrice(service.price)}
+                            </span>
                             {service.duration && (
                                 <span className="text-[0.8rem] font-light text-[#5C3D42]">
-                  · {service.duration}
-                </span>
+                                    · {service.duration}
+                                </span>
                             )}
                         </div>
                     </motion.div>

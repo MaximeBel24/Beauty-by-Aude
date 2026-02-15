@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import {Review} from "@/types";
+import { Review } from "@/types";
 
 /**
  * Reviews — Grille de cartes d'avis clients.
@@ -14,15 +14,10 @@ interface ReviewsProps {
     reviews: Review[];
 }
 
-
-export default function Reviews({reviews}: ReviewsProps) {
+export default function Reviews({ reviews }: ReviewsProps) {
     return (
         <section id="avis" className="bg-[#FFFBF6] px-[8%] py-28">
-            <SectionHeader
-                label="Témoignages"
-                title="Ce qu'elles"
-                titleAccent="en pensent"
-            />
+            <SectionHeader label="Témoignages" title="Ce qu'elles" titleAccent="en pensent" />
 
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-8 md:grid-cols-3">
                 {reviews.map((review, index) => (

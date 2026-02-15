@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {getSiteSettings} from "@/lib/sanity.queries";
+import { getSiteSettings } from "@/lib/sanity.queries";
 
 /**
  * Footer — Pas besoin de "use client" ici, c'est un composant statique.
@@ -22,7 +22,6 @@ const navLinks = [
 ];
 
 export default async function Footer() {
-
     const settings = await getSiteSettings();
     return (
         <footer className="bg-[#2A0E11] px-[8%] pt-16 pb-8 text-nude">
@@ -37,12 +36,12 @@ export default async function Footer() {
                 {/* Colonne 1 — Branding */}
                 <div>
                     <Link href="/" className="no-underline">
-            <span className="font-heading text-2xl font-medium tracking-[0.15em] text-cream">
-              BEAUTY
-            </span>
+                        <span className="font-heading text-2xl font-medium tracking-[0.15em] text-cream">
+                            BEAUTY
+                        </span>
                         <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-nude">
-              BY AUDE
-            </span>
+                            BY AUDE
+                        </span>
                     </Link>
                     <p className="mt-4 text-[0.88rem] leading-[1.8] opacity-70">
                         {settings.aboutText ?? "Lorem ipsum"}
@@ -51,9 +50,7 @@ export default async function Footer() {
 
                 {/* Colonne 2 — Navigation */}
                 <div>
-                    <h4 className="mb-5 font-heading text-lg font-medium text-cream">
-                        Navigation
-                    </h4>
+                    <h4 className="mb-5 font-heading text-lg font-medium text-cream">Navigation</h4>
                     <ul className="flex flex-col gap-3">
                         {navLinks.map((link) => (
                             <li key={link.href}>
@@ -74,9 +71,7 @@ export default async function Footer() {
 
                 {/* Colonne 3 — Contact */}
                 <div>
-                    <h4 className="mb-5 font-heading text-lg font-medium text-cream">
-                        Contact
-                    </h4>
+                    <h4 className="mb-5 font-heading text-lg font-medium text-cream">Contact</h4>
                     <ul className="flex flex-col gap-3">
                         <li>
                             <Link

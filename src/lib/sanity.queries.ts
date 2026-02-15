@@ -1,5 +1,5 @@
 import { client } from "./sanity.client";
-import {PortfolioItem, Review, Service, SiteSettings} from "@/types";
+import { PortfolioItem, Review, Service, SiteSettings } from "@/types";
 
 /**
  * 💡 GROQ en 30 secondes :
@@ -21,7 +21,7 @@ export async function getServices(): Promise<Service[]> {
       duration,
       category,
       order
-    }`
+    }`,
     );
 }
 
@@ -35,7 +35,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       "imageUrl": image.asset->url,
       "imageAlt": image.alt,
       order
-    }`
+    }`,
     );
 }
 
@@ -48,7 +48,7 @@ export async function getReviews(): Promise<Review[]> {
       rating,
       text,
       date
-    }`
+    }`,
     );
 }
 
@@ -68,6 +68,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       address,
       "heroImageUrl": heroImage.asset->url,
       "logoUrl": logo.asset->url
-    }`
+    }`,
     );
 }

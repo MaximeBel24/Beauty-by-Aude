@@ -21,11 +21,11 @@ interface SectionHeaderProps {
 }
 
 export default function SectionHeader({
-                                          label,
-                                          title,
-                                          titleAccent,
-                                          light = false,
-                                      }: SectionHeaderProps) {
+    label,
+    title,
+    titleAccent,
+    light = false,
+}: SectionHeaderProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
