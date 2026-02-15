@@ -1,4 +1,5 @@
 import { client } from "./sanity.client";
+import {PortfolioItem, Review, Service, SiteSettings} from "@/types";
 
 /**
  * 💡 GROQ en 30 secondes :
@@ -10,7 +11,7 @@ import { client } from "./sanity.client";
  */
 
 // ===== SERVICES =====
-export async function getServices() {
+export async function getServices(): Promise<Service[]> {
     return client.fetch(
         `*[_type == "service"] | order(order asc) {
       _id,
@@ -25,7 +26,7 @@ export async function getServices() {
 }
 
 // ===== PORTFOLIO =====
-export async function getPortfolioItems() {
+export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return client.fetch(
         `*[_type == "portfolio"] | order(order asc) {
       _id,
@@ -39,7 +40,7 @@ export async function getPortfolioItems() {
 }
 
 // ===== AVIS CLIENTS =====
-export async function getReviews() {
+export async function getReviews(): Promise<Review[]> {
     return client.fetch(
         `*[_type == "review"] | order(date desc) {
       _id,
@@ -53,7 +54,7 @@ export async function getReviews() {
 
 // ===== PARAMÈTRES DU SITE =====
 // Document singleton (un seul document de ce type)
-export async function getSiteSettings() {
+export async function getSiteSettings(): Promise<SiteSettings> {
     return client.fetch(
         `*[_type == "siteSettings"][0] {
       heroTitle,

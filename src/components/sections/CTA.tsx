@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {SettingsProps} from "@/types";
 
 /**
  * CTA — Section d'appel à l'action avec fond burgundy.
@@ -12,7 +13,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
  * donc on utilise des divs dédiées pour les effets de fond.
  */
 
-export default function CTA() {
+export default function CTA({settings}: SettingsProps)  {
     return (
         <section
             id="contact"
@@ -54,17 +55,17 @@ export default function CTA() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                 >
                     <a
-                        href="#"
+                        href={settings.planityUrl ?? "#"}
                         className="
-              group inline-flex items-center gap-3
-              bg-cream px-11 py-4
-              text-[0.8rem] font-medium uppercase tracking-[0.18em]
-              text-burgundy no-underline
-              transition-all duration-400
-              hover:-translate-y-0.5
-              hover:bg-[#FFFBF6]
-              hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
-            "
+                          group inline-flex items-center gap-3
+                          bg-cream px-11 py-4
+                          text-[0.8rem] font-medium uppercase tracking-[0.18em]
+                          text-burgundy no-underline
+                          transition-all duration-400
+                          hover:-translate-y-0.5
+                          hover:bg-[#FFFBF6]
+                          hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
+                        "
                     >
                         Réserver sur Planity
                         <svg

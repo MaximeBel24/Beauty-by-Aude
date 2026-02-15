@@ -30,12 +30,12 @@ export default function Instagram() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.08 }}
                         className="
-              group relative aspect-square cursor-pointer
-              overflow-hidden
-              bg-gradient-to-br from-nude to-cream
-              transition-transform duration-300
-              hover:scale-[0.96]
-            "
+                          group relative aspect-square cursor-pointer
+                          overflow-hidden
+                          bg-gradient-to-br from-nude to-cream
+                          transition-transform duration-300
+                          hover:scale-[0.96]
+                        "
                     >
                         {/* Icône placeholder */}
                         <div className="flex h-full w-full items-center justify-center">

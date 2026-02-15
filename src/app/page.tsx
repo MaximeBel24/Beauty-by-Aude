@@ -4,6 +4,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import Reviews from "@/components/sections/Reviews";
 import Instagram from "@/components/sections/Instagram";
 import CTA from "@/components/sections/CTA";
+import {getPortfolioItems, getReviews, getServices, getSiteSettings} from "@/lib/sanity.queries";
 
 /**
  * Page d'accueil — Assemble toutes les sections.
@@ -14,31 +15,23 @@ import CTA from "@/components/sections/CTA";
  *
  * Plus tard, cette page deviendra async pour fetch les données Sanity :
  *
- *   export default async function Home() {
- *     const services = await getServices();
- *     const portfolio = await getPortfolioItems();
- *     const reviews = await getReviews();
- *     const settings = await getSiteSettings();
- *
- *     return (
- *       <>
- *         <Hero settings={settings} />
- *         <Services services={services} />
- *         ...
- *       </>
- *     );
- *   }
  */
 
-export default function Home() {
+export default async function Home() {
+
+    const services = await getServices();
+    const portfolioItems = await getPortfolioItems()
+    const reviews = await getReviews();
+    const settings = await getSiteSettings();
+
     return (
         <>
-            <Hero />
-            <Services />
-            <Portfolio />
-            <Reviews />
+            <Hero settings={settings}/>
+            <Services services={services} />
+            <Portfolio portfolioItems={portfolioItems} />
+            <Reviews reviews={reviews} />
             <Instagram />
-            <CTA />
+            <CTA settings={settings}/>
         </>
     );
 }

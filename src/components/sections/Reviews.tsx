@@ -2,40 +2,20 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {Review} from "@/types";
 
 /**
  * Reviews — Grille de cartes d'avis clients.
  *
  * 💡 Les étoiles sont générées dynamiquement avec un Array.
- * Plus tard, `rating` viendra de Sanity et on affichera le bon nombre.
  */
 
-// Données temporaires
-const reviewsData = [
-    {
-        _id: "1",
-        name: "Sophie M.",
-        rating: 5,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-        date: "Il y a 2 semaines",
-    },
-    {
-        _id: "2",
-        name: "Laura D.",
-        rating: 5,
-        text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-        date: "Il y a 1 mois",
-    },
-    {
-        _id: "3",
-        name: "Camille R.",
-        rating: 5,
-        text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
-        date: "Il y a 1 mois",
-    },
-];
+interface ReviewsProps {
+    reviews: Review[];
+}
 
-export default function Reviews() {
+
+export default function Reviews({reviews}: ReviewsProps) {
     return (
         <section id="avis" className="bg-[#FFFBF6] px-[8%] py-28">
             <SectionHeader
@@ -45,7 +25,7 @@ export default function Reviews() {
             />
 
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-8 md:grid-cols-3">
-                {reviewsData.map((review, index) => (
+                {reviews.map((review, index) => (
                     <motion.div
                         key={review._id}
                         initial={{ opacity: 0, y: 30 }}

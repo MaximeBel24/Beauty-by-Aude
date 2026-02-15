@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import {SettingsProps} from "@/types";
 
 /**
  * Hero — Section d'accroche plein écran, split en 2 colonnes.
@@ -15,7 +16,7 @@ import Link from "next/link";
  * où chaque élément apparaît l'un après l'autre.
  */
 
-export default function Hero() {
+export default function Hero({settings}: SettingsProps) {
     return (
         <section className="relative grid min-h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
             {/* Colonne gauche — Contenu */}
@@ -40,22 +41,20 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="font-heading text-[clamp(3rem,5vw,4.5rem)] font-light leading-[1.1] text-burgundy"
                 >
-                    La beauté au bout
-                    <br />
-                    des <em className="italic font-light text-taupe">doigts</em>
+                    {settings.heroTitle}
                 </motion.h1>
 
                 {/* Texte descriptif */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-[#5C3D42]"
-                >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                    eiusmod tempor incididunt ut labore.
-                </motion.p>
-
+                {settings.heroSubtitle && (
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-[#5C3D42]"
+                    >
+                        {settings.heroSubtitle}
+                    </motion.p>
+                )}
                 {/* Boutons */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -65,16 +64,16 @@ export default function Hero() {
                 >
                     {/* CTA Principal */}
                     <Link
-                        href="#"
+                        href={settings.planityUrl ?? "#"}
                         className="
-              group inline-flex items-center gap-3
-              bg-burgundy px-9 py-4
-              text-[0.8rem] font-normal uppercase tracking-[0.18em]
-              text-cream no-underline
-              transition-all duration-400
-              hover:-translate-y-0.5 hover:bg-rosewood
-              hover:shadow-[0_8px_30px_rgba(64,18,22,0.2)]
-            "
+                          group inline-flex items-center gap-3
+                          bg-burgundy px-9 py-4
+                          text-[0.8rem] font-normal uppercase tracking-[0.18em]
+                          text-cream no-underline
+                          transition-all duration-400
+                          hover:-translate-y-0.5 hover:bg-rosewood
+                          hover:shadow-[0_8px_30px_rgba(64,18,22,0.2)]
+                        "
                     >
                         Réserver sur Planity
                         <svg
@@ -113,18 +112,13 @@ export default function Hero() {
 
             {/* Colonne droite — Image placeholder */}
             <div className="relative hidden overflow-hidden bg-nude md:block">
-                <div
-                    className="
-            flex h-full w-full items-center justify-center
-            bg-gradient-to-br from-nude via-cream to-taupe
-          "
-                >
-                    {/* Overlay subtil */}
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(64,18,22,0.08)_0%,transparent_70%)]" />
-                    <span className="z-1 font-heading text-xl italic text-rosewood opacity-50">
-            Photo de couverture
-          </span>
-                </div>
+                { settings.heroImageUrl && (
+                    <img
+                        src={settings.heroImageUrl}
+                        alt="Beauty by Aude"
+                        className="h-full w-full object-cover"
+                    />
+                )}
             </div>
 
             {/* Indicateur de scroll */}

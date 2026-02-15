@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {getSiteSettings} from "@/lib/sanity.queries";
 
 /**
  * Footer — Pas besoin de "use client" ici, c'est un composant statique.
@@ -20,7 +21,9 @@ const navLinks = [
     { href: "#contact", label: "Contact" },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+
+    const settings = await getSiteSettings();
     return (
         <footer className="bg-[#2A0E11] px-[8%] pt-16 pb-8 text-nude">
             {/* Grille 3 colonnes */}
@@ -42,8 +45,7 @@ export default function Footer() {
             </span>
                     </Link>
                     <p className="mt-4 text-[0.88rem] leading-[1.8] opacity-70">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod tempor incididunt ut labore.
+                        {settings.aboutText ?? "Lorem ipsum"}
                     </p>
                 </div>
 
@@ -78,7 +80,7 @@ export default function Footer() {
                     <ul className="flex flex-col gap-3">
                         <li>
                             <Link
-                                href="#"
+                                href={settings.planityUrl ?? "#"}
                                 className="
                   text-[0.85rem] font-light text-nude no-underline
                   opacity-70 transition-all duration-300
@@ -90,7 +92,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link
-                                href="#"
+                                href={settings.instagramUrl ?? "#"}
                                 className="
                   text-[0.85rem] font-light text-nude no-underline
                   opacity-70 transition-all duration-300
@@ -102,14 +104,14 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link
-                                href="mailto:contact@beautybyaude.fr"
+                                href={settings.email ? `mailto:${settings.email}` : "#"}
                                 className="
                   text-[0.85rem] font-light text-nude no-underline
                   opacity-70 transition-all duration-300
                   hover:text-cream hover:opacity-100
                 "
                             >
-                                contact@beautybyaude.fr
+                                {settings.email ?? "contact@beautybyaude.fr"}
                             </Link>
                         </li>
                     </ul>
