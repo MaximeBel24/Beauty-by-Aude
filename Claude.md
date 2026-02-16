@@ -2,7 +2,7 @@
 
 ## Contexte
 
-Site vitrine professionnel sur mesure pour **Aude**, manucurière indépendante. 
+Site vitrine professionnel sur mesure pour **Aude**, manucurière indépendante.
 Le projet est réalisé bénévolement par **Maxime** (développeur), et sert également de **projet portfolio** et de **montée en compétences** sur Next.js, Tailwind CSS, Sanity et Stripe.
 
 Le projet est découpé en deux versions :
@@ -24,17 +24,17 @@ Le projet est découpé en deux versions :
 
 - **Logo** : "Beauty by Aude" — ligne élégante, or/caramel sur crème
 - **Palette** :
-    - Burgundy `#401216` — couleur principale
-    - Rosewood `#63333A` — accent secondaire
-    - Taupe `#9C7961` — accents, étoiles, détails
-    - Cream `#FFEDDA` — fond principal des sections
-    - Nude/Beige `#D5BCAD` — fond secondaire, éléments décoratifs
-    - White `#FFFBF6` — fond body
-    - Text Dark `#2A0E11` — fond footer
-    - Text Body `#5C3D42` — couleur de texte par défaut
+  - Burgundy `#401216` — couleur principale
+  - Rosewood `#63333A` — accent secondaire
+  - Taupe `#9C7961` — accents, étoiles, détails
+  - Cream `#FFEDDA` — fond principal des sections
+  - Nude/Beige `#D5BCAD` — fond secondaire, éléments décoratifs
+  - White `#FFFBF6` — fond body
+  - Text Dark `#2A0E11` — fond footer
+  - Text Body `#5C3D42` — couleur de texte par défaut
 - **Typographies** :
-    - Cormorant Garamond (titres, headings) — serif élégant, variable `--font-heading`
-    - Jost (body, interface) — sans-serif moderne, variable `--font-body`
+  - Cormorant Garamond (titres, headings) — serif élégant, variable `--font-heading`
+  - Jost (body, interface) — sans-serif moderne, variable `--font-body`
 - **Design sélectionné** : Design 1 — Premium Classique (glassmorphism nav, split hero, cartes services, grille portfolio asymétrique, avis avec guillemets, CTA burgundy)
 
 ## Stack technique
@@ -72,6 +72,10 @@ beauty-by-aude/
 │   │   ├── layout.tsx              # Layout racine (fonts, Navbar, Footer)
 │   │   ├── page.tsx                # Page d'accueil (assemble les sections)
 │   │   ├── globals.css             # Config Tailwind v4 (@theme, couleurs, animations)
+│   │   ├── services/
+│   │   │   ├── page.tsx            # Liste filtrable de tous les services
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx        # Détail d'un service (description, galerie, CTA)
 │   │   └── studio/[[...tool]]/
 │   │       └── page.tsx            # Route Sanity Studio (/studio)
 │   ├── components/
@@ -120,10 +124,15 @@ beauty-by-aude/
 ### Service (💅)
 Prestations proposées par Aude.
 - `title` (string, required) — Nom du service
-- `description` (text) — Courte description
+- `slug` (slug, required) — URL-friendly identifier (généré depuis title)
+- `description` (text) — Courte description (affichée sur les cartes)
+- `longDescription` (text) — Description détaillée (affichée sur la page /services/[slug])
 - `price` (number, required) — Prix en euros
 - `duration` (string) — Durée (ex: "1h30")
-- `category` (string, list) — manucure, pose, nailart, soins, autre
+- `category` (string, list) — semipermanent, gel-extensions, entretien, pieds, extras
+- `icon` (string, list) — Icône associée à la catégorie (paintbrush, hand, wrench, footprints, sparkles)
+- `featured` (boolean) — Mettre en avant sur la page d'accueil (4-6 max)
+- `gallery` (array of image) — Photos de réalisations liées à ce service
 - `order` (number) — Ordre d'affichage
 
 ### Portfolio (🖼️)
@@ -153,6 +162,7 @@ Document singleton — configuration générale du site.
 ## Fonctionnalités V1
 
 - [x] Présentation des services et tarifs (gérés via CMS)
+- [ ] Page /services dédiée (filtres par catégorie, icônes, pages détail avec galerie)
 - [ ] Portfolio photo des réalisations (connecté à Sanity)
 - [ ] Section avis clients (connectée à Sanity)
 - [ ] Intégration du feed Instagram
@@ -176,19 +186,20 @@ Document singleton — configuration générale du site.
 | 2 | Schémas Sanity (service, portfolio, review, siteSettings) | ✅ Terminé | `feature/sanity-schemas` |
 | 3 | Découpage composants React (Navbar, Footer, SectionHeader, 6 sections) | ✅ Terminé | `feature/sanity-schemas` |
 | 4 | Intégration Tailwind + Framer Motion (toutes sections) | ✅ Terminé | `feature/sanity-schemas` |
-| 5 | Connecter Sanity aux composants (remplacer données en dur) | ⬜ À faire | — |
-| 6 | Déployer sur Vercel (preview continue) | ⬜ À faire | — |
-| 7 | SEO (metadata dynamiques, sitemap, JSON-LD) | ⬜ À faire | — |
-| 8 | Responsive mobile (ajustements fins) | ⬜ À faire | — |
-| 9 | Intégration feed Instagram | ⬜ À faire | — |
-| 10 | Mise en production | ⬜ À faire | — |
+| 5 | Connecter Sanity aux composants (remplacer données en dur) | ✅ Terminé | `feature/sanity-integration` |
+| 6 | Page /services (liste filtrable, catégories, icônes) + pages /services/[slug] (détail, galerie, CTA Planity) | ⬜ À faire | — |
+| 7 | Déployer sur Vercel (preview continue) | ⬜ À faire | — |
+| 8 | SEO (metadata dynamiques, sitemap, JSON-LD) | ⬜ À faire | — |
+| 9 | Responsive mobile (ajustements fins) | ⬜ À faire | — |
+| 10 | Intégration feed Instagram | ⬜ À faire | — |
+| 11 | Mise en production | ⬜ À faire | — |
 
 ## État actuel
 
-**Dernière étape terminée : Étape 4 — Intégration complète des sections**
+**Dernière étape terminée : Étape 5 — Connecter Sanity aux composants**
 
-Le site est visuellement complet avec des données en dur (hardcoded). Toutes les sections du mockup Design 1 (Premium Classique) sont implémentées en composants React avec Tailwind CSS et animations Framer Motion. Sanity Studio est accessible à `/studio` avec les 4 types de contenu configurés.
+Tous les composants de section (Services, Portfolio, Reviews, Hero, CTA) sont connectés à Sanity CMS. Les données en dur ont été remplacées par des requêtes GROQ dynamiques. `page.tsx` est un composant async (Server Component) qui fetch les données et les passe en props aux Client Components.
 
-**Prochaine étape : Étape 5 — Connecter Sanity aux composants**
+**Prochaine étape : Étape 6 — Page Services dédiée + pages détail**
 
-Transformer `page.tsx` en composant async, appeler les fonctions GROQ (`getServices`, `getPortfolioItems`, `getReviews`, `getSiteSettings`), et passer les données en props aux composants de section. Remplacer toutes les données en dur par le contenu dynamique de Sanity.
+Refactoriser la section Services de la homepage : garder 4-6 services vedettes (champ `featured` dans Sanity), créer une page `/services` avec liste filtrable par catégorie et icônes contextuelles, et des pages `/services/[slug]` avec description longue, galerie photo et CTA Planity. Enrichir le schéma Sanity `service` avec les champs `featured`, `slug`, `longDescription` et `gallery`.
