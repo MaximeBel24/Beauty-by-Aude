@@ -16,12 +16,49 @@ export async function getServices(): Promise<Service[]> {
         `*[_type == "service"] | order(order asc) {
       _id,
       title,
+      "slug": slug.current,
       description,
       price,
       duration,
       category,
+      icon,
+      "gallery": gallery[] { "imageUrl": asset->url, alt },
       order
     }`,
+    );
+}
+
+export async function getFeaturedServices(): Promise<Service[]> {
+    return client.fetch(
+      `*[_type == "service" && featured == true] | order(order asc) {
+        _id,
+        title,
+        "slug": slug.current,
+        description,
+        price,
+        duration,
+        category,
+        icon,
+        order
+      }`,
+    );
+}
+
+export async function getServiceBySlug(slug: string): Promise<Service> {
+    return client.fetch(
+        `*[_type == "service" && slug.current == $slug][0] {
+           _id,
+           title,
+           "slug": slug.current,
+           description,
+           longDescription,
+           price,
+           duration,
+           category,
+           icon,
+           "gallery": gallery[] { "imageUrl": asset->url, alt },
+           order
+        }`,{ slug }
     );
 }
 
