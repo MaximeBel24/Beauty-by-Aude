@@ -30,7 +30,7 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getFeaturedServices(): Promise<Service[]> {
     return client.fetch(
-      `*[_type == "service" && featured == true] | order(order asc) {
+        `*[_type == "service" && featured == true] | order(order asc) {
         _id,
         title,
         "slug": slug.current,
@@ -58,7 +58,8 @@ export async function getServiceBySlug(slug: string): Promise<Service> {
            icon,
            "gallery": gallery[] { "imageUrl": asset->url, alt },
            order
-        }`,{ slug }
+        }`,
+        { slug },
     );
 }
 

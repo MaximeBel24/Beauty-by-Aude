@@ -43,7 +43,6 @@ export default async function Footer() {
                             BY AUDE
                         </span>
                     </Link>
-
                 </div>
 
                 {/* Colonne 2 — Navigation */}
@@ -120,7 +119,6 @@ export default async function Footer() {
         "
             >
                 <span>© 2025 Beauty by Aude — Tous droits réservés</span>
-
             </div>
         </footer>
     );

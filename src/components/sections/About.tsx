@@ -1,9 +1,9 @@
 "use client";
 
-import {SettingsProps} from "@/types";
+import { SettingsProps } from "@/types";
 import SectionHeader from "@/components/ui/SectionHeader";
 
-export default function About({settings}: SettingsProps)  {
+export default function About({ settings }: SettingsProps) {
     return (
         <section id="about" className="bg-[#FFF7EF] px-[8%] py-28">
             <SectionHeader label="À propos" title="Qui" titleAccent="suis-je ?" />
@@ -33,8 +33,8 @@ export default function About({settings}: SettingsProps)  {
                     <div className="mb-6 flex items-center gap-4">
                         <span className="h-px w-10 bg-taupe" />
                         <span className="text-[0.7rem] font-normal uppercase tracking-[0.35em] text-taupe">
-                              Aude, prothésiste ongulaire à Villecresnes
-                          </span>
+                            Aude, prothésiste ongulaire à Villecresnes
+                        </span>
                     </div>
 
                     <p className="whitespace-pre-line text-[1.05rem] leading-[1.9] text-[#5C3D42]">
@@ -49,4 +49,4 @@ export default function About({settings}: SettingsProps)  {
             </div>
         </section>
     );
-};
+}
