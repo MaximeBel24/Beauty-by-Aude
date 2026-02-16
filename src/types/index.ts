@@ -1,11 +1,23 @@
+type ServiceIcons = "paintbrush" | "hand" | "wrench" | "footprints" | "sparkles";
+
 export interface Service {
     _id: string;
     title: string;
+    slug: string;
     description?: string;
+    longDescription?: string;
     price: number;
     duration?: string;
     category?: string;
+    featured?: boolean;
+    icon?: ServiceIcons;
+    gallery?: SanityImage[];
     order?: number;
+}
+
+export interface SanityImage {
+    imageUrl: string;
+    alt?: string;
 }
 
 export interface PortfolioItem {
