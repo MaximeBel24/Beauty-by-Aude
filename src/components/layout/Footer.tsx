@@ -43,9 +43,7 @@ export default async function Footer() {
                             BY AUDE
                         </span>
                     </Link>
-                    <p className="mt-4 text-[0.88rem] leading-[1.8] opacity-70">
-                        {settings.aboutText ?? "Lorem ipsum"}
-                    </p>
+
                 </div>
 
                 {/* Colonne 2 — Navigation */}
@@ -76,6 +74,7 @@ export default async function Footer() {
                         <li>
                             <Link
                                 href={settings.planityUrl ?? "#"}
+                                target="_blank"
                                 className="
                   text-[0.85rem] font-light text-nude no-underline
                   opacity-70 transition-all duration-300
@@ -121,7 +120,7 @@ export default async function Footer() {
         "
             >
                 <span>© 2025 Beauty by Aude — Tous droits réservés</span>
-                <span className="hidden sm:inline">Site réalisé avec ♡</span>
+
             </div>
         </footer>
     );

@@ -67,6 +67,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       email,
       address,
       "heroImageUrl": heroImage.asset->url,
+      "aboutImageUrl": aboutImage.asset->url,
       "logoUrl": logo.asset->url
     }`,
     );

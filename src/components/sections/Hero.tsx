@@ -65,6 +65,7 @@ export default function Hero({ settings }: SettingsProps) {
                     {/* CTA Principal */}
                     <Link
                         href={settings.planityUrl ?? "#"}
+                        target="_blank"
                         className="
                           group inline-flex items-center gap-3
                           bg-burgundy px-9 py-4

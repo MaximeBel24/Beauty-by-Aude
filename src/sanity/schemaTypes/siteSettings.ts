@@ -50,6 +50,13 @@ export default defineType({
             description: "Courte présentation d'Aude et de son activité",
             rows: 5,
         }),
+        defineField({
+            name: "aboutImage",
+            title: "Photo de présentation",
+            type: "image",
+            description: "Photo d'Aude pour la section Qui suis-je",
+            options: { hotspot: true },
+        }),
 
         // ===== LIENS EXTERNES =====
         defineField({

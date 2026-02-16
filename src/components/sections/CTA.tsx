@@ -42,8 +42,6 @@ export default function CTA({ settings }: SettingsProps) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="-mt-6 mb-10 text-[1.05rem] leading-[1.7] text-nude"
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <br />
                     Prenez rendez-vous en ligne en quelques clics.
                 </motion.p>
 
@@ -56,6 +54,7 @@ export default function CTA({ settings }: SettingsProps) {
                 >
                     <a
                         href={settings.planityUrl ?? "#"}
+                        target="_blank"
                         className="
                           group inline-flex items-center gap-3
                           bg-cream px-11 py-4
