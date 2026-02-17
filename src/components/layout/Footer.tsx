@@ -15,10 +15,10 @@ import { getSiteSettings } from "@/lib/sanity.queries";
 
 const navLinks = [
     { href: "/", label: "Accueil" },
-    { href: "#services", label: "Services" },
-    { href: "#portfolio", label: "Portfolio" },
-    { href: "#avis", label: "Avis" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#portfolio", label: "Portfolio" },
+    { href: "/#avis", label: "Avis" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default async function Footer() {

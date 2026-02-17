@@ -20,10 +20,10 @@ import Link from "next/link";
 
 // Liens de navigation — facile à modifier
 const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#portfolio", label: "Portfolio" },
-    { href: "#avis", label: "Avis" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#portfolio", label: "Portfolio" },
+    { href: "/#avis", label: "Avis" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
