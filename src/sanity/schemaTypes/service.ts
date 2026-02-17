@@ -98,7 +98,7 @@ export default defineType({
                         { id: context.document?._id },
                     );
 
-                    return count >= 6 ? "Maximum 6 services peuvent être mis en avant" : true;
+                    return count >= 7 ? "Maximum 6 services peuvent être mis en avant" : true;
                 }),
         }),
         defineField({

@@ -34,7 +34,7 @@ export default function Services({ services }: ServicesProps) {
                 className="mt-12 text-center"
             >
                 <a
-                    href="#"
+                    href="/services"
                     className="
             text-[0.8rem] font-normal uppercase tracking-[0.15em]
             text-rosewood no-underline

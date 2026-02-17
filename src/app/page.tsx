@@ -4,7 +4,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import Reviews from "@/components/sections/Reviews";
 import Instagram from "@/components/sections/Instagram";
 import CTA from "@/components/sections/CTA";
-import { getPortfolioItems, getReviews, getServices, getSiteSettings } from "@/lib/sanity.queries";
+import {getFeaturedServices, getPortfolioItems, getReviews, getServices, getSiteSettings} from "@/lib/sanity.queries";
 import About from "@/components/sections/About";
 
 /**
@@ -19,7 +19,7 @@ import About from "@/components/sections/About";
  */
 
 export default async function Home() {
-    const services = await getServices();
+    const services = await getFeaturedServices();
     const portfolioItems = await getPortfolioItems();
     const reviews = await getReviews();
     const settings = await getSiteSettings();

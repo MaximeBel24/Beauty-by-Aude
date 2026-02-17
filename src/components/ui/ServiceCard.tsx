@@ -19,6 +19,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="
+                            h-full flex flex-col
                           group relative cursor-pointer overflow-hidden
                           border border-taupe/10 bg-[#FFF7EF]
                           px-8 py-10
@@ -70,7 +71,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 </h3>
 
                 {/* Description */}
-                <p className="mb-5 text-[0.88rem] leading-relaxed text-[#5C3D42]">
+                <p className="mb-5 text-[0.88rem] leading-relaxed text-[#5C3D42] grow">
                     {service.description}
                 </p>
 
