@@ -55,3 +55,7 @@ export interface SiteSettings {
 export interface SettingsProps {
     settings: SiteSettings;
 }
+
+export interface ServicesProps {
+    services: Service[];
+}

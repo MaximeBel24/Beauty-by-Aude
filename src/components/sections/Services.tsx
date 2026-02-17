@@ -2,16 +2,12 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { Service } from "@/types";
+import {Service, ServicesProps} from "@/types";
 import ServiceCard from "@/components/ui/ServiceCard";
 
 /**
  * Services — Grille de cartes de prestations.
  */
-
-interface ServicesProps {
-    services: Service[];
-}
 
 export default function Services({ services }: ServicesProps) {
     return (
