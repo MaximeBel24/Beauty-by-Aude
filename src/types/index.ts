@@ -38,8 +38,6 @@ export interface Review {
 }
 
 export interface SiteSettings {
-    heroTitle: string;
-    heroSubtitle?: string;
     heroImageUrl?: string;
     logoUrl?: string;
     aboutText?: string;

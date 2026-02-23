@@ -34,27 +34,28 @@ export default function Hero({ settings }: SettingsProps) {
                     </span>
                 </motion.div>
 
-                {/* Titre */}
+                {/* Titre — codé en dur pour styler chaque mot indépendamment */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="font-heading text-[clamp(3rem,5vw,4.5rem)] font-light leading-[1.1] text-burgundy"
                 >
-                    {settings.heroTitle}
+                    Des mains<br />
+                    qui <em className="italic">subliment</em><br />
+                    les vôtres
                 </motion.h1>
 
-                {/* Texte descriptif */}
-                {settings.heroSubtitle && (
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                        className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-[#5C3D42]"
-                    >
-                        {settings.heroSubtitle}
-                    </motion.p>
-                )}
+                {/* Sous-titre — codé en dur comme le titre */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-body"
+                >
+                    Experte en manucure, pose de gel et semi-permanent.
+                    Des prestations sur mesure, réalisées avec passion et minutie.
+                </motion.p>
                 {/* Boutons */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -122,16 +123,6 @@ export default function Hero({ settings }: SettingsProps) {
                 )}
             </div>
 
-            {/* Indicateur de scroll */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
-                className="absolute bottom-10 left-[8%] z-3 hidden items-center gap-3 md:flex"
-            >
-                <div className="h-[50px] w-px origin-top animate-pulse bg-gradient-to-b from-taupe to-transparent" />
-                <span className="text-[0.65rem] uppercase tracking-[0.3em] text-taupe">Scroll</span>
-            </motion.div>
         </section>
     );
 }

@@ -95,8 +95,6 @@ export async function getReviews(): Promise<Review[]> {
 export async function getSiteSettings(): Promise<SiteSettings> {
     return client.fetch(
         `*[_type == "siteSettings"][0] {
-      heroTitle,
-      heroSubtitle,
       aboutText,
       planityUrl,
       instagramUrl,

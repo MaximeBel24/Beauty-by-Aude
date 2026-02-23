@@ -22,7 +22,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                 className="
           mx-auto grid max-w-[1200px] gap-4
           grid-cols-2
-          md:grid-cols-4 md:grid-rows-[280px_280px]
+          md:grid-cols-4 md:grid-rows-[280px_280px] md:grid-flow-dense
         "
             >
                 {portfolioItems.map((item, index) => (

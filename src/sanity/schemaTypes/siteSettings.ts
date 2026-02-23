@@ -12,20 +12,8 @@ export default defineType({
     icon: () => "⚙️",
     fields: [
         // ===== HERO =====
-        defineField({
-            name: "heroTitle",
-            title: "Titre principal",
-            type: "string",
-            description: "Le grand titre sur la page d'accueil",
-            validation: (rule) => rule.required(),
-        }),
-        defineField({
-            name: "heroSubtitle",
-            title: "Sous-titre",
-            type: "text",
-            description: "Le texte sous le titre principal",
-            rows: 3,
-        }),
+        // heroTitle et heroSubtitle ont été retirés : le titre et le sous-titre du hero
+        // sont codés en dur dans Hero.tsx pour permettre un stylage fin par mot.
         defineField({
             name: "heroImage",
             title: "Image Hero",
