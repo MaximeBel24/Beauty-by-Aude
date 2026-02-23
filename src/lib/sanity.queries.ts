@@ -82,7 +82,6 @@ export async function getReviews(): Promise<Review[]> {
     return client.fetch(
         `*[_type == "review"] | order(date desc) {
       _id,
-      name,
       rating,
       text,
       date

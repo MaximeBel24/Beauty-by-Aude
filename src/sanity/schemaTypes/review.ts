@@ -7,13 +7,6 @@ export default defineType({
     icon: () => "⭐",
     fields: [
         defineField({
-            name: "name",
-            title: "Prénom",
-            type: "string",
-            description: 'Ex: "Sophie M.", "Laura D."',
-            validation: (rule) => rule.required().max(50),
-        }),
-        defineField({
             name: "rating",
             title: "Note (étoiles)",
             type: "number",
@@ -48,16 +41,15 @@ export default defineType({
 
     preview: {
         select: {
-            name: "name",
             rating: "rating",
             text: "text",
             featured: "featured",
         },
-        prepare({ name, rating, text, featured }) {
+        prepare({ rating, text, featured }) {
             const stars = "★".repeat(rating || 0) + "☆".repeat(5 - (rating || 0));
             return {
-                title: `${name} ${featured ? "📌" : ""}`,
-                subtitle: `${stars} — ${text?.slice(0, 60) || ""}...`,
+                title: `${stars}${featured ? " 📌" : ""}`,
+                subtitle: `${text?.slice(0, 60) || ""}...`,
             };
         },
     },

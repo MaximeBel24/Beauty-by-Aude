@@ -52,11 +52,6 @@ export default function Reviews({ reviews }: ReviewsProps) {
                             {review.text}
                         </p>
 
-                        {/* Auteur */}
-                        <p className="text-[0.85rem] font-medium tracking-[0.05em] text-burgundy">
-                            {review.name}
-                        </p>
-
                         {/* Date */}
                         <p className="mt-1 text-xs text-taupe">{review.date}</p>
                     </motion.div>
