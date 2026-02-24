@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import {Service, ServicesProps} from "@/types";
+import {ServicesProps} from "@/types";
 import ServiceCard from "@/components/ui/ServiceCard";
 
 /**

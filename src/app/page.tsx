@@ -3,8 +3,15 @@ import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
 import Reviews from "@/components/sections/Reviews";
 import CTA from "@/components/sections/CTA";
-import {getFeaturedServices, getPortfolioItems, getReviews, getServices, getSiteSettings} from "@/lib/sanity.queries";
+import {
+    getFeaturedServices,
+    getPortfolioItems,
+    getReviews,
+    getSalon,
+    getSiteSettings
+} from "@/lib/sanity.queries";
 import About from "@/components/sections/About";
+import Salon from "@/components/sections/Salon";
 
 /**
  * Page d'accueil — Assemble toutes les sections.
@@ -19,10 +26,11 @@ import About from "@/components/sections/About";
 
 export default async function Home() {
 
-    const [services, portfolioItems, reviews, settings] = await Promise.all([
+    const [services, portfolioItems, reviews, salon, settings] = await Promise.all([
         getFeaturedServices(),
         getPortfolioItems(),
         getReviews(),
+        getSalon(),
         getSiteSettings(),
     ]);
 
@@ -33,7 +41,7 @@ export default async function Home() {
             <Services services={services} />
             <Portfolio portfolioItems={portfolioItems} />
             <Reviews reviews={reviews} />
-            {/*<Instagram />*/}
+            <Salon salon={salon} settings={settings}/>
             <CTA settings={settings} />
         </>
     );

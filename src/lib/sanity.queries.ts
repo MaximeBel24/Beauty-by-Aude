@@ -1,5 +1,5 @@
 import { client } from "./sanity.client";
-import { PortfolioItem, Review, Service, SiteSettings } from "@/types";
+import {PortfolioItem, Review, Salon, Service, SiteSettings} from "@/types";
 
 /**
  * 💡 GROQ en 30 secondes :
@@ -73,6 +73,15 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       "imageUrl": image.asset->url,
       "imageAlt": image.alt,
       order
+    }`,
+    );
+}
+
+// ===== SALON  =====
+export async function getSalon(): Promise<Salon> {
+    return client.fetch(
+        `*[_type == "salon"][0] {
+      openingHours,
     }`,
     );
 }

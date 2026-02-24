@@ -100,7 +100,7 @@ export default function Hero({ settings }: SettingsProps) {
               hover:text-burgundy
             "
                     >
-                        Mes services
+                        Découvrir Mes services
                         <span
                             className="
                 absolute bottom-3 left-0 h-px w-full
@@ -113,7 +113,7 @@ export default function Hero({ settings }: SettingsProps) {
             </div>
 
             {/* Colonne droite — Image placeholder */}
-            <div className="relative hidden overflow-hidden bg-nude md:block">
+            <div className="relative hidden overflow-hidden from-nude from-0% via-cream via-50% to-nude to-100% bg-linear-120 md:block">
                 {settings.heroImageUrl && (
                     <img
                         src={settings.heroImageUrl}

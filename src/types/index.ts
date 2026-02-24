@@ -36,6 +36,15 @@ export interface Review {
     date?: string;
 }
 
+interface OpeningHours {
+    day: string;
+    hours: string;
+}
+
+export interface Salon {
+    openingHours: OpeningHours[];
+}
+
 export interface SiteSettings {
     heroImageUrl?: string;
     logoUrl?: string;
