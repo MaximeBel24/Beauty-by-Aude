@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SettingsProps } from "@/types";
+import HeroBentoGrid from "@/components/hero/HeroBentoGrid";
 
 /**
  * Hero — Section d'accroche plein écran, split en 2 colonnes.
@@ -18,7 +19,7 @@ import { SettingsProps } from "@/types";
 
 export default function Hero({ settings }: SettingsProps) {
     return (
-        <section className="relative grid min-h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
+        <section className="relative grid h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
             {/* Colonne gauche — Contenu */}
             <div className="z-2 flex flex-col justify-center px-[6%] pt-32 pb-16 md:px-[8%] md:pt-32 md:pb-16">
                 {/* Badge */}
@@ -113,15 +114,7 @@ export default function Hero({ settings }: SettingsProps) {
             </div>
 
             {/* Colonne droite — Image placeholder */}
-            <div className="relative hidden overflow-hidden from-nude from-0% via-cream via-50% to-nude to-100% bg-linear-120 md:block">
-                {settings.heroImageUrl && (
-                    <img
-                        src={settings.heroImageUrl}
-                        alt="Beauty by Aude"
-                        className="h-full w-full object-cover"
-                    />
-                )}
-            </div>
+            <HeroBentoGrid />
 
         </section>
     );

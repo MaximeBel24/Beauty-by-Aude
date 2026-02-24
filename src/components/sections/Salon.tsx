@@ -55,10 +55,6 @@ export default function Salon({salon, settings}: SalonProps) {
                     />
                 </motion.div>
             </div>
-
-
-
-
         </section>
     )
 
