@@ -20,9 +20,11 @@ import Link from "next/link";
 
 // Liens de navigation — facile à modifier
 const navLinks = [
+    { href: "/#about", label: "Qui suis-je" },
     { href: "/#services", label: "Services" },
     { href: "/#portfolio", label: "Portfolio" },
     { href: "/#avis", label: "Avis" },
+    { href: "/#salon", label: "Salon" },
     { href: "/#contact", label: "Contact" },
 ];
 

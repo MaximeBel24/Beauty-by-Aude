@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const cormorant = Cormorant_Garamond({
     subsets: ["latin"],
@@ -26,6 +24,8 @@ export const metadata: Metadata = {
     keywords: ["manucure", "nail art", "pose gel", "semi-permanent", "beauté"],
 };
 
+// Layout racine : partagé par TOUTES les routes (site + studio)
+// Navbar et Footer sont dans (site)/layout.tsx pour ne pas apparaître dans le Studio
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -35,12 +35,10 @@ export default function RootLayout({
         <html
             lang="fr"
             className={`${cormorant.variable} ${jost.variable}`}
-            suppressHydrationWarning // nécessaire si tu gères le dark mode côté client
+            suppressHydrationWarning
         >
             <body className="font-body bg-cream text-burgundy antialiased">
-                <Navbar />
                 {children}
-                <Footer />
             </body>
         </html>
     );

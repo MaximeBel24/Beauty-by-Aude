@@ -12,6 +12,9 @@ import {structureTool} from 'sanity/structure'
 import {apiVersion, dataset, projectId} from '@/sanity/env'
 import {schema} from '@/sanity/schemaTypes'
 import {structure} from '@/sanity/structure'
+import {frFRLocale} from "@sanity/locale-fr-fr";
+import {beautyTheme} from "@/sanity/theme";
+import StudioNavbar from "@/sanity/components/StudioNavbar";
 
 export default defineConfig({
   basePath: '/studio',
@@ -19,10 +22,18 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
+  theme: beautyTheme,
   plugins: [
     structureTool({structure}),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
+    structureTool({structure}),
+    frFRLocale(),
   ],
+  studio: {
+    components: {
+      navbar: StudioNavbar,
+      toolMenu: () => null,
+    }
+  }
 })
