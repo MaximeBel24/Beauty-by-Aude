@@ -2,16 +2,12 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { PortfolioItem } from "@/types";
+import {PortfolioItem, PortfolioProps} from "@/types";
 import Image from "next/image";
 
 /**
  * Portfolio — Grille de photos asymétrique (masonry-like).
  */
-
-interface PortfolioProps {
-    portfolioItems: PortfolioItem[];
-}
 
 export default function Portfolio({ portfolioItems }: PortfolioProps) {
     return (

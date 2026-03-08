@@ -1,16 +1,12 @@
 "use client";
 
-import {Salon as SalonType, SiteSettings} from "@/types";
+import {Salon as SalonType, SalonProps, SiteSettings} from "@/types";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 
-
-interface SalonProps {
-    salon: SalonType;
-    settings: SiteSettings;
-}
-
 export default function Salon({salon, settings}: SalonProps) {
+    if (!settings) return null;
+    if (!salon) return null;
     return (
         <section id="salon" className="bg-white-warm px-[4%] py-28">
             <SectionHeader label={"Le salon"} title={"Venez"} titleAccent={"nous voir"} />

@@ -59,9 +59,22 @@ export interface SiteSettings {
 }
 
 export interface SettingsProps {
-    settings: SiteSettings;
+    settings: SiteSettings | null;
 }
 
 export interface ServicesProps {
     services: Service[];
+}
+
+export interface SalonProps {
+    salon: Salon | null;
+    settings: SiteSettings | null;
+}
+
+export interface ReviewsProps {
+    reviews: Review[];
+}
+
+export interface PortfolioProps {
+    portfolioItems: PortfolioItem[];
 }

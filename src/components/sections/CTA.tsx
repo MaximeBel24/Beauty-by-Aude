@@ -14,6 +14,7 @@ import { SettingsProps } from "@/types";
  */
 
 export default function CTA({ settings }: SettingsProps) {
+    if (!settings) return null;
     return (
         <section
             id="contact"

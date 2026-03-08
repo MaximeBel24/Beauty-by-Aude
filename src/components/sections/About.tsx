@@ -5,6 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Image from "next/image";
 
 export default function About({ settings }: SettingsProps) {
+    if (!settings) return null;
     return (
         <section id="about" className="bg-cream-light px-[8%] py-28">
             <SectionHeader label="À propos" title="Qui" titleAccent="suis-je ?" />

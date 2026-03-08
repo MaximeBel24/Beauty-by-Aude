@@ -23,10 +23,11 @@ import { getCategoryLabel, getCategoryIcon } from "@/lib/categories";
 
 interface ServiceDetailProps {
     service: Service;
-    settings: SiteSettings;
+    settings: SiteSettings | null;
 }
 
 export default function ServiceDetail({ service, settings }: ServiceDetailProps) {
+    if (!settings) return null;
     return (
         <div className="px-[8%] pt-32 pb-20">
             <div className="mx-auto max-w-[1100px]">

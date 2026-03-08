@@ -18,6 +18,7 @@ import HeroBentoGrid from "@/components/hero/HeroBentoGrid";
  */
 
 export default function Hero({ settings }: SettingsProps) {
+    if (!settings) return null;
     return (
         <section className="relative grid h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
             {/* Colonne gauche — Contenu */}

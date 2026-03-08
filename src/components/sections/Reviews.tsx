@@ -2,17 +2,13 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { Review } from "@/types";
+import {Review, ReviewsProps} from "@/types";
 
 /**
  * Reviews — Grille de cartes d'avis clients.
  *
  * 💡 Les étoiles sont générées dynamiquement avec un Array.
  */
-
-interface ReviewsProps {
-    reviews: Review[];
-}
 
 export default function Reviews({ reviews }: ReviewsProps) {
     return (

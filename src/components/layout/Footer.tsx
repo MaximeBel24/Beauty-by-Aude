@@ -23,6 +23,7 @@ const navLinks = [
 
 export default async function Footer() {
     const settings = await getSiteSettings();
+    if (!settings) return null;
     return (
         <footer className="bg-text-dark px-[8%] pt-16 pb-8 text-nude">
             {/* Grille 3 colonnes */}
