@@ -63,7 +63,7 @@ export default function CTA({ settings }: SettingsProps) {
                           text-burgundy no-underline
                           transition-all duration-400
                           hover:-translate-y-0.5
-                          hover:bg-[#FFFBF6]
+                          hover:bg-white-warm
                           hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
                         "
                     >

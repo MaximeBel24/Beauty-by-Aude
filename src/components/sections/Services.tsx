@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {ServicesProps} from "@/types";
 import ServiceCard from "@/components/ui/ServiceCard";
+import Link from "next/link";
 
 /**
  * Services — Grille de cartes de prestations.
@@ -11,7 +12,7 @@ import ServiceCard from "@/components/ui/ServiceCard";
 
 export default function Services({ services }: ServicesProps) {
     return (
-        <section id="services" className="bg-[#FFFBF6] px-[8%] py-28">
+        <section id="services" className="bg-white-warm px-[8%] py-28">
             <SectionHeader label="Prestations" title="Nos" titleAccent="services" />
 
             {/* Grille de cartes */}

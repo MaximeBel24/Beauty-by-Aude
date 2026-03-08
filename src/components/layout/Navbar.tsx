@@ -56,7 +56,7 @@ export default function Navbar() {
           px-[4%] py-5
           backdrop-blur-[20px]
           border-b transition-all duration-300
-          ${isScrolled ? "border-taupe/15 bg-[#FFFBF6]/90" : "border-taupe/10 bg-[#FFFBF6]/85"}
+          ${isScrolled ? "border-taupe/15 bg-white-warm/90" : "border-taupe/10 bg-white-warm/85"}
         `}
             >
                 {/* Logo */}
@@ -149,7 +149,7 @@ export default function Navbar() {
                         className="
               fixed inset-0 z-40
               flex flex-col items-center justify-center gap-8
-              bg-[#FFFBF6]/98 backdrop-blur-md
+              bg-white-warm/98 backdrop-blur-md
               md:hidden
             "
                     >

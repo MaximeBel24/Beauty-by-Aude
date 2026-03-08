@@ -15,7 +15,7 @@ interface PortfolioProps {
 
 export default function Portfolio({ portfolioItems }: PortfolioProps) {
     return (
-        <section id="portfolio" className="bg-[#FFF7EF] px-[4%] py-28">
+        <section id="portfolio" className="bg-cream-light px-[4%] py-28">
             <SectionHeader label="Réalisations" title="Mon" titleAccent="portfolio" />
 
             {/* Grille asymétrique */}

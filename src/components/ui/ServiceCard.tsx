@@ -21,12 +21,12 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 className="
                             h-full flex flex-col
                           group relative cursor-pointer overflow-hidden
-                          border border-taupe/10 bg-[#FFF7EF]
+                          border border-taupe/10 bg-white-warm
                           px-8 py-10
                           transition-all duration-500
                           ease-[cubic-bezier(0.25,0.8,0.25,1)]
                           hover:-translate-y-1
-                          hover:bg-[#FFFBF6]
+                          hover:bg-white-warm
                           hover:shadow-[0_20px_60px_rgba(64,18,22,0.08)]
                         "
             >
@@ -71,7 +71,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 </h3>
 
                 {/* Description */}
-                <p className="mb-5 text-[0.88rem] leading-relaxed text-[#5C3D42] grow">
+                <p className="mb-5 text-[0.88rem] leading-relaxed text-body grow">
                     {service.description}
                 </p>
 
@@ -81,7 +81,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                                 {formatPrice(service.price)}
                             </span>
                     {service.duration && (
-                        <span className="text-[0.8rem] font-light text-[#5C3D42]">
+                        <span className="text-[0.8rem] font-light text-body">
                             · {service.duration}
                         </span>
                     )}

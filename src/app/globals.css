@@ -12,8 +12,12 @@
     --color-taupe-light: #b08e78;
     --color-cream: #ffedda;
     --color-cream-dark: #f5dfc8;
+    --color-cream-light: #FFF7EF;
     --color-nude: #d5bcad;
     --color-nude-light: #e2cfc3;
+    --color-white-warm: #FFFBF6;
+    --color-body: #5C3D42;
+    --color-text-dark: #2A0E11;
 
     /* Typographies */
     --font-heading: "Cormorant Garamond", serif;

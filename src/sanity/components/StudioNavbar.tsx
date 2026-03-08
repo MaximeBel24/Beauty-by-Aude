@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function StudioNavbar(props: NavbarProps) {
     return (
         <Stack>
-            <Card padding={2} className={"bg-[#FFFBF6]"}>
+            <Card padding={2} className={"bg-white-warm"}>
                 <Flex align="center" justify="flex-end" paddingRight={3}>
                     <Link
                         href="/"

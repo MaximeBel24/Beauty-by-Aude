@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function About({ settings }: SettingsProps) {
     return (
-        <section id="about" className="bg-[#FFF7EF] px-[8%] py-28">
+        <section id="about" className="bg-cream-light px-[8%] py-28">
             <SectionHeader label="À propos" title="Qui" titleAccent="suis-je ?" />
 
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-16 md:grid-cols-2">
@@ -40,7 +40,7 @@ export default function About({ settings }: SettingsProps) {
                         </span>
                     </div>
 
-                    <p className="whitespace-pre-line text-[1.05rem] leading-[1.9] text-[#5C3D42]">
+                    <p className="whitespace-pre-line text-[1.05rem] leading-[1.9] text-body">
                         {settings.aboutText}
                     </p>
 

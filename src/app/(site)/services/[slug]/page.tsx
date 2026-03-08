@@ -55,7 +55,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     ]);
 
     return (
-        <main className="bg-[#FFFBF6]">
+        <main className="bg-white-warm">
             <ServiceDetail service={service} settings={settings} />
             <CTA settings={settings} />
         </main>
