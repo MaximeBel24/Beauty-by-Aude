@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 /**
  * HeroBentoGrid — Grille asymétrique d'images pour la section Hero.
@@ -81,10 +82,12 @@ export default function HeroBentoGrid() {
                     variants={imageVariants}
                     className="group relative overflow-hidden rounded-xl"
                 >
-                    <img
+                    <Image
                         src={images[0].src}
                         alt={images[0].alt}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     {/* Overlay pour harmoniser les fonds hétérogènes */}
                     <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />

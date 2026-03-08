@@ -2,6 +2,7 @@
 
 import { SettingsProps } from "@/types";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Image from "next/image";
 
 export default function About({ settings }: SettingsProps) {
     return (
@@ -11,11 +12,13 @@ export default function About({ settings }: SettingsProps) {
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-16 md:grid-cols-2">
                 {/* Colonne gauche — Photo */}
                 <div className="relative">
-                    <div className="relative overflow-hidden">
-                        <img
+                    <div className="relative overflow-hidden h-[600px] rounded-2xl">
+                        <Image
                             src={settings.aboutImageUrl ?? ""}
                             alt="Aude — Beauty by Aude"
-                            className="h-[600px] w-full object-cover rounded-2xl"
+                            className=" object-cover "
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </div>
                     {/* Élément décoratif — cadre décalé */}

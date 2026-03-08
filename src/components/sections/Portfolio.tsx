@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { PortfolioItem } from "@/types";
+import Image from "next/image";
 
 /**
  * Portfolio — Grille de photos asymétrique (masonry-like).
@@ -41,10 +42,12 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                         `}
                     >
                         {/* Image */}
-                        <img
+                        <Image
                             src={item.imageUrl}
                             alt={item.imageAlt ?? item.title}
-                            className="h-full w-full object-cover"
+                            className="object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
 
                         {/* Overlay au hover */}
