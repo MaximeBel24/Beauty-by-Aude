@@ -68,6 +68,7 @@ export default function Hero({ settings }: SettingsProps) {
                     <Link
                         href={settings.planityUrl ?? "#"}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="
                           group inline-flex items-center gap-3
                           bg-burgundy px-9 py-4

@@ -55,6 +55,7 @@ export default function CTA({ settings }: SettingsProps) {
                     <a
                         href={settings.planityUrl ?? "#"}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="
                           group inline-flex items-center gap-3
                           bg-cream px-11 py-4

@@ -103,6 +103,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     <a
                         href={settings.planityUrl ?? "#"}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="
                             group inline-flex items-center gap-3
                             bg-burgundy px-8 py-3.5

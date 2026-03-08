@@ -74,6 +74,7 @@ export default async function Footer() {
                             <Link
                                 href={settings.planityUrl ?? "#"}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="
                   text-[0.85rem] font-light text-nude no-underline
                   opacity-70 transition-all duration-300
