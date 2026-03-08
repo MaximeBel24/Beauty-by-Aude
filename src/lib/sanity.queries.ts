@@ -1,19 +1,20 @@
 import { client } from "./sanity.client";
 import {PortfolioItem, Review, Salon, Service, SiteSettings} from "@/types";
 
-/**
- * 💡 GROQ en 30 secondes :
- * - `*` = tous les documents
- * - `[_type == "service"]` = filtre par type
- * - `| order(order asc)` = tri
- * - `{ title, price }` = projection (quels champs retourner)
- * - `"imageUrl": image.asset->url` = résoudre une référence d'image
- */
+async function safeFetch<T>(query: string, fallback: T, params?: object): Promise<T> {
+    try {
+        return await client.fetch(query, params);
+    } catch (error) {
+        console.error("Sanity fetch failed:", error);
+        return fallback;
+    }
+}
 
 // ===== SERVICES =====
 export async function getServices(): Promise<Service[]> {
-    return client.fetch(
-        `*[_type == "service"] | order(order asc) {
+
+    return await safeFetch(
+    `*[_type == "service"] | order(order asc) {
       _id,
       title,
       "slug": slug.current,
@@ -24,12 +25,11 @@ export async function getServices(): Promise<Service[]> {
       icon,
       "gallery": gallery[] { "imageUrl": asset->url, alt },
       order
-    }`,
-    );
+    }`, []);
 }
 
 export async function getFeaturedServices(): Promise<Service[]> {
-    return client.fetch(
+    return await safeFetch(
         `*[_type == "service" && featured == true] | order(order asc) {
         _id,
         title,
@@ -40,12 +40,12 @@ export async function getFeaturedServices(): Promise<Service[]> {
         category,
         icon,
         order
-      }`,
+      }`, [],
     );
 }
 
-export async function getServiceBySlug(slug: string): Promise<Service> {
-    return client.fetch(
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
+    return await safeFetch(
         `*[_type == "service" && slug.current == $slug][0] {
            _id,
            title,
@@ -59,13 +59,14 @@ export async function getServiceBySlug(slug: string): Promise<Service> {
            "gallery": gallery[] { "imageUrl": asset->url, alt },
            order
         }`,
-        { slug },
+        null,
+        { slug }
     );
 }
 
 // ===== PORTFOLIO =====
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
-    return client.fetch(
+    return await safeFetch(
         `*[_type == "portfolio"] | order(order asc) {
       _id,
       title,
@@ -73,35 +74,35 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       "imageUrl": image.asset->url,
       "imageAlt": image.alt,
       order
-    }`,
+    }`, []
     );
 }
 
 // ===== SALON  =====
-export async function getSalon(): Promise<Salon> {
-    return client.fetch(
+export async function getSalon(): Promise<Salon | null> {
+    return await safeFetch(
         `*[_type == "salon"][0] {
       openingHours,
-    }`,
+    }`, null
     );
 }
 
 // ===== AVIS CLIENTS =====
 export async function getReviews(): Promise<Review[]> {
-    return client.fetch(
+    return await safeFetch(
         `*[_type == "review"] | order(date desc) {
       _id,
       rating,
       text,
       date
-    }`,
+    }`, []
     );
 }
 
 // ===== PARAMÈTRES DU SITE =====
 // Document singleton (un seul document de ce type)
-export async function getSiteSettings(): Promise<SiteSettings> {
-    return client.fetch(
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+    return await safeFetch(
         `*[_type == "siteSettings"][0] {
       aboutText,
       planityUrl,
@@ -113,6 +114,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       "heroImageUrl": heroImage.asset->url,
       "aboutImageUrl": aboutImage.asset->url,
       "logoUrl": logo.asset->url
-    }`,
+    }`, null
     );
 }
