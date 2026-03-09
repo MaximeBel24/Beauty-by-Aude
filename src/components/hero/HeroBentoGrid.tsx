@@ -78,7 +78,37 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
     );
 
     return (
-        <div className="relative hidden h-full w-full overflow-hidden md:block">
+        <>
+        {/* Images hero mobile — mini grille 2 colonnes arrondie, visible sous lg:
+            On montre 2 images (au lieu de 4) pour un aperçu visuel
+            sans surcharger l'écran mobile. Les coins arrondis + gap
+            donnent un rendu "carte photo" premium. */}
+        <div className="grid grid-cols-2 gap-2 px-[6%] pb-8 sm:gap-3 lg:hidden">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                    src={resolvedImages[0].src}
+                    alt={resolvedImages[0].alt}
+                    fill
+                    sizes="50vw"
+                    className="object-cover"
+                    priority
+                />
+                <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
+            </div>
+            <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                    src={resolvedImages[1].src}
+                    alt={resolvedImages[1].alt}
+                    fill
+                    sizes="50vw"
+                    className="object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
+            </div>
+        </div>
+
+        {/* Grille bento desktop — visible uniquement à partir de lg: */}
+        <div className="relative hidden h-full w-full overflow-hidden lg:block">
             {/* Grille CSS asymétrique — pt-28 pour dégager la navbar fixe */}
             <div className="grid h-full grid-cols-[1.4fr_1fr] grid-rows-[1.2fr_0.8fr] gap-2 px-4 pt-28 pb-4">
                 {/* Image principale — dominante, coin haut gauche */}
@@ -155,5 +185,6 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                 </motion.div>
             </div>
         </div>
+        </>
     );
 }

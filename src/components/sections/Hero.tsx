@@ -37,9 +37,9 @@ export default function Hero({ settings }: SettingsProps) {
     }));
 
     return (
-        <section className="relative grid h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
+        <section className="relative grid min-h-screen grid-cols-1 overflow-hidden lg:grid-cols-2">
             {/* Colonne gauche — Contenu */}
-            <div className="z-2 flex flex-col justify-center px-[6%] pt-32 pb-16 md:px-[8%] md:pt-32 md:pb-16">
+            <div className="z-2 flex flex-col justify-center px-[6%] pt-28 pb-10 md:px-[8%] lg:pt-32 lg:pb-16">
                 {/* Badge */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -80,7 +80,7 @@ export default function Hero({ settings }: SettingsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="flex items-center gap-5"
+                    className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5"
                 >
                     {/* CTA Principal */}
                     <Link
@@ -89,7 +89,7 @@ export default function Hero({ settings }: SettingsProps) {
                         rel="noopener noreferrer"
                         className="
                           group inline-flex items-center gap-3
-                          bg-burgundy px-9 py-4
+                          bg-burgundy px-7 py-3.5 sm:px-9 sm:py-4
                           text-[0.8rem] font-normal uppercase tracking-[0.18em]
                           text-cream no-underline
                           transition-all duration-400

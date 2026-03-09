@@ -10,23 +10,24 @@ export default function About({ settings }: SettingsProps) {
         <section id="about" className="bg-cream-light px-[8%] py-20">
             <SectionHeader label="À propos" title="Qui" titleAccent="suis-je ?" />
 
-            <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-16 md:grid-cols-2">
+            <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-10 md:gap-16 md:grid-cols-2">
                 {/* Colonne gauche — Photo */}
                 <div className="relative">
-                    <div className="relative overflow-hidden h-[600px] rounded-2xl">
+                    <div className="relative overflow-hidden h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl bg-cream-light">
                         <Image
                             src={settings.aboutImageUrl ?? ""}
                             alt="Aude — Beauty by Aude"
-                            className=" object-cover "
+                            className="object-contain lg:object-cover"
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </div>
-                    {/* Élément décoratif — cadre décalé */}
+                    {/* Élément décoratif — cadre décalé (masqué sur mobile pour éviter overflow) */}
                     <div
                         className="
                               absolute -bottom-4 -right-4 -z-10 h-full w-full
                               border border-taupe/20
+                              hidden md:block
                           "
                     />
                 </div>

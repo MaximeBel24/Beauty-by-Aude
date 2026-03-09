@@ -125,14 +125,14 @@ export default function Lightbox({ item, items, onClose, onNavigate }: LightboxP
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="relative max-h-[85vh] max-w-[90vw]"
+                        className="relative max-h-[75vh] max-w-[95vw] sm:max-h-[85vh] sm:max-w-[90vw]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src={item.imageUrl}
                             alt={item.imageAlt ?? item.title}
-                            className="max-h-[85vh] max-w-[90vw] object-contain"
+                            className="max-h-[75vh] max-w-[95vw] object-contain sm:max-h-[85vh] sm:max-w-[90vw]"
                         />
 
                         {/* Titre + compteur (ex: "Nail Art Floral — 3/12") */}

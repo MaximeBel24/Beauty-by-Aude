@@ -15,7 +15,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
         <section id="avis" className="bg-white-warm px-[8%] py-20">
             <SectionHeader label="Témoignages" title="Ce qu'elles" titleAccent="en pensent" />
 
-            <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
                 {reviews.map((review, index) => (
                     <motion.div
                         key={review._id}
@@ -25,7 +25,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                         transition={{ duration: 0.6, delay: index * 0.15 }}
                         className="
               border border-taupe/8 bg-cream-light
-              p-10
+              p-6 md:p-10
               transition-all duration-400
               hover:-translate-y-1
               hover:shadow-[0_15px_40px_rgba(64,18,22,0.06)]

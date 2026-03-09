@@ -11,7 +11,7 @@ export default function Salon({salon, settings}: SalonProps) {
         <section id="salon" className="bg-white-warm px-[4%] py-20">
             <SectionHeader label={"Le salon"} title={"Venez"} titleAccent={"nous voir"} />
 
-            <div className="mx-auto mt-16 grid max-w-[1100px] grid-cols-1 gap-12 lg:grid-cols-2">
+            <div className="mx-auto mt-8 grid max-w-[1100px] grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12">
                 {/* — Colonne gauche : Horaires — */}
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -38,7 +38,7 @@ export default function Salon({salon, settings}: SalonProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="h-[400px] overflow-hidden rounded-sm"
+                    className="h-[280px] overflow-hidden rounded-sm md:h-[400px]"
                 >
                     <iframe
                         src={`https://www.google.com/maps?q=${encodeURIComponent(settings.address ?? "")}&output=embed&z=15`}

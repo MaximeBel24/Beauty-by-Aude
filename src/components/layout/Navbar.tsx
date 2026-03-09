@@ -91,8 +91,8 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                     </div>
                 </Link>
 
-                {/* Liens desktop */}
-                <ul className="hidden items-center gap-10 md:flex">
+                {/* Liens desktop — lg: au lieu de md: car 6 liens + CTA débordent à 768px */}
+                <ul className="hidden items-center gap-6 lg:flex xl:gap-10">
                     {navLinks.map((link) => (
                         <li key={link.href}>
                             <Link
@@ -142,7 +142,7 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                     onClick={() => setIsMobileOpen(!isMobileOpen)}
                     className="
             flex flex-col items-center justify-center
-            gap-1.5 md:hidden
+            gap-1.5 lg:hidden
             w-10 h-10 bg-transparent border-none cursor-pointer
           "
                     aria-label="Menu"
@@ -174,7 +174,7 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
               fixed inset-0 z-40
               flex flex-col items-center justify-center gap-8
               bg-white-warm/98 backdrop-blur-md
-              md:hidden
+              lg:hidden
             "
                     >
                         {navLinks.map((link, i) => (

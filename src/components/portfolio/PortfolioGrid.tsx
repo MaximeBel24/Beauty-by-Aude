@@ -26,8 +26,8 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                 <button
                     onClick={() => setActiveCategory("all")}
                     className={`
-                        cursor-pointer rounded-full px-5 py-2.5
-                        text-[0.8rem] tracking-wide
+                        cursor-pointer rounded-full px-4 py-2 sm:px-5 sm:py-2.5
+                        text-[0.75rem] sm:text-[0.8rem] tracking-wide
                         transition-all duration-300
                         ${activeCategory === "all"
                         ? "bg-burgundy text-cream"
@@ -43,7 +43,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                         onClick={() => setActiveCategory(cat.value)}
                         className={`
                             flex cursor-pointer items-center gap-2 rounded-full
-                            px-5 py-2.5 text-[0.8rem] tracking-wide
+                            px-4 py-2 sm:px-5 sm:py-2.5 text-[0.75rem] sm:text-[0.8rem] tracking-wide
                             transition-all duration-300
                             ${activeCategory === cat.value
                             ? "bg-burgundy text-cream"
@@ -62,7 +62,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.3 }}
-                    className="mx-auto grid max-w-[1200px] gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                    className="mx-auto grid max-w-[1200px] gap-2 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
                 >
                     {filteredItems.length === 0 ? (
                         <p className="col-span-full py-16 text-center text-body/60 text-[0.95rem]">
@@ -87,7 +87,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                             <div
                                 className="
                             absolute inset-0
-                            flex items-end p-6
+                            flex items-end p-3 md:p-6
                             bg-gradient-to-t from-burgundy/70 via-transparent to-transparent
                             opacity-0 transition-opacity duration-400
                             group-hover:opacity-100

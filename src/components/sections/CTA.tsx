@@ -18,7 +18,7 @@ export default function CTA({ settings }: SettingsProps) {
     return (
         <section
             id="contact"
-            className="relative overflow-hidden bg-burgundy px-[8%] py-24 text-center"
+            className="relative overflow-hidden bg-burgundy px-[8%] py-16 text-center md:py-24"
         >
             {/* Effets de fond — radial gradients */}
             <div className="absolute inset-0 pointer-events-none">
@@ -59,7 +59,7 @@ export default function CTA({ settings }: SettingsProps) {
                         rel="noopener noreferrer"
                         className="
                           group inline-flex items-center gap-3
-                          bg-cream px-11 py-4
+                          bg-cream px-8 py-3.5 sm:px-11 sm:py-4
                           text-[0.8rem] font-medium uppercase tracking-[0.18em]
                           text-burgundy no-underline
                           transition-all duration-400

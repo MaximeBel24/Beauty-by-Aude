@@ -145,7 +145,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                         <h2 className="mb-8 text-center font-heading text-[1.5rem] font-light text-burgundy">
                             Réalisations
                         </h2>
-                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {service.gallery.slice(1).map((image, index) => (
                                 <motion.div
                                     key={index}
@@ -153,7 +153,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                                    className="group relative h-[350px] cursor-pointer overflow-hidden"
+                                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden sm:h-[250px] sm:aspect-auto lg:h-[350px]"
                                 >
                                     {/* Image — h-full w-full force l'image à remplir le conteneur,
                                         object-cover recadre proprement (comme background-size: cover en CSS) */}

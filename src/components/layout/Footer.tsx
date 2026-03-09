@@ -31,7 +31,7 @@ export default async function Footer() {
             {/* Grille 3 colonnes */}
             <div
                 className="
-          mx-auto grid max-w-[1100px] gap-12
+          mx-auto grid max-w-[1100px] gap-8 md:gap-12
           border-b border-nude/10 pb-12
           grid-cols-1 md:grid-cols-[2fr_1fr_1fr]
         "

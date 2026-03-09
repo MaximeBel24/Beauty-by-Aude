@@ -23,7 +23,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
             {/* Grille asymétrique */}
             <div
                 className="
-          mx-auto grid max-w-[1200px] gap-4
+          mx-auto grid max-w-[1200px] gap-2 sm:gap-4
           grid-cols-2
           md:grid-cols-4 md:grid-rows-[280px_280px] md:grid-flow-dense
         "
@@ -41,7 +41,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                           bg-gradient-to-br from-nude to-cream
                           ${index === 0 ? "md:row-span-2" : ""}
                           ${index === 3 ? "md:col-span-2" : ""}
-                          ${index === 0 ? "aspect-auto min-h-[280px]" : "aspect-square md:aspect-auto"}
+                          ${index === 0 ? "aspect-square md:aspect-auto md:min-h-[280px]" : "aspect-square md:aspect-auto"}
                         `}
                     >
                         {/* Image */}
@@ -57,7 +57,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                         <div
                             className="
                             absolute inset-0
-                            flex items-end p-6
+                            flex items-end p-3 md:p-6
                             bg-gradient-to-t from-burgundy/70 via-transparent to-transparent
                             opacity-0 transition-opacity duration-400
                             group-hover:opacity-100

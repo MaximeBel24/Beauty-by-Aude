@@ -22,7 +22,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                             h-full flex flex-col
                           group relative cursor-pointer overflow-hidden
                           border border-taupe/10 bg-white-warm
-                          px-8 py-10
+                          px-6 py-8 md:px-8 md:py-10
                           transition-all duration-500
                           ease-[cubic-bezier(0.25,0.8,0.25,1)]
                           hover:-translate-y-1
