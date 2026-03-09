@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { SettingsProps } from "@/types";
+import { SettingsProps, HeroImage } from "@/types";
 import HeroBentoGrid from "@/components/hero/HeroBentoGrid";
 
 /**
@@ -19,6 +19,23 @@ import HeroBentoGrid from "@/components/hero/HeroBentoGrid";
 
 export default function Hero({ settings }: SettingsProps) {
     if (!settings) return null;
+
+    /**
+     * Transformation des données Sanity en format attendu par HeroBentoGrid.
+     * On convertit les 4 HeroImage (url + alt) en BentoImage (src + alt).
+     * Si une image n'est pas définie dans Sanity, on passe un objet vide
+     * et le composant HeroBentoGrid utilisera son fallback local.
+     */
+    const heroImages = [
+        settings.heroImage1,
+        settings.heroImage2,
+        settings.heroImage3,
+        settings.heroImage4,
+    ].map((img: HeroImage | undefined) => ({
+        src: img?.url ?? "",
+        alt: img?.alt ?? "",
+    }));
+
     return (
         <section className="relative grid h-screen grid-cols-1 overflow-hidden md:grid-cols-2">
             {/* Colonne gauche — Contenu */}
@@ -115,8 +132,8 @@ export default function Hero({ settings }: SettingsProps) {
                 </motion.div>
             </div>
 
-            {/* Colonne droite — Image placeholder */}
-            <HeroBentoGrid />
+            {/* Colonne droite — Grille bento (images dynamiques Sanity) */}
+            <HeroBentoGrid images={heroImages} />
 
         </section>
     );

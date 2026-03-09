@@ -53,8 +53,20 @@ export interface Salon {
     openingHours: OpeningHours[];
 }
 
+/**
+ * HeroImage — Une image de la grille bento du Hero.
+ * Chaque position (1 à 4) a sa propre URL et son alt text.
+ */
+export interface HeroImage {
+    url: string;
+    alt?: string;
+}
+
 export interface SiteSettings {
-    heroImageUrl?: string;
+    heroImage1?: HeroImage;
+    heroImage2?: HeroImage;
+    heroImage3?: HeroImage;
+    heroImage4?: HeroImage;
     logoUrl?: string;
     aboutText?: string;
     aboutImageUrl?: string;

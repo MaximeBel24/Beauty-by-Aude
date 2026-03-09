@@ -135,7 +135,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       phone,
       email,
       address,
-      "heroImageUrl": heroImage.asset->url,
+      "heroImage1": { "url": heroImage1.asset->url, "alt": heroImage1.alt },
+      "heroImage2": { "url": heroImage2.asset->url, "alt": heroImage2.alt },
+      "heroImage3": { "url": heroImage3.asset->url, "alt": heroImage3.alt },
+      "heroImage4": { "url": heroImage4.asset->url, "alt": heroImage4.alt },
       "aboutImageUrl": aboutImage.asset->url,
       "logoUrl": logo.asset->url
     }`, null

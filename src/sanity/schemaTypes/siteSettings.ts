@@ -11,14 +11,44 @@ export default defineType({
     type: "document",
     icon: () => "⚙️",
     fields: [
-        // ===== HERO =====
+        // ===== HERO — Grille Bento (4 images) =====
         // heroTitle et heroSubtitle ont été retirés : le titre et le sous-titre du hero
         // sont codés en dur dans Hero.tsx pour permettre un stylage fin par mot.
+        //
+        // Les 4 images correspondent aux 4 positions fixes de la grille bento :
+        // ┌──────────────┬────────┐
+        // │   Image 1    │Image 2 │
+        // │  (grande)    │(petite)│
+        // ├──────────────┤────────┤
+        // │   Image 3    │Image 4 │
+        // │  (petite)    │(moyenne)│
+        // └──────────────┴────────┘
         defineField({
-            name: "heroImage",
-            title: "Image Hero",
+            name: "heroImage1",
+            title: "Hero — Image principale (haut gauche)",
             type: "image",
-            description: "Image principale de la page d'accueil",
+            description: "Grande image dominante en haut à gauche de la grille",
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: "heroImage2",
+            title: "Hero — Image secondaire (haut droite)",
+            type: "image",
+            description: "Petite image en haut à droite de la grille",
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: "heroImage3",
+            title: "Hero — Image tertiaire (bas gauche)",
+            type: "image",
+            description: "Petite image en bas à gauche de la grille",
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: "heroImage4",
+            title: "Hero — Image quaternaire (bas droite)",
+            type: "image",
+            description: "Image moyenne en bas à droite de la grille",
             options: { hotspot: true },
         }),
 
