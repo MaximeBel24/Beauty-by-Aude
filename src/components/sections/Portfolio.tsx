@@ -4,12 +4,18 @@ import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {PortfolioItem, PortfolioProps} from "@/types";
 import Image from "next/image";
+import Link from "next/link";
+import {useState} from "react";
+import Lightbox from "@/components/ui/Lightbox";
 
 /**
  * Portfolio — Grille de photos asymétrique (masonry-like).
  */
 
 export default function Portfolio({ portfolioItems }: PortfolioProps) {
+
+    const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+
     return (
         <section id="portfolio" className="bg-cream-light px-[4%] py-28">
             <SectionHeader label="Réalisations" title="Mon" titleAccent="portfolio" />
@@ -29,6 +35,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
+                        onClick={() => setSelectedItem(item)}
                         className={`
                           group relative cursor-pointer overflow-hidden
                           bg-gradient-to-br from-nude to-cream
@@ -41,7 +48,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                         <Image
                             src={item.imageUrl}
                             alt={item.imageAlt ?? item.title}
-                            className="object-cover"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
@@ -63,6 +70,35 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                     </motion.div>
                 ))}
             </div>
+
+            {/* Lien voir toutes les réalisations */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-12 text-center"
+            >
+                <Link
+                    href="/portfolio"
+                    className="
+            text-[0.8rem] font-normal uppercase tracking-[0.15em]
+            text-rosewood no-underline
+            transition-colors duration-300
+            hover:text-burgundy
+          "
+                >
+                    Voir toutes les réalisations →
+                </Link>
+            </motion.div>
+            <Lightbox
+                item={selectedItem}
+                items={portfolioItems}
+                onClose={() => setSelectedItem(null)}
+                onNavigate={(item) => setSelectedItem(item)}
+            />
+
         </section>
+
     );
 }

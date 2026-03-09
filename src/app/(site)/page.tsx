@@ -4,8 +4,8 @@ import Portfolio from "@/components/sections/Portfolio";
 import Reviews from "@/components/sections/Reviews";
 import CTA from "@/components/sections/CTA";
 import {
+    getFeaturedPortfolioItems,
     getFeaturedServices,
-    getPortfolioItems,
     getReviews,
     getSalon,
     getSiteSettings
@@ -28,7 +28,7 @@ export default async function Home() {
 
     const [services, portfolioItems, reviews, salon, settings] = await Promise.all([
         getFeaturedServices(),
-        getPortfolioItems(),
+        getFeaturedPortfolioItems(),
         getReviews(),
         getSalon(),
         getSiteSettings(),

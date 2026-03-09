@@ -35,17 +35,29 @@ export default defineType({
         defineField({
             name: "category",
             title: "Catégorie",
-            type: "string",
-            options: {
-                list: [
-                    { title: "Manucure", value: "manucure" },
-                    { title: "Pose Gel", value: "gel" },
-                    { title: "Nail Art", value: "nailart" },
-                    { title: "Semi-Permanent", value: "semipermanent" },
-                    { title: "French", value: "french" },
-                    { title: "Autre", value: "autre" },
-                ],
-            },
+            type: "reference",
+            description: "Catégorie de l'image du portfolio",
+            to: [{ type: "portfolioCategory" }],
+        }),
+        defineField({
+            name: "featured",
+            title: "Mettre en avant",
+            type: "boolean",
+            description: "Afficher ce service sur la page d'accueil (4-6 max recommandé)",
+            initialValue: false,
+            validation: (rule) =>
+                rule.custom(async (value, context) => {
+                    // Si on décoche, pas de problème
+                    if (!value) return true;
+
+                    const client = context.getClient({ apiVersion: "2024-01-01" });
+                    const count = await client.fetch(
+                        `count(*[_type == "portfolio" && featured == true && _id != $id])`,
+                        { id: context.document?._id },
+                    );
+
+                    return count >= 7 ? "Maximum 6 photos peuvent être mis en avant" : true;
+                }),
         }),
         defineField({
             name: "order",
@@ -60,14 +72,15 @@ export default defineType({
         select: {
             title: "title",
             media: "image",
-            category: "category",
+            categoryTitle: "category.title",  // ← suit la référence !
         },
-        prepare({ title, media, category }) {
+        prepare({ title, media, categoryTitle }) {
             return {
                 title: title,
-                subtitle: category || "",
+                subtitle: categoryTitle || "",
                 media: media,
             };
         },
     },
+
 });

@@ -1,5 +1,5 @@
 import { client } from "./sanity.client";
-import {PortfolioItem, Review, Salon, Service, SiteSettings} from "@/types";
+import {PortfolioCategory, PortfolioItem, Review, Salon, Service, SiteSettings} from "@/types";
 
 async function safeFetch<T>(query: string, fallback: T, params?: object): Promise<T> {
     try {
@@ -70,10 +70,34 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
         `*[_type == "portfolio"] | order(order asc) {
       _id,
       title,
-      category,
+      "category": category-> { title, "value": value.current },
       "imageUrl": image.asset->url,
       "imageAlt": image.alt,
       order
+    }`, []
+    );
+}
+
+export async function getFeaturedPortfolioItems(): Promise<PortfolioItem[]> {
+    return await safeFetch(
+        `*[_type == "portfolio" && featured == true] | order(order asc) {
+      _id,
+      title,
+      "category": category-> { title, "value": value.current },
+      "imageUrl": image.asset->url,
+      "imageAlt": image.alt,
+      order
+      }`, [],
+    );
+}
+
+export async function getPortfolioCategories(): Promise<PortfolioCategory[]> {
+    return await safeFetch(
+        `*[_type == "portfolioCategory"] | order(order asc) { 
+        _id,
+        title, 
+        "value": value.current, 
+        order 
     }`, []
     );
 }

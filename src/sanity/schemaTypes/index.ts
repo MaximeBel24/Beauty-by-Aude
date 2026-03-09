@@ -4,7 +4,8 @@ import portfolio from "@/sanity/schemaTypes/portfolio";
 import review from "@/sanity/schemaTypes/review";
 import siteSettings from "@/sanity/schemaTypes/siteSettings";
 import salon from "@/sanity/schemaTypes/salon";
+import portfolioCategory from "@/sanity/schemaTypes/portfolioCategory";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [service, portfolio, review, salon, siteSettings],
+    types: [service, portfolio, portfolioCategory, review, salon, siteSettings],
 };
