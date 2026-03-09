@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function About({ settings }: SettingsProps) {
     if (!settings) return null;
     return (
-        <section id="about" className="bg-cream-light px-[8%] py-28">
+        <section id="about" className="bg-cream-light px-[8%] py-20">
             <SectionHeader label="À propos" title="Qui" titleAccent="suis-je ?" />
 
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-16 md:grid-cols-2">

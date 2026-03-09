@@ -8,7 +8,7 @@ export default function Salon({salon, settings}: SalonProps) {
     if (!settings) return null;
     if (!salon) return null;
     return (
-        <section id="salon" className="bg-white-warm px-[4%] py-28">
+        <section id="salon" className="bg-white-warm px-[4%] py-20">
             <SectionHeader label={"Le salon"} title={"Venez"} titleAccent={"nous voir"} />
 
             <div className="mx-auto mt-16 grid max-w-[1100px] grid-cols-1 gap-12 lg:grid-cols-2">

@@ -32,7 +32,7 @@ export default function SectionHeader({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-16 text-center"
+            className="mb-12 text-center"
         >
             {/* Label */}
             <p

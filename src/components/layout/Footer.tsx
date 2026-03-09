@@ -15,9 +15,11 @@ import { getSiteSettings } from "@/lib/sanity.queries";
 
 const navLinks = [
     { href: "/", label: "Accueil" },
+    { href: "/#about", label: "Qui suis-je" },
     { href: "/#services", label: "Services" },
     { href: "/#portfolio", label: "Portfolio" },
     { href: "/#avis", label: "Avis" },
+    { href: "/#salon", label: "Salon" },
     { href: "/#contact", label: "Contact" },
 ];
 
@@ -34,7 +36,7 @@ export default async function Footer() {
           grid-cols-1 md:grid-cols-[2fr_1fr_1fr]
         "
             >
-                {/* Colonne 1 — Branding */}
+                {/* Colonne 1 — Branding + slogan */}
                 <div>
                     <Link href="/" className="no-underline">
                         <span className="font-heading text-2xl font-medium tracking-[0.15em] text-cream">
@@ -44,6 +46,10 @@ export default async function Footer() {
                             BY AUDE
                         </span>
                     </Link>
+                    <p className="mt-4 max-w-[280px] text-[0.85rem] font-light leading-relaxed text-nude/60">
+                        L&apos;art de sublimer vos mains avec passion et minutie.
+                        Manucure professionnelle à domicile.
+                    </p>
                 </div>
 
                 {/* Colonne 2 — Navigation */}
@@ -113,10 +119,10 @@ export default async function Footer() {
                 </div>
             </div>
 
-            {/* Bas de page */}
+            {/* Bas de page — centré */}
             <div
                 className="
-          mx-auto flex max-w-[1100px] justify-between
+          mx-auto flex max-w-[1100px] justify-center
           pt-8 text-xs opacity-50
         "
             >

@@ -17,6 +17,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 // Liens de navigation — facile à modifier
 const navLinks = [
@@ -28,7 +29,17 @@ const navLinks = [
     { href: "/#contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+/**
+ * Props passées depuis le layout (Server Component → Client Component).
+ * Le layout fetch les settings Sanity et injecte logoUrl + planityUrl.
+ * Parallèle Java : comme un @Controller qui injecte des données dans la vue.
+ */
+interface NavbarProps {
+    logoUrl?: string;
+    planityUrl?: string;
+}
+
+export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -59,14 +70,25 @@ export default function Navbar() {
           ${isScrolled ? "border-taupe/15 bg-white-warm/90" : "border-taupe/10 bg-white-warm/85"}
         `}
             >
-                {/* Logo */}
-                <Link href="/" className="no-underline">
-                    <span className="font-heading text-2xl font-medium tracking-[0.15em] text-burgundy">
-                        BEAUTY
-                    </span>
-                    <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-taupe">
-                        BY AUDE
-                    </span>
+                {/* Logo — image Sanity + texte en fallback */}
+                <Link href="/" className="flex items-center gap-3 no-underline">
+                    {logoUrl && (
+                        <Image
+                            src={logoUrl}
+                            alt="Logo Beauty by Aude"
+                            width={40}
+                            height={40}
+                            className="object-contain"
+                        />
+                    )}
+                    <div>
+                        <span className="font-heading text-2xl font-medium tracking-[0.15em] text-burgundy">
+                            BEAUTY
+                        </span>
+                        <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-taupe">
+                            BY AUDE
+                        </span>
+                    </div>
                 </Link>
 
                 {/* Liens desktop */}
@@ -96,10 +118,12 @@ export default function Navbar() {
                         </li>
                     ))}
 
-                    {/* Bouton CTA */}
+                    {/* Bouton CTA — lié à Planity (dynamique depuis Sanity) */}
                     <li>
                         <Link
-                            href="#"
+                            href={planityUrl ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="
                 bg-burgundy px-7 py-3 text-xs
                 font-normal uppercase tracking-[0.15em]
@@ -181,7 +205,9 @@ export default function Navbar() {
                             transition={{ delay: 0.5, duration: 0.4 }}
                         >
                             <Link
-                                href="#"
+                                href={planityUrl ?? "#"}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 onClick={handleLinkClick}
                                 className="
                   mt-4 inline-block bg-burgundy

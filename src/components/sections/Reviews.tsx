@@ -12,7 +12,7 @@ import {Review, ReviewsProps} from "@/types";
 
 export default function Reviews({ reviews }: ReviewsProps) {
     return (
-        <section id="avis" className="bg-white-warm px-[8%] py-28">
+        <section id="avis" className="bg-white-warm px-[8%] py-20">
             <SectionHeader label="Témoignages" title="Ce qu'elles" titleAccent="en pensent" />
 
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-8 md:grid-cols-3">

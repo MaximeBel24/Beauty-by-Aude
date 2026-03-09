@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Compense la navbar fixe lors du scroll vers les ancres (#services, #portfolio, etc.)
+   Sans ça, le navigateur scrolle pile au début de la section,
+   mais la navbar recouvre le haut (label + titre). */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
 /* ===== CHARTE GRAPHIQUE BEAUTY BY AUDE ===== */
 
 @theme {

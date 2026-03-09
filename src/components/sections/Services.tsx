@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Services({ services }: ServicesProps) {
     return (
-        <section id="services" className="bg-white-warm px-[8%] py-28">
+        <section id="services" className="bg-white-warm px-[8%] py-20">
             <SectionHeader label="Prestations" title="Nos" titleAccent="services" />
 
             {/* Grille de cartes */}

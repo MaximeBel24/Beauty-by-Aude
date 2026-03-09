@@ -17,7 +17,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
     const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
     return (
-        <section id="portfolio" className="bg-cream-light px-[4%] py-28">
+        <section id="portfolio" className="bg-cream-light px-[4%] py-20">
             <SectionHeader label="Réalisations" title="Mon" titleAccent="portfolio" />
 
             {/* Grille asymétrique */}
