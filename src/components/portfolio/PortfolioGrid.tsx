@@ -31,7 +31,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                         transition-all duration-300
                         ${activeCategory === "all"
                         ? "bg-burgundy text-cream"
-                        : "border border-taupe/20 text-body hover:border-burgundy/40 hover:text-burgundy"
+                        : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
                     }
                     `}
                 >
@@ -47,7 +47,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                             transition-all duration-300
                             ${activeCategory === cat.value
                             ? "bg-burgundy text-cream"
-                            : "border border-taupe/20 text-body hover:border-burgundy/40 hover:text-burgundy"
+                            : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
                         }
                         `}
                     >
@@ -65,7 +65,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                     className="mx-auto grid max-w-[1200px] gap-2 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
                 >
                     {filteredItems.length === 0 ? (
-                        <p className="col-span-full py-16 text-center text-body/60 text-[0.95rem]">
+                        <p className="col-span-full py-16 text-center text-[var(--text-body-color)] opacity-60 text-[0.95rem]">
                             Aucune réalisation dans cette catégorie pour le moment.
                         </p>
                     ) : filteredItems.map((item) => (

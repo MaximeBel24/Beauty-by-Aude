@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { getSiteSettings } from "@/lib/sanity.queries";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 /**
  * Layout du site (hors Studio Sanity).
@@ -23,6 +24,7 @@ export default async function SiteLayout({
             <Navbar logoUrl={settings?.logoUrl} planityUrl={settings?.planityUrl} />
             {children}
             <Footer />
+            <ThemeToggle />
         </>
     );
 }

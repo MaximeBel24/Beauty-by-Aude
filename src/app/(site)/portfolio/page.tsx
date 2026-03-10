@@ -17,7 +17,7 @@ export default async function PortfolioPage() {
     ]);
 
     return (
-        <main className="bg-white-warm">
+        <main className="bg-[var(--bg-primary)]">
             <div className="px-[8%] pt-32 pb-20">
                 <SectionHeader label="Portfolio" title="Toutes nos" titleAccent="réalisations" />
                 <PortfolioGrid items={items} categories={categories} />

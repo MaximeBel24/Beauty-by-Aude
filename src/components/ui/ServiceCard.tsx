@@ -21,12 +21,12 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 className="
                             h-full flex flex-col
                           group relative cursor-pointer overflow-hidden
-                          border border-taupe/10 bg-white-warm
+                          border border-[var(--border-subtle)] bg-[var(--bg-card)]
                           px-6 py-8 md:px-8 md:py-10
                           transition-all duration-500
                           ease-[cubic-bezier(0.25,0.8,0.25,1)]
                           hover:-translate-y-1
-                          hover:bg-white-warm
+                          hover:bg-[var(--bg-card)]
                           hover:shadow-[0_20px_60px_rgba(64,18,22,0.08)]
                         "
             >
@@ -46,7 +46,7 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 <div
                     className="
                 mb-6 flex h-[42px] w-[42px] items-center justify-center
-                border border-nude text-taupe
+                border border-[var(--text-decorative)] text-[var(--text-accent)]
                 transition-all duration-400
                 group-hover:border-burgundy group-hover:bg-burgundy
                 group-hover:text-cream
@@ -66,22 +66,22 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                 </div>
 
                 {/* Nom du service */}
-                <h3 className="mb-2 font-heading text-[1.3rem] font-medium text-burgundy">
+                <h3 className="mb-2 font-heading text-[1.3rem] font-medium text-[var(--text-heading)]">
                     {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mb-5 text-[0.88rem] leading-relaxed text-body grow">
+                <p className="mb-5 text-[0.88rem] leading-relaxed text-[var(--text-body-color)] grow">
                     {service.description}
                 </p>
 
                 {/* Prix + Durée */}
                 <div className="flex items-baseline gap-2">
-                            <span className="font-heading text-[1.4rem] font-medium text-taupe">
+                            <span className="font-heading text-[1.4rem] font-medium text-[var(--text-accent)]">
                                 {formatPrice(service.price)}
                             </span>
                     {service.duration && (
-                        <span className="text-[0.8rem] font-light text-body">
+                        <span className="text-[0.8rem] font-light text-[var(--text-body-color)]">
                             · {service.duration}
                         </span>
                     )}

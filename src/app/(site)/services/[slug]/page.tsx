@@ -59,11 +59,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
     ]);
 
     if (!service) {
-        return <main className="bg-white-warm py-20 text-center text-body">Service introuvable</main>;
+        return <main className="bg-[var(--bg-primary)] py-20 text-center text-[var(--text-body-color)]">Service introuvable</main>;
     }
 
     return (
-        <main className="bg-white-warm">
+        <main className="bg-[var(--bg-primary)]">
             <ServiceDetail service={service} settings={settings} />
             <CTA settings={settings} />
         </main>

@@ -67,7 +67,7 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
           px-[4%] py-5
           backdrop-blur-[20px]
           border-b transition-all duration-300
-          ${isScrolled ? "border-taupe/15 bg-white-warm/90" : "border-taupe/10 bg-white-warm/85"}
+          ${isScrolled ? "border-[var(--border-medium)] bg-[var(--bg-nav)]" : "border-[var(--border-subtle)] bg-[var(--bg-nav)]"}
         `}
             >
                 {/* Logo — image Sanity + texte en fallback */}
@@ -82,10 +82,10 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                         />
                     )}
                     <div>
-                        <span className="font-heading text-2xl font-medium tracking-[0.15em] text-burgundy">
+                        <span className="font-heading text-2xl font-medium tracking-[0.15em] text-[var(--text-heading)]">
                             BEAUTY
                         </span>
-                        <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-taupe">
+                        <span className="font-heading -mt-0.5 block text-sm font-light tracking-[0.3em] text-[var(--text-accent)]">
                             BY AUDE
                         </span>
                     </div>
@@ -99,16 +99,16 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                                 href={link.href}
                                 className="
                   group relative pb-1 text-[0.85rem] font-normal
-                  uppercase tracking-[0.12em] text-rosewood
+                  uppercase tracking-[0.12em] text-[var(--text-muted)]
                   no-underline transition-colors duration-300
-                  hover:text-burgundy
+                  hover:text-[var(--text-heading)]
                 "
                             >
                                 {link.label}
                                 {/* Underline animé au hover */}
                                 <span
                                     className="
-                    absolute bottom-0 left-0 h-px w-0 bg-taupe
+                    absolute bottom-0 left-0 h-px w-0 bg-[var(--text-accent)]
                     transition-all duration-400
                     ease-[cubic-bezier(0.25,0.8,0.25,1)]
                     group-hover:w-full
@@ -149,15 +149,15 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                 >
                     <motion.span
                         animate={isMobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                        className="block h-[1.5px] w-6 bg-burgundy"
+                        className="block h-[1.5px] w-6 bg-[var(--text-heading)]"
                     />
                     <motion.span
                         animate={isMobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                        className="block h-[1.5px] w-6 bg-burgundy"
+                        className="block h-[1.5px] w-6 bg-[var(--text-heading)]"
                     />
                     <motion.span
                         animate={isMobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                        className="block h-[1.5px] w-6 bg-burgundy"
+                        className="block h-[1.5px] w-6 bg-[var(--text-heading)]"
                     />
                 </button>
             </nav>
@@ -173,7 +173,7 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                         className="
               fixed inset-0 z-40
               flex flex-col items-center justify-center gap-8
-              bg-white-warm/98 backdrop-blur-md
+              bg-[var(--bg-nav-mobile)] backdrop-blur-md
               lg:hidden
             "
                     >
@@ -189,9 +189,9 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                                     onClick={handleLinkClick}
                                     className="
                     font-heading text-3xl font-light italic
-                    text-burgundy no-underline
+                    text-[var(--text-heading)] no-underline
                     transition-colors duration-300
-                    hover:text-taupe
+                    hover:text-[var(--text-accent)]
                   "
                                 >
                                     {link.label}

@@ -25,7 +25,7 @@ export default function Services({ services }: ServicesProps)  {
                         transition-all duration-300
                         ${activeCategory === "all"
                             ? "bg-burgundy text-cream"
-                            : "border border-taupe/20 text-body hover:border-burgundy/40 hover:text-burgundy"
+                            : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
                         }
                     `}
                 >
@@ -41,7 +41,7 @@ export default function Services({ services }: ServicesProps)  {
                             transition-all duration-300
                             ${activeCategory === cat
                                 ? "bg-burgundy text-cream"
-                                : "border border-taupe/20 text-body hover:border-burgundy/40 hover:text-burgundy"
+                                : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
                             }
                         `}
                     >

@@ -42,17 +42,17 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="mb-12 flex items-center gap-2 text-[0.8rem] text-body"
+                    className="mb-12 flex items-center gap-2 text-[0.8rem] text-[var(--text-body-color)]"
                 >
-                    <Link href="/" className="transition-colors hover:text-burgundy">
+                    <Link href="/" className="transition-colors hover:text-[var(--text-heading)]">
                         Accueil
                     </Link>
-                    <span className="text-taupe">/</span>
-                    <Link href="/services" className="transition-colors hover:text-burgundy">
+                    <span className="text-[var(--text-accent)]">/</span>
+                    <Link href="/services" className="transition-colors hover:text-[var(--text-heading)]">
                         Services
                     </Link>
-                    <span className="text-taupe">/</span>
-                    <span className="font-medium text-burgundy">{service.title}</span>
+                    <span className="text-[var(--text-accent)]">/</span>
+                    <span className="font-medium text-[var(--text-heading)]">{service.title}</span>
                 </motion.nav>
 
                 {/* ═══════════════════════════════════════════
@@ -68,7 +68,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                 >
                     {/* Badge catégorie — pilule avec icône, même style que les filtres */}
                     {service.category && (
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-taupe/20 px-4 py-1.5 text-[0.75rem] uppercase tracking-wider text-taupe">
+                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border-medium)] px-4 py-1.5 text-[0.75rem] uppercase tracking-wider text-[var(--text-accent)]">
                             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                                 {getCategoryIcon(service.category).map((d, i) => (
                                     <path key={i} d={d} />
@@ -79,24 +79,24 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     )}
 
                     {/* Titre du service */}
-                    <h1 className="mb-6 font-heading text-[clamp(2rem,4vw,3rem)] font-light leading-tight text-burgundy">
+                    <h1 className="mb-6 font-heading text-[clamp(2rem,4vw,3rem)] font-light leading-tight text-[var(--text-heading)]">
                         {service.title}
                     </h1>
 
                     {/* Prix + Durée */}
                     <div className="mb-6 flex items-baseline justify-center gap-3">
-                        <span className="font-heading text-[1.8rem] font-medium text-taupe">
+                        <span className="font-heading text-[1.8rem] font-medium text-[var(--text-accent)]">
                             {formatPrice(service.price)}
                         </span>
                         {service.duration && (
-                            <span className="text-[0.9rem] text-body">
+                            <span className="text-[0.9rem] text-[var(--text-body-color)]">
                                 · {service.duration}
                             </span>
                         )}
                     </div>
 
                     {/* Description longue */}
-                    <p className="mb-8 text-[0.95rem] leading-relaxed text-body">
+                    <p className="mb-8 text-[0.95rem] leading-relaxed text-[var(--text-body-color)]">
                         {service.longDescription ?? service.description}
                     </p>
 
@@ -142,7 +142,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                         transition={{ duration: 0.6 }}
                         className="mt-20"
                     >
-                        <h2 className="mb-8 text-center font-heading text-[1.5rem] font-light text-burgundy">
+                        <h2 className="mb-8 text-center font-heading text-[1.5rem] font-light text-[var(--text-heading)]">
                             Réalisations
                         </h2>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -200,7 +200,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                 >
                     <Link
                         href="/services"
-                        className="text-[0.85rem] text-rosewood transition-colors hover:text-burgundy"
+                        className="text-[0.85rem] text-[var(--text-muted)] transition-colors hover:text-[var(--text-heading)]"
                     >
                         ← Retour aux services
                     </Link>

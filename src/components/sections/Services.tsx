@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Services({ services }: ServicesProps) {
     return (
-        <section id="services" className="bg-white-warm px-[8%] py-20">
+        <section id="services" className="bg-[var(--bg-primary)] px-[8%] py-20">
             <SectionHeader label="Prestations" title="Nos" titleAccent="services" />
 
             {/* Grille de cartes */}
@@ -34,9 +34,9 @@ export default function Services({ services }: ServicesProps) {
                     href="/services"
                     className="
             text-[0.8rem] font-normal uppercase tracking-[0.15em]
-            text-rosewood no-underline
+            text-[var(--text-muted)] no-underline
             transition-colors duration-300
-            hover:text-burgundy
+            hover:text-[var(--text-heading)]
           "
                 >
                     Voir tous les services →

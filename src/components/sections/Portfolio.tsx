@@ -17,7 +17,7 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
     const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
     return (
-        <section id="portfolio" className="bg-cream-light px-[4%] py-20">
+        <section id="portfolio" className="bg-[var(--bg-secondary)] px-[4%] py-20">
             <SectionHeader label="Réalisations" title="Mon" titleAccent="portfolio" />
 
             {/* Grille asymétrique */}
@@ -83,9 +83,9 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                     href="/portfolio"
                     className="
             text-[0.8rem] font-normal uppercase tracking-[0.15em]
-            text-rosewood no-underline
+            text-[var(--text-muted)] no-underline
             transition-colors duration-300
-            hover:text-burgundy
+            hover:text-[var(--text-heading)]
           "
                 >
                     Voir toutes les réalisations →

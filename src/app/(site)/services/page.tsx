@@ -13,7 +13,7 @@ export default async function ServicesPage() {
     const [services, settings] = await Promise.all([getServices(), getSiteSettings()])
 
     return (
-        <main className="bg-white-warm">
+        <main className="bg-[var(--bg-primary)]">
             <div className="px-[8%] pt-32 pb-20">
                 <SectionHeader label="Prestations" title="Tous nos" titleAccent="services" />
                 <ServicesList services={services} />

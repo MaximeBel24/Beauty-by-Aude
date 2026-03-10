@@ -38,7 +38,7 @@ export default function SectionHeader({
             <p
                 className={`
           mb-4 text-[0.7rem] font-normal uppercase tracking-[0.35em]
-          ${light ? "text-nude" : "text-taupe"}
+          ${light ? "text-nude" : "text-[var(--text-accent)]"}
         `}
             >
                 {label}
@@ -48,12 +48,12 @@ export default function SectionHeader({
             <h2
                 className={`
           font-heading text-[clamp(2rem,3.5vw,2.8rem)] font-light leading-tight
-          ${light ? "text-cream" : "text-burgundy"}
+          ${light ? "text-cream" : "text-[var(--text-heading)]"}
         `}
             >
                 {title}{" "}
                 {titleAccent && (
-                    <em className={`italic ${light ? "text-nude" : "text-taupe"}`}>
+                    <em className={`italic ${light ? "text-nude" : "text-[var(--text-accent)]"}`}>
                         {titleAccent}
                     </em>
                 )}
@@ -63,7 +63,7 @@ export default function SectionHeader({
             <div
                 className={`
           mx-auto mt-5 h-px w-12
-          ${light ? "bg-nude/40" : "bg-taupe/40"}
+          ${light ? "bg-nude/40" : "bg-[var(--text-accent)] opacity-40"}
         `}
             />
         </motion.div>

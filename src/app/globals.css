@@ -56,11 +56,65 @@ html {
     }
 }
 
+:root {
+    --bg-primary: #FFFBF6;
+    --bg-secondary: #FFF7EF;
+    --bg-card: #FFF7EF;
+    --bg-card-hover: #FFFBF6;
+    --bg-footer: #2A0E11;
+    --bg-nav: rgba(255, 251, 246, 0.9);
+    --bg-nav-mobile: rgba(255, 251, 246, 0.98);
+    --text-heading: #401216;
+    --text-body-color: #5C3D42;
+    --text-muted: #63333A;
+    --text-accent: #9C7961;
+    --text-decorative: #D5BCAD;
+    --border-subtle: rgba(156, 121, 97, 0.1);
+    --border-medium: rgba(156, 121, 97, 0.2);
+    --img-brightness: 1;
+
+}
+
+.dark {
+    --bg-primary: #1A0A0C;
+    --bg-secondary: #231113;
+    --bg-card: #2D1519;
+    --bg-card-hover: #381C21;
+    --bg-footer: #0F0506;
+    --bg-nav: rgba(26, 10, 12, 0.92);
+    --bg-nav-mobile: rgba(26, 10, 12, 0.98);
+    --text-heading: #F2D5C4;
+    --text-body-color: #C8A9AE;
+    --text-muted: #A87B82;
+    --text-accent: #C9A87E;
+    --text-decorative: #8B6F65;
+    --border-subtle: rgba(201, 168, 126, 0.1);
+    --border-medium: rgba(201, 168, 126, 0.15);
+    --img-brightness: 0.85;
+}
+
+/* Transition globale pour le toggle dark mode.
+   Placée dans @layer base pour que les utilitaires Tailwind
+   (transition-transform, transition-opacity, etc.) puissent la surcharger.
+   Sans @layer, le sélecteur * aurait une priorité PLUS HAUTE que les utilities,
+   ce qui casserait les animations de zoom (scale) et de fade (opacity) au hover. */
+@layer base {
+    html:not(.no-transition) * {
+        transition-property: color, background-color, border-color, box-shadow;
+        transition-duration: 300ms;
+        transition-timing-function: ease;
+    }
+}
+
+.dark img:not([data-no-dim]) {
+    filter: brightness(var(--img-brightness));
+}
+
 /* ===== STYLES DE BASE ===== */
 
 /* Glassmorphism navbar */
 .glass {
-    background: rgba(255, 237, 218, 0.85);
+    background: var(--bg-nav);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 }

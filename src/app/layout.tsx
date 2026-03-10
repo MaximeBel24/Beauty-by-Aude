@@ -37,7 +37,28 @@ export default function RootLayout({
             className={`${cormorant.variable} ${jost.variable}`}
             suppressHydrationWarning
         >
-            <body className="font-body bg-cream text-burgundy antialiased">
+        <head>
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                (function() {
+                    var theme = localStorage.getItem('theme');
+                    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        document.documentElement.classList.add('dark', 'no-transition');
+                    } else {
+                        document.documentElement.classList.add('no-transition');
+                    }
+                    window.addEventListener('DOMContentLoaded', function() {
+                        requestAnimationFrame(function() {
+                            document.documentElement.classList.remove('no-transition');
+                        });
+                    });
+                })();
+            `,
+                }}
+            />
+        </head>
+        <body className="font-body bg-[var(--bg-primary)] text-[var(--text-body-color)] antialiased">
                 {children}
             </body>
         </html>

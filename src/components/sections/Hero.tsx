@@ -47,8 +47,8 @@ export default function Hero({ settings }: SettingsProps) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="mb-8 flex items-center gap-4"
                 >
-                    <span className="h-px w-10 bg-taupe" />
-                    <span className="text-[0.7rem] font-normal uppercase tracking-[0.35em] text-taupe">
+                    <span className="h-px w-10 bg-[var(--text-accent)]" />
+                    <span className="text-[0.7rem] font-normal uppercase tracking-[0.35em] text-[var(--text-accent)]">
                         Manucure professionnelle
                     </span>
                 </motion.div>
@@ -58,7 +58,7 @@ export default function Hero({ settings }: SettingsProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="font-heading text-[clamp(3rem,5vw,4.5rem)] font-light leading-[1.1] text-burgundy"
+                    className="font-heading text-[clamp(3rem,5vw,4.5rem)] font-light leading-[1.1] text-[var(--text-heading)]"
                 >
                     Des mains<br />
                     qui <em className="italic">subliment</em><br />
@@ -70,7 +70,7 @@ export default function Hero({ settings }: SettingsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-body"
+                    className="mb-10 mt-6 max-w-[420px] text-[1.05rem] leading-[1.8] text-[var(--text-body-color)]"
                 >
                     Experte en manucure, pose de gel et semi-permanent.
                     Des prestations sur mesure, réalisées avec passion et minutie.
@@ -115,17 +115,17 @@ export default function Hero({ settings }: SettingsProps) {
                         className="
               group relative px-0 py-4
               text-[0.8rem] font-normal uppercase tracking-[0.15em]
-              text-rosewood no-underline
+              text-[var(--text-muted)] no-underline
               transition-colors duration-300
-              hover:text-burgundy
+              hover:text-[var(--text-heading)]
             "
                     >
                         Découvrir Mes services
                         <span
                             className="
                 absolute bottom-3 left-0 h-px w-full
-                bg-nude transition-colors duration-300
-                group-hover:bg-taupe
+                bg-[var(--text-decorative)] transition-colors duration-300
+                group-hover:bg-[var(--text-accent)]
               "
                         />
                     </Link>
