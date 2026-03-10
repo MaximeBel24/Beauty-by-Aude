@@ -1,5 +1,6 @@
 import {getServices, getSiteSettings} from "@/lib/sanity.queries";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import CTA from "@/components/sections/CTA";
 import ServicesList from "@/components/services/ServicesList";
 
@@ -15,6 +16,12 @@ export default async function ServicesPage() {
     return (
         <main className="bg-[var(--bg-primary)]">
             <div className="px-[8%] pt-32 pb-20">
+                <div className="mx-auto max-w-[1100px]">
+                    <Breadcrumb items={[
+                        { label: "Accueil", href: "/" },
+                        { label: "Services" },
+                    ]} />
+                </div>
                 <SectionHeader label="Prestations" title="Tous nos" titleAccent="services" />
                 <ServicesList services={services} />
             </div>

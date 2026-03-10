@@ -18,12 +18,13 @@ export default function CTA({ settings }: SettingsProps) {
     return (
         <section
             id="contact"
-            className="relative overflow-hidden bg-burgundy px-[8%] py-16 text-center md:py-24"
+            className="relative overflow-hidden bg-[var(--bg-cta)] px-[8%] py-16 text-center md:py-24"
         >
             {/* Effets de fond — radial gradients */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(99,51,58,0.5)_0%,transparent_60%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(156,121,97,0.2)_0%,transparent_60%)]" />
+                {/* Gradients tokenisés — s'adaptent au dark mode via --bg-cta-gradient-* */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,var(--bg-cta-gradient-1)_0%,transparent_60%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,var(--bg-cta-gradient-2)_0%,transparent_60%)]" />
             </div>
 
             {/* Contenu */}

@@ -1,4 +1,5 @@
 import {getServiceBySlug, getServices, getSiteSettings} from "@/lib/sanity.queries";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import CTA from "@/components/sections/CTA";
 
@@ -64,6 +65,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
     return (
         <main className="bg-[var(--bg-primary)]">
+            {/* Breadcrumb dans le Server Component — pas de JS client,
+                bon pour le SEO (Google indexe le fil d'Ariane). */}
+            <div className="mx-auto max-w-[1100px] px-[8%] pt-32">
+                <Breadcrumb items={[
+                    { label: "Accueil", href: "/" },
+                    { label: "Services", href: "/services" },
+                    { label: service.title },
+                ]} />
+            </div>
             <ServiceDetail service={service} settings={settings} />
             <CTA settings={settings} />
         </main>

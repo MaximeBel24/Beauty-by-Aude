@@ -73,6 +73,10 @@ html {
     --border-medium: rgba(156, 121, 97, 0.2);
     --img-brightness: 1;
 
+    /* CTA — fond + gradients décoratifs */
+    --bg-cta: #401216;
+    --bg-cta-gradient-1: rgba(99, 51, 58, 0.5);
+    --bg-cta-gradient-2: rgba(156, 121, 97, 0.2);
 }
 
 .dark {
@@ -91,6 +95,13 @@ html {
     --border-subtle: rgba(201, 168, 126, 0.1);
     --border-medium: rgba(201, 168, 126, 0.15);
     --img-brightness: 0.85;
+
+    /* CTA dark — très proche du fond page (#1A0A0C) mais les gradients
+       créent la distinction visuelle. On veut un effet immersif, pas un bloc
+       qui "ressort" du fond. */
+    --bg-cta: #220C0F;
+    --bg-cta-gradient-1: rgba(90, 40, 48, 0.6);
+    --bg-cta-gradient-2: rgba(156, 121, 97, 0.12);
 }
 
 /* Transition globale pour le toggle dark mode.
@@ -108,6 +119,23 @@ html {
 
 .dark img:not([data-no-dim]) {
     filter: brightness(var(--img-brightness));
+}
+
+/* Dark mode Google Maps — approche CSS pure.
+   Les utilitaires Tailwind dark:invert composent mal les filtres sur les iframes
+   (le navigateur ne reset pas proprement au toggle). Une règle CSS explicite
+   est plus fiable car on définit le filter dans les DEUX états.
+
+   💡 Pourquoi pas les utilitaires Tailwind ?
+   Tailwind v4 décompose filter en variables internes (--tw-invert, --tw-contrast, etc.)
+   et les recompose. Sur un iframe, cette recomposition échoue parfois au toggle
+   car le navigateur cache le rendu de l'iframe. Une règle CSS directe force le recalcul. */
+.maps-dark-mode {
+    filter: invert(0) hue-rotate(0deg) contrast(1);
+    transition: filter 300ms ease;
+}
+.dark .maps-dark-mode {
+    filter: invert(1) hue-rotate(180deg) contrast(0.9);
 }
 
 /* ===== STYLES DE BASE ===== */

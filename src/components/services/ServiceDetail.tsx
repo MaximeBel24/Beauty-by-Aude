@@ -13,12 +13,13 @@ import { getCategoryLabel, getCategoryIcon } from "@/lib/categories";
  * Équivalent Spring MVC : c'est la "vue" d'un service individuel.
  * Le "controller" (page.tsx) a déjà fetch les données et les passe en props.
  *
- * Layout en 5 blocs :
- * 1. Fil d'Ariane (Accueil > Services > Titre)
- * 2. Hero split : infos à gauche + image à droite
- * 3. Description longue (si renseignée dans Sanity)
- * 4. Galerie photos (si renseignée dans Sanity)
- * 5. Lien retour vers /services
+ * Le breadcrumb a été extrait dans un composant <Breadcrumb> réutilisable,
+ * rendu côté serveur dans page.tsx (Server Component) pour le SEO.
+ *
+ * Layout en 4 blocs :
+ * 1. Hero centré : badge catégorie, titre, prix, durée, description, CTA
+ * 2. Galerie photos (si renseignée dans Sanity)
+ * 3. Lien retour vers /services
  */
 
 interface ServiceDetailProps {
@@ -29,34 +30,11 @@ interface ServiceDetailProps {
 export default function ServiceDetail({ service, settings }: ServiceDetailProps) {
     if (!settings) return null;
     return (
-        <div className="px-[8%] pt-32 pb-20">
+        <div className="px-[8%] pb-20">
             <div className="mx-auto max-w-[1100px]">
 
                 {/* ═══════════════════════════════════════════
-                    1. FIL D'ARIANE (Breadcrumb)
-                    Aide le SEO + l'orientation utilisateur.
-                    Pattern : Accueil > Services > Page actuelle
-                    Le dernier élément n'est pas cliquable (page courante).
-                ═══════════════════════════════════════════ */}
-                <motion.nav
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-12 flex items-center gap-2 text-[0.8rem] text-[var(--text-body-color)]"
-                >
-                    <Link href="/" className="transition-colors hover:text-[var(--text-heading)]">
-                        Accueil
-                    </Link>
-                    <span className="text-[var(--text-accent)]">/</span>
-                    <Link href="/services" className="transition-colors hover:text-[var(--text-heading)]">
-                        Services
-                    </Link>
-                    <span className="text-[var(--text-accent)]">/</span>
-                    <span className="font-medium text-[var(--text-heading)]">{service.title}</span>
-                </motion.nav>
-
-                {/* ═══════════════════════════════════════════
-                    2. HERO — Infos centrées
+                    1. HERO — Infos centrées
                     Layout centré sur une seule colonne.
                     Badge catégorie, titre, prix, durée, description, CTA
                 ═══════════════════════════════════════════ */}

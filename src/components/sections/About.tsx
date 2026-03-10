@@ -13,7 +13,7 @@ export default function About({ settings }: SettingsProps) {
             <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-10 md:gap-16 md:grid-cols-2">
                 {/* Colonne gauche — Photo */}
                 <div className="relative">
-                    <div className="relative overflow-hidden h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl bg-[var(--bg-secondary)]">
+                    <div className="relative overflow-hidden h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-[var(--bg-secondary)]">
                         <Image
                             src={settings.aboutImageUrl ?? ""}
                             alt="Aude — Beauty by Aude"
@@ -21,6 +21,17 @@ export default function About({ settings }: SettingsProps) {
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
                         />
+
+                        {/* Overlay dark mode — dégradé subtil pour fondre le fond clair
+                            de l'infographie dans le thème sombre.
+                            💡 opacity-0 en light mode, dark:opacity-100 en dark.
+                            pointer-events-none empêche de bloquer les interactions. */}
+                        <div className="
+                            pointer-events-none absolute inset-0
+                            bg-gradient-to-b from-[var(--bg-secondary)]/30 via-transparent to-[var(--bg-secondary)]/30
+                            opacity-0 transition-opacity duration-300
+                            dark:opacity-100
+                        " />
                     </div>
                     {/* Élément décoratif — cadre décalé (masqué sur mobile pour éviter overflow) */}
                     <div

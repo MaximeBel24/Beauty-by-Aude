@@ -38,8 +38,18 @@ export default function Salon({salon, settings}: SalonProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="h-[280px] overflow-hidden rounded-sm md:h-[400px]"
+                    className="h-[280px] overflow-hidden md:h-[400px]"
                 >
+                    {/* 💡 Dark mode Maps — astuce CSS sans API payante !
+                        La classe .maps-dark-mode (définie dans globals.css) applique
+                        invert(1) + hue-rotate(180deg) quand .dark est sur <html>.
+                        Ça inverse les couleurs (blanc → noir) puis re-décale la teinte
+                        pour retrouver les bonnes couleurs (routes, parcs, eau) sur fond sombre.
+
+                        Pourquoi une classe CSS plutôt que dark:invert de Tailwind ?
+                        Les utilitaires Tailwind décomposent filter en variables internes
+                        (--tw-invert, etc.) qui composent mal sur les iframes au toggle.
+                        Une règle CSS directe est plus fiable. */}
                     <iframe
                         src={`https://www.google.com/maps?q=${encodeURIComponent(settings.address ?? "")}&output=embed&z=15`}
                         width="100%"
@@ -48,6 +58,7 @@ export default function Salon({salon, settings}: SalonProps) {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
+                        className="maps-dark-mode"
                     />
                 </motion.div>
             </div>

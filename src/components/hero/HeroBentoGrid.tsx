@@ -84,7 +84,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
             sans surcharger l'écran mobile. Les coins arrondis + gap
             donnent un rendu "carte photo" premium. */}
         <div className="grid grid-cols-2 gap-2 px-[6%] pb-8 sm:gap-3 lg:hidden">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+            <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                     src={resolvedImages[0].src}
                     alt={resolvedImages[0].alt}
@@ -95,7 +95,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
             </div>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+            <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                     src={resolvedImages[1].src}
                     alt={resolvedImages[1].alt}
@@ -117,7 +117,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                     initial="hidden"
                     animate="visible"
                     variants={imageVariants}
-                    className="group relative overflow-hidden rounded-xl"
+                    className="group relative overflow-hidden"
                 >
                     <Image
                         src={resolvedImages[0].src}
@@ -136,7 +136,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                     initial="hidden"
                     animate="visible"
                     variants={imageVariants}
-                    className="group relative overflow-hidden rounded-xl"
+                    className="group relative overflow-hidden"
                 >
                     <Image
                         src={resolvedImages[1].src}
@@ -154,7 +154,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                     initial="hidden"
                     animate="visible"
                     variants={imageVariants}
-                    className="group relative overflow-hidden rounded-xl"
+                    className="group relative overflow-hidden"
                 >
                     <Image
                         src={resolvedImages[2].src}
@@ -172,7 +172,7 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
                     initial="hidden"
                     animate="visible"
                     variants={imageVariants}
-                    className="group relative overflow-hidden rounded-xl"
+                    className="group relative overflow-hidden"
                 >
                     <Image
                         src={resolvedImages[3].src}

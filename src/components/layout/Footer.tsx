@@ -33,7 +33,7 @@ export default async function Footer() {
                 className="
           mx-auto grid max-w-[1100px] gap-8 md:gap-12
           border-b border-nude/10 pb-12
-          grid-cols-1 md:grid-cols-[2fr_1fr_1fr]
+          grid-cols-1 md:grid-cols-[2fr_1.5fr_1fr]
         "
             >
                 {/* Colonne 1 — Branding + slogan */}
@@ -55,7 +55,13 @@ export default async function Footer() {
                 {/* Colonne 2 — Navigation */}
                 <div>
                     <h4 className="mb-5 font-heading text-lg font-medium text-cream">Navigation</h4>
-                    <ul className="flex flex-col gap-3">
+                    {/* grid-flow-col : remplit d'abord en colonne (de haut en bas),
+                        puis passe à la colonne suivante. Avec grid-rows-4, ça donne :
+                        Col 1 : Accueil, Qui suis-je, Services, Portfolio
+                        Col 2 : Avis, Salon, Contact
+                        Comme un tableau à 2 colonnes mais auto-distribué.
+                        💡 Équivalent CSS Grid : grid-auto-flow: column */}
+                    <ul className="grid grid-flow-col grid-rows-4 gap-x-6 gap-y-3">
                         {navLinks.map((link) => (
                             <li key={link.href}>
                                 <Link

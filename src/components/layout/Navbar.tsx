@@ -14,7 +14,8 @@
  * en faire un "Client Component" (rendu côté navigateur).
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,6 +44,42 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
+    /**
+     * 💡 Active state — indicateur visuel du lien courant.
+     *
+     * Deux stratégies selon la page :
+     * 1. Sur la homepage ("/") → IntersectionObserver détecte quelle section
+     *    est visible dans le viewport (comme un EventListener en Java).
+     * 2. Sur les sous-pages ("/services", "/portfolio") → usePathname()
+     *    compare le chemin URL avec les hrefs des liens.
+     *
+     * Parallèle Spring MVC : c'est comme ajouter un attribut "activeTab"
+     * dans le Model pour que la vue Thymeleaf mette la bonne classe CSS.
+     */
+    const pathname = usePathname();
+    const [activeSection, setActiveSection] = useState<string>("");
+
+    /**
+     * isActive — détermine si un lien doit être mis en surbrillance.
+     * @param href — le href du lien (ex: "/#services")
+     *
+     * On vérifie deux cas :
+     * - Page "/services/*" → le lien "/#services" est actif
+     * - Homepage → la section visible (via IntersectionObserver) correspond
+     */
+    const isActive = useCallback((href: string): boolean => {
+        const sectionId = href.replace("/#", "");
+
+        // Sous-pages : /services/xxx → "services" actif, /portfolio → "portfolio" actif
+        if (pathname.startsWith("/services") && sectionId === "services") return true;
+        if (pathname.startsWith("/portfolio") && sectionId === "portfolio") return true;
+
+        // Homepage : la section visible
+        if (pathname === "/" && activeSection === sectionId) return true;
+
+        return false;
+    }, [pathname, activeSection]);
+
     // Détecte le scroll pour renforcer le fond de la navbar
     useEffect(() => {
         const handleScroll = () => {
@@ -52,6 +89,42 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    /**
+     * IntersectionObserver — surveille quelles sections sont visibles.
+     *
+     * 💡 rootMargin "-40% 0px -55% 0px" crée une "zone de détection"
+     * centrée dans le viewport (top 40% ignoré, bottom 55% ignoré).
+     * Seule la section au milieu de l'écran est considérée "active".
+     *
+     * On ne l'active que sur la homepage ("/"), car les sous-pages
+     * n'ont pas ces sections. Le return () => observer.disconnect()
+     * nettoie l'observer quand on quitte la page (comme un @PreDestroy).
+     */
+    useEffect(() => {
+        if (pathname !== "/") {
+            setActiveSection("");
+            return;
+        }
+
+        const sectionIds = navLinks.map(link => link.href.replace("/#", ""));
+        const sections = sectionIds
+            .map(id => document.getElementById(id))
+            .filter(Boolean) as HTMLElement[];
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries.find(e => e.isIntersecting);
+                if (visible) {
+                    setActiveSection(visible.target.id);
+                }
+            },
+            { rootMargin: "-40% 0px -55% 0px" }
+        );
+
+        sections.forEach(section => observer.observe(section));
+        return () => observer.disconnect();
+    }, [pathname]);
 
     // Ferme le menu mobile quand on clique sur un lien
     const handleLinkClick = () => {
@@ -93,30 +166,40 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
 
                 {/* Liens desktop — lg: au lieu de md: car 6 liens + CTA débordent à 768px */}
                 <ul className="hidden items-center gap-6 lg:flex xl:gap-10">
-                    {navLinks.map((link) => (
-                        <li key={link.href}>
-                            <Link
-                                href={link.href}
-                                className="
-                  group relative pb-1 text-[0.85rem] font-normal
-                  uppercase tracking-[0.12em] text-[var(--text-muted)]
-                  no-underline transition-colors duration-300
-                  hover:text-[var(--text-heading)]
-                "
-                            >
-                                {link.label}
-                                {/* Underline animé au hover */}
-                                <span
-                                    className="
-                    absolute bottom-0 left-0 h-px w-0 bg-[var(--text-accent)]
-                    transition-all duration-400
-                    ease-[cubic-bezier(0.25,0.8,0.25,1)]
-                    group-hover:w-full
-                  "
-                                />
-                            </Link>
-                        </li>
-                    ))}
+                    {navLinks.map((link) => {
+                        const active = isActive(link.href);
+                        return (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className={`
+                                        group relative pb-1 text-[0.85rem] font-normal
+                                        uppercase tracking-[0.12em] no-underline
+                                        transition-colors duration-300
+                                        ${active
+                                            ? "text-[var(--text-heading)]"
+                                            : "text-[var(--text-muted)] hover:text-[var(--text-heading)]"
+                                        }
+                                    `}
+                                >
+                                    {link.label}
+                                    {/* Underline — permanent si actif (h-[2px] + w-full),
+                                        animé au hover si inactif (h-px + w-0 → w-full) */}
+                                    <span
+                                        className={`
+                                            absolute bottom-0 left-0 bg-[var(--text-accent)]
+                                            transition-all duration-400
+                                            ease-[cubic-bezier(0.25,0.8,0.25,1)]
+                                            ${active
+                                                ? "h-[2px] w-full"
+                                                : "h-px w-0 group-hover:w-full"
+                                            }
+                                        `}
+                                    />
+                                </Link>
+                            </li>
+                        );
+                    })}
 
                     {/* Bouton CTA — lié à Planity (dynamique depuis Sanity) */}
                     <li>
@@ -177,27 +260,32 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
               lg:hidden
             "
                     >
-                        {navLinks.map((link, i) => (
-                            <motion.div
-                                key={link.href}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
-                            >
-                                <Link
-                                    href={link.href}
-                                    onClick={handleLinkClick}
-                                    className="
-                    font-heading text-3xl font-light italic
-                    text-[var(--text-heading)] no-underline
-                    transition-colors duration-300
-                    hover:text-[var(--text-accent)]
-                  "
+                        {navLinks.map((link, i) => {
+                            const active = isActive(link.href);
+                            return (
+                                <motion.div
+                                    key={link.href}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
                                 >
-                                    {link.label}
-                                </Link>
-                            </motion.div>
-                        ))}
+                                    <Link
+                                        href={link.href}
+                                        onClick={handleLinkClick}
+                                        className={`
+                                            font-heading text-3xl font-light italic
+                                            no-underline transition-colors duration-300
+                                            ${active
+                                                ? "text-[var(--text-accent)]"
+                                                : "text-[var(--text-heading)] hover:text-[var(--text-accent)]"
+                                            }
+                                        `}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
+                            );
+                        })}
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
