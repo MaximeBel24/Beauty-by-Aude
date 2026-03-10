@@ -103,6 +103,21 @@ export default async function Footer() {
                                 Instagram
                             </Link>
                         </li>
+                        {/* Téléphone — lien tel: cliquable sur mobile */}
+                        {settings.phone && (
+                            <li>
+                                <Link
+                                    href={`tel:${settings.phone.replace(/\s/g, "")}`}
+                                    className="
+                      text-[0.85rem] font-light text-nude no-underline
+                      opacity-70 transition-all duration-300
+                      hover:text-cream hover:opacity-100
+                    "
+                                >
+                                    {settings.phone}
+                                </Link>
+                            </li>
+                        )}
                         <li>
                             <Link
                                 href={settings.email ? `mailto:${settings.email}` : "#"}

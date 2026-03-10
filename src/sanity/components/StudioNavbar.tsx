@@ -5,22 +5,25 @@ import Link from "next/link";
 export default function StudioNavbar(props: NavbarProps) {
     return (
         <Stack>
-            <Card padding={2} className={"bg-white-warm"}>
+            {/* Card sans className → hérite du thème Sanity (dark/light automatique) */}
+            <Card padding={2}>
                 <Flex align="center" justify="flex-end" paddingRight={3}>
+                    {/* Inline styles au lieu de classes Tailwind :
+                        Tailwind fonctionne sur le site, pas dans le contexte Sanity Studio */}
                     <Link
                         href="/"
                         style={{
                             textDecoration: 'none',
                             fontSize: '14px',
                             fontFamily: 'Jost, sans-serif',
+                            color: '#FFEDDA',
                         }}
-                        className={"text-burgundy"}
                     >
                         ← Retourner sur le site
                     </Link>
                 </Flex>
             </Card>
-            {props.renderDefault({...props, actions: []})}
+            {props.renderDefault(props)}
         </Stack>
     )
 }

@@ -1,14 +1,28 @@
-import {defineField, defineType} from "sanity";
+import { defineField, defineType } from "sanity";
+import {
+    orderRankField,
+    orderRankOrdering,
+} from "@sanity/orderable-document-list";
 
+/**
+ * Catégories Photos — Types de réalisations pour le portfolio.
+ *
+ * 💡 Renommé de "Catégorie Portfolio" à "Catégories Photos" pour
+ * être plus parlant pour Aude. Le name technique reste "portfolioCategory"
+ * (pas de breaking change côté données).
+ */
 export default defineType({
     name: "portfolioCategory",
-    title: "Catégorie Portfolio",
+    // title visible dans le Studio — plus clair pour Aude
+    title: "Catégories Photos",
     type: "document",
     icon: () => "🏷️",
+    orderings: [orderRankOrdering],
     fields: [
+        orderRankField({ type: "portfolioCategory" }),
         defineField({
             name: "title",
-            title: "Titre",
+            title: "Nom de la catégorie",
             type: "string",
             description: "Le label affiché ('Nail Art', 'Semi Permanent')",
             validation: (rule) => rule.required().max(80),
@@ -24,26 +38,16 @@ export default defineType({
             },
             validation: (rule) => rule.required(),
         }),
-        defineField({
-            name: "order",
-            title: "Ordre d'affichage",
-            type: "number",
-            description: "Les boutons sont triés par ce numéro (1 = premier affiché)",
-            initialValue: 0,
-        }),
     ],
 
     preview: {
         select: {
             title: "title",
-            order: "order",
         },
-        prepare({ title, order }) {
+        prepare({ title }) {
             return {
                 title: title,
-                subtitle: `Ordre : ${order ?? 0}`,
             };
         },
     },
-
-})
+});

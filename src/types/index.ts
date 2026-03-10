@@ -1,5 +1,3 @@
-type ServiceIcons = "paintbrush" | "hand" | "wrench" | "footprints" | "sparkles";
-
 export interface Service {
     _id: string;
     title: string;
@@ -10,9 +8,7 @@ export interface Service {
     duration?: string;
     category?: string;
     featured?: boolean;
-    icon?: ServiceIcons;
     gallery?: SanityImage[];
-    order?: number;
 }
 
 export interface SanityImage {
@@ -27,14 +23,12 @@ export interface PortfolioItem {
     imageUrl: string;
     imageAlt?: string;
     featured?: boolean;
-    order?: number;
 }
 
 export interface PortfolioCategory {
     _id: string;
     title: string;
     value: string;
-    order?: number;
 }
 
 export interface Review {
@@ -42,6 +36,7 @@ export interface Review {
     rating: number;
     text: string;
     date?: string;
+    featured?: boolean;
 }
 
 interface OpeningHours {

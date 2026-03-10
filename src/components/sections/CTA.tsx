@@ -52,6 +52,7 @@ export default function CTA({ settings }: SettingsProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
+                    className="flex flex-col items-center gap-5"
                 >
                     <a
                         href={settings.planityUrl ?? "#"}
@@ -79,6 +80,23 @@ export default function CTA({ settings }: SettingsProps) {
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </a>
+
+                    {/* Téléphone — lien tel: cliquable sur mobile */}
+                    {settings.phone && (
+                        <a
+                            href={`tel:${settings.phone.replace(/\s/g, "")}`}
+                            className="
+                              text-[0.9rem] text-nude/80 no-underline
+                              transition-all duration-300
+                              hover:text-cream
+                            "
+                        >
+                            Ou appelez-nous au{" "}
+                            <span className="font-medium text-cream underline underline-offset-4">
+                                {settings.phone}
+                            </span>
+                        </a>
+                    )}
                 </motion.div>
             </div>
         </section>

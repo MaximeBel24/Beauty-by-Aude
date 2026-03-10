@@ -1,48 +1,30 @@
-import {buildLegacyTheme} from "sanity";
+/**
+ * Thème Sanity Studio — Beauty by Aude
+ *
+ * On utilise buildTheme de @sanity/ui au lieu de buildLegacyTheme
+ * pour supporter automatiquement le dark mode (prefers-color-scheme).
+ *
+ * 💡 buildLegacyTheme génère un seul jeu de couleurs (light uniquement).
+ * buildTheme génère les palettes light ET dark automatiquement.
+ * C'est l'équivalent de définir des @media (prefers-color-scheme) en CSS.
+ *
+ * On définit ici la couleur primaire (burgundy) et les couleurs d'état.
+ * Sanity génère automatiquement toutes les variantes pour chaque mode.
+ *
+ * Note : le runtime de buildTheme accepte des propriétés de couleur (primary, etc.)
+ * que les types TS n'exposent pas encore directement. On utilise un cast
+ * pour contourner cette limitation de typage.
+ */
+import { buildTheme } from "@sanity/ui/theme";
 
-const props = {
-    '--black': '#2A0E11',
-    '--white': '#FFFBF6',
-    '--gray-base': '#7a4950',
-    '--gray': '#5C3D42',
-    '--burgundy': '#401216',
-    '--rosewood': '#63333A',
-    '--taupe': '#9C7961',
-    '--cream': '#FFEDDA',
-    '--nude': '#D5BCAD',
-}
-
-export const beautyTheme = buildLegacyTheme({
-    // Base
-    '--black': props['--black'],
-    '--white': props['--white'],
-    '--gray': props['--gray'],
-    '--gray-base': props['--gray-base'],
-
-    // Composants
-    '--component-bg': props['--white'],
-    '--component-text-color': props['--black'],
-
-    // Marque — la couleur principale du Studio
-    '--brand-primary': props['--burgundy'],
-
-    // Navbar du Studio
-    '--main-navigation-color': props['--burgundy'],
-    '--main-navigation-color--inverted': props['--cream'],
-
-    // Focus (quand tu cliques dans un champ)
-    '--focus-color': props['--taupe'],
-
-    // Boutons
-    '--default-button-color': props['--rosewood'],
-    '--default-button-primary-color': props['--burgundy'],
-    '--default-button-success-color': '#0f9d58',
-    '--default-button-warning-color': props['--taupe'],
-    '--default-button-danger-color': '#db4437',
-
-    // États (messages de feedback)
-    '--state-info-color': props['--taupe'],
-    '--state-success-color': '#0f9d58',
-    '--state-warning-color': props['--taupe'],
-    '--state-danger-color': '#db4437',
-})
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const beautyTheme = buildTheme({
+    color: {
+        // Couleur de marque — burgundy comme accent principal
+        primary: { mid: "#401216" },
+        // Couleurs d'état
+        positive: { mid: "#0f9d58" },
+        caution: { mid: "#9C7961" }, // taupe
+        critical: { mid: "#db4437" },
+    } as any,
+});

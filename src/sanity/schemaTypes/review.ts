@@ -1,11 +1,24 @@
 import { defineType, defineField } from "sanity";
+import {
+    orderRankField,
+    orderRankOrdering,
+} from "@sanity/orderable-document-list";
 
+/**
+ * Review — Avis clients.
+ *
+ * 💡 Le champ "featured" permet à Aude de choisir quels avis
+ * afficher sur la page d'accueil sans avoir à en supprimer.
+ * orderRankField permet le tri par drag & drop.
+ */
 export default defineType({
     name: "review",
     title: "Avis Clients",
     type: "document",
     icon: () => "⭐",
+    orderings: [orderRankOrdering],
     fields: [
+        orderRankField({ type: "review" }),
         defineField({
             name: "rating",
             title: "Note (étoiles)",
@@ -34,7 +47,7 @@ export default defineType({
             name: "featured",
             title: "Mettre en avant",
             type: "boolean",
-            description: "Si activé, cet avis apparaîtra en priorité sur la page d'accueil",
+            description: "Si activé, cet avis apparaîtra sur la page d'accueil",
             initialValue: false,
         }),
     ],

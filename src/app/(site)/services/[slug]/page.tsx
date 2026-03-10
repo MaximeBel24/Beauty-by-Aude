@@ -33,6 +33,10 @@ export async function generateMetadata({ params }: ServicePageProps) {
     const { slug } = await params;
     const service = await getServiceBySlug(slug);
 
+    if (!service) {
+        return { title: "Service introuvable | Beauty by Aude" };
+    }
+
     return {
         title: `${service.title} | Beauty by Aude`,
         description: service.description,
@@ -53,6 +57,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
         getServiceBySlug(slug),
         getSiteSettings(),
     ]);
+
+    if (!service) {
+        return <main className="bg-white-warm py-20 text-center text-body">Service introuvable</main>;
+    }
 
     return (
         <main className="bg-white-warm">

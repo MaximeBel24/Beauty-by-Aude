@@ -6,7 +6,7 @@ import CTA from "@/components/sections/CTA";
 import {
     getFeaturedPortfolioItems,
     getFeaturedServices,
-    getReviews,
+    getFeaturedReviews,
     getSalon,
     getSiteSettings
 } from "@/lib/sanity.queries";
@@ -29,7 +29,7 @@ export default async function Home() {
     const [services, portfolioItems, reviews, salon, settings] = await Promise.all([
         getFeaturedServices(),
         getFeaturedPortfolioItems(),
-        getReviews(),
+        getFeaturedReviews(),
         getSalon(),
         getSiteSettings(),
     ]);

@@ -1,11 +1,26 @@
 import { defineType, defineField } from "sanity";
+import {
+    orderRankField,
+    orderRankOrdering,
+} from "@sanity/orderable-document-list";
 
+/**
+ * Service — Prestations proposées par Aude.
+ *
+ * 💡 orderRankField remplace le champ "order" manuel.
+ * Il génère un champ caché "orderRank" que le plugin drag & drop
+ * met à jour automatiquement. Plus de doublons d'ordre possibles !
+ */
 export default defineType({
     name: "service",
     title: "Services",
     type: "document",
     icon: () => "💅",
+    // Tri par défaut dans le Studio (menu "Sort by")
+    orderings: [orderRankOrdering],
     fields: [
+        // Champ caché géré par le plugin drag & drop
+        orderRankField({ type: "service" }),
         defineField({
             name: "title",
             title: "Nom du service",
@@ -67,38 +82,22 @@ export default defineType({
             },
         }),
         defineField({
-            name: "icon",
-            title: "Icones",
-            type: "string",
-            options: {
-                list: [
-                    { title: "Pinceau", value: "paintbrush" },
-                    { title: "Main", value: "hand" },
-                    { title: "Clé", value: "wrench" },
-                    { title: "Pieds", value: "footprints" },
-                    { title: "Étoiles", value: "sparkles" },
-                ],
-            },
-        }),
-        defineField({
             name: "featured",
             title: "Mettre en avant",
             type: "boolean",
-            description: "Afficher ce service sur la page d'accueil (4-6 max recommandé)",
+            description: "Afficher ce service sur la page d'accueil (6 max recommandé)",
             initialValue: false,
             validation: (rule) =>
                 rule.custom(async (value, context) => {
-                    // Si on décoche, pas de problème
                     if (!value) return true;
-
-                    // On requête Sanity pour compter les services déjà featured
                     const client = context.getClient({ apiVersion: "2024-01-01" });
                     const count = await client.fetch(
                         `count(*[_type == "service" && featured == true && _id != $id])`,
                         { id: context.document?._id },
                     );
-
-                    return count >= 7 ? "Maximum 6 services peuvent être mis en avant" : true;
+                    return count >= 7
+                        ? "Maximum 6 services peuvent être mis en avant"
+                        : true;
                 }),
         }),
         defineField({
@@ -120,16 +119,8 @@ export default defineType({
                 },
             ],
         }),
-        defineField({
-            name: "order",
-            title: "Ordre d'affichage",
-            type: "number",
-            description: "Les services sont triés par ce numéro (1 = premier affiché)",
-            initialValue: 0,
-        }),
     ],
 
-    // Personnalise l'aperçu dans la liste de Sanity Studio
     preview: {
         select: {
             title: "title",
