@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {fadeInUp, viewportConfig} from "@/lib/animations";
 
 /**
  * SectionHeader — En-tête de section réutilisable.
@@ -28,10 +29,10 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
             className="mb-12 text-center"
         >
             {/* Label */}

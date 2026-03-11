@@ -7,6 +7,7 @@ import { Service, SiteSettings } from "@/types";
 import { formatPrice } from "@/lib/utils";
 import { getCategoryLabel, getCategoryIcon } from "@/lib/categories";
 import PlanityButton from "@/components/ui/PlanityButton";
+import {fadeInUp, viewportConfig} from "@/lib/animations";
 
 /**
  * ServiceDetail — Page détail d'un service.
@@ -40,9 +41,9 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     Badge catégorie, titre, prix, durée, description, CTA
                 ═══════════════════════════════════════════ */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
                     className="mx-auto max-w-[700px] text-center"
                 >
                     {/* Badge catégorie — pilule avec icône, même style que les filtres */}
@@ -98,10 +99,10 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                 ═══════════════════════════════════════════ */}
                 {service.gallery && service.gallery.length > 0 && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        variants={fadeInUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportConfig}
                         className="mt-20"
                     >
                         <h2 className="mb-8 text-center font-heading text-[1.5rem] font-light text-[var(--text-heading)]">
@@ -111,10 +112,11 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                             {service.gallery.slice(1).map((image, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    variants={fadeInUp}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={viewportConfig}
+                                    custom={index}
                                     className="group relative aspect-[4/3] cursor-pointer overflow-hidden sm:h-[250px] sm:aspect-auto lg:h-[350px]"
                                 >
                                     {/* Image — h-full w-full force l'image à remplir le conteneur,
@@ -148,10 +150,10 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     le bouton "retour" du navigateur.
                 ═══════════════════════════════════════════ */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportConfig}
                     className="mt-16"
                 >
                     <Link

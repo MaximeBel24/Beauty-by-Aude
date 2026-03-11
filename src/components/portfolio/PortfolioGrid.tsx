@@ -6,6 +6,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import CategoryDropdown from "@/components/ui/CategoryDropdown";
+import {filterTransition} from "@/lib/animations";
 
 interface PortfolioGridProps {
     items: PortfolioItem[];
@@ -33,10 +34,10 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
             <AnimatePresence mode={"wait"}>
                 <motion.div
                     key={activeCategory}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.3 }}
+                    variants={filterTransition}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
                     className="mx-auto grid max-w-[1200px] gap-2 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
                 >
                     {filteredItems.length === 0 ? (

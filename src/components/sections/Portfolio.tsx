@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useState} from "react";
 import Lightbox from "@/components/ui/Lightbox";
+import {fadeInScale, fadeInUp, viewportConfig} from "@/lib/animations";
 
 /**
  * Portfolio — Grille de photos asymétrique (masonry-like).
@@ -31,10 +32,11 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                 {portfolioItems.map((item, index) => (
                     <motion.div
                         key={item._id}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        variants={fadeInScale}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportConfig}
+                        custom={index}
                         onClick={() => setSelectedItem(item)}
                         className={`
                           group relative cursor-pointer overflow-hidden
@@ -67,10 +69,11 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
 
             {/* Lien voir toutes les réalisations */}
             <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                custom={3}
                 className="mt-12 text-center"
             >
                 <Link

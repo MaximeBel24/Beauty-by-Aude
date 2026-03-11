@@ -3,6 +3,7 @@
 import {Salon as SalonType, SalonProps, SiteSettings} from "@/types";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
+import {fadeInLeft, fadeInRight, viewportConfig} from "@/lib/animations";
 
 export default function Salon({salon, settings}: SalonProps) {
     if (!settings) return null;
@@ -14,10 +15,10 @@ export default function Salon({salon, settings}: SalonProps) {
             <div className="mx-auto mt-8 grid max-w-[1100px] grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12">
                 {/* — Colonne gauche : Horaires — */}
                 <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    variants={fadeInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportConfig}
                 >
                     <h3 className="mb-6 font-heading text-[1.4rem] font-light text-[var(--text-heading)]">
                         Horaires d'ouverture
@@ -34,10 +35,11 @@ export default function Salon({salon, settings}: SalonProps) {
 
                 {/* — Colonne droite : Carte Google Maps — */}
                 <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    variants={fadeInRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportConfig}
+                    custom={2}
                     className="h-[280px] overflow-hidden md:h-[400px]"
                 >
                     {/* 💡 Dark mode Maps — astuce CSS sans API payante !

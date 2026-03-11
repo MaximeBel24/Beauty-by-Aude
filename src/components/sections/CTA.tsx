@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { SettingsProps } from "@/types";
 import PlanityButton from "@/components/ui/PlanityButton";
+import {fadeInUp, viewportConfig} from "@/lib/animations";
 
 /**
  * CTA — Section d'appel à l'action avec fond burgundy.
@@ -39,10 +40,11 @@ export default function CTA({ settings }: SettingsProps) {
 
                 {/* Texte */}
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportConfig}
+                    custom={2}
                     className="-mt-6 mb-10 text-[1.05rem] leading-[1.7] text-nude"
                 >
                     Prenez rendez-vous en ligne en quelques clics.
@@ -50,10 +52,11 @@ export default function CTA({ settings }: SettingsProps) {
 
                 {/* Bouton Planity */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportConfig}
+                    custom={4}
                     className="flex flex-col items-center gap-5"
                 >
                     <PlanityButton
