@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Service, SiteSettings } from "@/types";
 import { formatPrice } from "@/lib/utils";
 import { getCategoryLabel, getCategoryIcon } from "@/lib/categories";
+import PlanityButton from "@/components/ui/PlanityButton";
 
 /**
  * ServiceDetail — Page détail d'un service.
@@ -79,31 +80,14 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     </p>
 
                     {/* Bouton Réserver — redirige vers Planity */}
-                    <a
+                    <PlanityButton
                         href={settings.planityUrl ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        label="Réserver ce service"
                         className="
-                            group inline-flex items-center gap-3
-                            bg-burgundy px-8 py-3.5
-                            text-[0.8rem] font-medium uppercase tracking-[0.15em]
-                            text-cream no-underline
-                            transition-all duration-400
-                            hover:-translate-y-0.5
-                            hover:shadow-[0_10px_40px_rgba(64,18,22,0.15)]
-                        "
-                    >
-                        Réserver ce service
-                        <svg
-                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+                        bg-burgundy px-8 py-3.5
+                        text-cream no-underline
+                        hover:shadow-[0_10px_40px_rgba(64,18,22,0.15)]"
+                    />
                 </motion.div>
 
                 {/* ═══════════════════════════════════════════

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SettingsProps, HeroImage } from "@/types";
 import HeroBentoGrid from "@/components/hero/HeroBentoGrid";
+import PlanityButton from "@/components/ui/PlanityButton";
 
 /**
  * Hero — Section d'accroche plein écran, split en 2 colonnes.
@@ -83,31 +84,12 @@ export default function Hero({ settings }: SettingsProps) {
                     className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5"
                 >
                     {/* CTA Principal */}
-                    <Link
+                    <PlanityButton
                         href={settings.planityUrl ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-                          group inline-flex items-center gap-3
-                          bg-burgundy px-7 py-3.5 sm:px-9 sm:py-4
-                          text-[0.8rem] font-normal uppercase tracking-[0.18em]
-                          text-cream no-underline
-                          transition-all duration-400
-                          hover:-translate-y-0.5 hover:bg-rosewood
-                          hover:shadow-[0_8px_30px_rgba(64,18,22,0.2)]
-                        "
-                    >
-                        Réserver sur Planity
-                        <svg
-                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </Link>
+                        label="Réserver sur Planity"
+                        className="bg-burgundy text-cream px-7 py-3.5 sm:px-9 sm:py-4 hover:bg-rosewood hover:shadow-[0_8px_30px_rgba(64,18,22,0.2)]"
+                    />
+
 
                     {/* Lien secondaire */}
                     <Link

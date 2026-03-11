@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { SettingsProps } from "@/types";
+import PlanityButton from "@/components/ui/PlanityButton";
 
 /**
  * CTA — Section d'appel à l'action avec fond burgundy.
@@ -55,32 +56,16 @@ export default function CTA({ settings }: SettingsProps) {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="flex flex-col items-center gap-5"
                 >
-                    <a
+                    <PlanityButton
                         href={settings.planityUrl ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        label="Réserver sur Planity"
                         className="
-                          group inline-flex items-center gap-3
                           bg-cream px-8 py-3.5 sm:px-11 sm:py-4
-                          text-[0.8rem] font-medium uppercase tracking-[0.18em]
                           text-burgundy no-underline
-                          transition-all duration-400
-                          hover:-translate-y-0.5
-                          hover:bg-[var(--bg-primary)]
-                          hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
+                            hover:bg-[var(--bg-primary)]
+                            hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
                         "
-                    >
-                        Réserver sur Planity
-                        <svg
-                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+                    />
 
                     {/* Téléphone — lien tel: cliquable sur mobile */}
                     {settings.phone && (
