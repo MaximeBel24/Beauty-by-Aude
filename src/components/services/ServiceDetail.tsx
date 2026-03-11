@@ -64,7 +64,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
 
                     {/* Prix + Durée */}
                     <div className="mb-6 flex items-baseline justify-center gap-3">
-                        <span className="font-heading text-[1.8rem] font-medium text-[var(--text-accent)]">
+                        <span className="font-heading text-[2.2rem] font-semibold text-[var(--text-heading)]">
                             {formatPrice(service.price)}
                         </span>
                         {service.duration && (

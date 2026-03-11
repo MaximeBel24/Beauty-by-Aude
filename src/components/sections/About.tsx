@@ -14,13 +14,15 @@ export default function About({ settings }: SettingsProps) {
                 {/* Colonne gauche — Photo */}
                 <div className="relative">
                     <div className="relative overflow-hidden h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-[var(--bg-secondary)]">
-                        <Image
-                            src={settings.aboutImageUrl ?? ""}
-                            alt="Aude — Beauty by Aude"
-                            className="object-contain lg:object-cover"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                        />
+                        {settings.aboutImageUrl && (
+                            <Image
+                                src={settings.aboutImageUrl}
+                                alt="Aude — Beauty by Aude"
+                                className="object-contain lg:object-cover"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                        )}
 
                         {/* Overlay dark mode — dégradé subtil pour fondre le fond clair
                             de l'infographie dans le thème sombre.

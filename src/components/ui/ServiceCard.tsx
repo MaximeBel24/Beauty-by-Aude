@@ -75,17 +75,20 @@ export default function ServiceCard({service, index}: ServiceCardProps) {
                     {service.description}
                 </p>
 
-                {/* Prix + Durée */}
-                <div className="flex items-baseline gap-2">
-                            <span className="font-heading text-[1.4rem] font-medium text-[var(--text-accent)]">
-                                {formatPrice(service.price)}
-                            </span>
-                    {service.duration && (
-                        <span className="text-[0.8rem] font-light text-[var(--text-body-color)]">
-                            · {service.duration}
+                {/* Prix + Durée — séparé visuellement pour être immédiatement visible */}
+                <div className="mt-auto pt-5 border-t border-[var(--border-subtle)]">
+                    <div className="flex items-baseline gap-2">
+                        <span className="font-heading text-[1.6rem] font-semibold text-[var(--text-heading)]">
+                            {formatPrice(service.price)}
                         </span>
-                    )}
+                        {service.duration && (
+                            <span className="text-[0.8rem] font-light text-[var(--text-muted)]">
+                                · {service.duration}
+                            </span>
+                        )}
+                    </div>
                 </div>
+
             </motion.div>
         </Link>
     );
