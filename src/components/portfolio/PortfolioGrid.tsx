@@ -5,6 +5,7 @@ import {useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
+import CategoryDropdown from "@/components/ui/CategoryDropdown";
 
 interface PortfolioGridProps {
     items: PortfolioItem[];
@@ -18,43 +19,17 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
 
     const filteredItems = activeCategory === "all"
         ? items
-        : items.filter(i => i.category?.value === activeCategory);
+        : items.filter(i => i.categories?.some(cat => cat.value === activeCategory));
 
     return (
         <div>
-            <div className="mx-auto mb-12 flex max-w-[1100px] flex-wrap justify-center gap-3">
-                <button
-                    onClick={() => setActiveCategory("all")}
-                    className={`
-                        cursor-pointer rounded-full px-4 py-2 sm:px-5 sm:py-2.5
-                        text-[0.75rem] sm:text-[0.8rem] tracking-wide
-                        transition-all duration-300
-                        ${activeCategory === "all"
-                        ? "bg-burgundy text-cream"
-                        : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
-                    }
-                    `}
-                >
-                    Toutes
-                </button>
-                {categories.map((cat) => (
-                    <button
-                        key={cat._id}
-                        onClick={() => setActiveCategory(cat.value)}
-                        className={`
-                            flex cursor-pointer items-center gap-2 rounded-full
-                            px-4 py-2 sm:px-5 sm:py-2.5 text-[0.75rem] sm:text-[0.8rem] tracking-wide
-                            transition-all duration-300
-                            ${activeCategory === cat.value
-                            ? "bg-burgundy text-cream"
-                            : "border border-[var(--border-medium)] text-[var(--text-body-color)] hover:border-[var(--text-heading)] hover:text-[var(--text-heading)]"
-                        }
-                        `}
-                    >
-                        {cat.title}
-                    </button>
-                ))}
-            </div>
+            {/* Dropdown filtre */}
+            <CategoryDropdown
+                categories={categories}
+                activeCategory={activeCategory}
+                onSelect={setActiveCategory}
+            />
+
             <AnimatePresence mode={"wait"}>
                 <motion.div
                     key={activeCategory}

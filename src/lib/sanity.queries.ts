@@ -81,7 +81,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
         `*[_type == "portfolio"] | order(orderRank) {
       _id,
       title,
-      "category": category-> { title, "value": value.current },
+      "categories": categories[]-> { title, "value": value.current },
       "imageUrl": image.asset->url,
       "imageAlt": image.alt
     }`, []
@@ -93,7 +93,7 @@ export async function getFeaturedPortfolioItems(): Promise<PortfolioItem[]> {
         `*[_type == "portfolio" && featured == true] | order(orderRank) {
       _id,
       title,
-      "category": category-> { title, "value": value.current },
+      "categories": categories[]-> { title, "value": value.current },
       "imageUrl": image.asset->url,
       "imageAlt": image.alt
       }`, [],

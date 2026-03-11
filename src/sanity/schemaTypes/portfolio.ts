@@ -44,11 +44,17 @@ export default defineType({
             ],
         }),
         defineField({
-            name: "category",
-            title: "Catégorie",
-            type: "reference",
-            description: "Catégorie de l'image du portfolio",
-            to: [{ type: "portfolioCategory" }],
+            name: "categories",
+            title: "Catégories",
+            type: "array",
+            description: "Une ou plusieurs catégories (ex: Nail Art + Pâques)",
+            of: [
+                {
+                    type: "reference",
+                    to: [{ type: "portfolioCategory" }],
+                },
+            ],
+            validation: (rule) => rule.min(1).error("Au moins une catégorie est requise"),
         }),
         defineField({
             name: "featured",

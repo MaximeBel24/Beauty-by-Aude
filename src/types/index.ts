@@ -19,7 +19,7 @@ export interface SanityImage {
 export interface PortfolioItem {
     _id: string;
     title: string;
-    category?: PortfolioCategory;
+    categories?: PortfolioCategory[];
     imageUrl: string;
     imageAlt?: string;
     featured?: boolean;
