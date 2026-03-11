@@ -131,13 +131,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                                         "group" sur le parent + "group-hover:opacity-100" ici :
                                         quand on survole le conteneur parent, l'overlay apparaît.
                                         C'est le même principe qu'un :hover en CSS, mais propagé au parent. */}
-                                    <div className="
-                                        absolute inset-0
-                                        flex items-end p-4
-                                        bg-gradient-to-t from-burgundy/70 via-transparent to-transparent
-                                        opacity-0 transition-opacity duration-400
-                                        group-hover:opacity-100
-                                    ">
+                                    <div className="image-overlay">
                                         <span className="font-heading text-base italic text-cream">
                                             {image.alt ?? service.title}
                                         </span>

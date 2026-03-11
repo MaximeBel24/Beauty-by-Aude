@@ -85,13 +85,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
 
                             {/* Overlay au hover */}
                             <div
-                                className="
-                            absolute inset-0
-                            flex items-end p-3 md:p-6
-                            bg-gradient-to-t from-burgundy/70 via-transparent to-transparent
-                            opacity-0 transition-opacity duration-400
-                            group-hover:opacity-100
-                          "
+                                className="image-overlay"
                             >
                             <span className="font-heading text-lg italic text-cream">
                                 {item.title}
