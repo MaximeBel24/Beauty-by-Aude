@@ -57,24 +57,25 @@ html {
 }
 
 :root {
-    --bg-primary: #FFFBF6;
-    --bg-secondary: #FFF7EF;
-    --bg-card: #FFF7EF;
-    --bg-card-hover: #FFFBF6;
-    --bg-footer: #2A0E11;
-    --bg-nav: rgba(255, 251, 246, 0.9);
-    --bg-nav-mobile: rgba(255, 251, 246, 0.98);
-    --text-heading: #401216;
-    --text-body-color: #5C3D42;
-    --text-muted: #63333A;
-    --text-accent: #9C7961;
-    --text-decorative: #D5BCAD;
+    --bg-primary: var(--color-white-warm);
+    --bg-secondary: var(--color-cream-light);
+    --bg-card: var(--color-cream-light);
+    --bg-card-hover: var(--color-white-warm);
+    --bg-footer: var(--color-text-dark);
+    --text-heading: var(--color-burgundy);
+    --text-body-color: var(--color-body);
+    --text-muted: var(--color-rosewood);
+    --text-accent: var(--color-taupe);
+    --text-decorative: var(--color-nude);
+    --bg-cta: var(--color-burgundy);
+
     --border-subtle: rgba(156, 121, 97, 0.1);
     --border-medium: rgba(156, 121, 97, 0.2);
+    --bg-nav: rgba(255, 251, 246, 0.9);
+    --bg-nav-mobile: rgba(255, 251, 246, 0.98);
     --img-brightness: 1;
 
     /* CTA — fond + gradients décoratifs */
-    --bg-cta: #401216;
     --bg-cta-gradient-1: rgba(99, 51, 58, 0.5);
     --bg-cta-gradient-2: rgba(156, 121, 97, 0.2);
 }
