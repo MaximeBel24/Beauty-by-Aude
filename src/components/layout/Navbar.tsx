@@ -14,11 +14,12 @@
  * en faire un "Client Component" (rendu côté navigateur).
  */
 
-import { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import {useEffect, useState} from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import {useActiveSection} from "@/hooks/useActivateSection";
 
 // Liens de navigation — facile à modifier
 const navLinks = [
@@ -43,93 +44,21 @@ interface NavbarProps {
 export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const { isActive } = useActiveSection(["about", "services", "portfolio", "avis", "salon", "contact"]);
 
-    /**
-     * 💡 Active state — indicateur visuel du lien courant.
-     *
-     * Deux stratégies selon la page :
-     * 1. Sur la homepage ("/") → IntersectionObserver détecte quelle section
-     *    est visible dans le viewport (comme un EventListener en Java).
-     * 2. Sur les sous-pages ("/services", "/portfolio") → usePathname()
-     *    compare le chemin URL avec les hrefs des liens.
-     *
-     * Parallèle Spring MVC : c'est comme ajouter un attribut "activeTab"
-     * dans le Model pour que la vue Thymeleaf mette la bonne classe CSS.
-     */
-    const pathname = usePathname();
-    const [activeSection, setActiveSection] = useState<string>("");
-
-    /**
-     * isActive — détermine si un lien doit être mis en surbrillance.
-     * @param href — le href du lien (ex: "/#services")
-     *
-     * On vérifie deux cas :
-     * - Page "/services/*" → le lien "/#services" est actif
-     * - Homepage → la section visible (via IntersectionObserver) correspond
-     */
-    const isActive = useCallback((href: string): boolean => {
-        const sectionId = href.replace("/#", "");
-
-        // Sous-pages : /services/xxx → "services" actif, /portfolio → "portfolio" actif
-        if (pathname.startsWith("/services") && sectionId === "services") return true;
-        if (pathname.startsWith("/portfolio") && sectionId === "portfolio") return true;
-
-        // Homepage : la section visible
-        if (pathname === "/" && activeSection === sectionId) return true;
-
-        return false;
-    }, [pathname, activeSection]);
+    const handleLinkClick = () => {
+        setIsMobileOpen(false);
+    };
 
     // Détecte le scroll pour renforcer le fond de la navbar
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    /**
-     * IntersectionObserver — surveille quelles sections sont visibles.
-     *
-     * 💡 rootMargin "-40% 0px -55% 0px" crée une "zone de détection"
-     * centrée dans le viewport (top 40% ignoré, bottom 55% ignoré).
-     * Seule la section au milieu de l'écran est considérée "active".
-     *
-     * On ne l'active que sur la homepage ("/"), car les sous-pages
-     * n'ont pas ces sections. Le return () => observer.disconnect()
-     * nettoie l'observer quand on quitte la page (comme un @PreDestroy).
-     */
-    useEffect(() => {
-        if (pathname !== "/") {
-            setActiveSection("");
-            return;
-        }
-
-        const sectionIds = navLinks.map(link => link.href.replace("/#", ""));
-        const sections = sectionIds
-            .map(id => document.getElementById(id))
-            .filter(Boolean) as HTMLElement[];
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries.find(e => e.isIntersecting);
-                if (visible) {
-                    setActiveSection(visible.target.id);
-                }
-            },
-            { rootMargin: "-40% 0px -55% 0px" }
-        );
-
-        sections.forEach(section => observer.observe(section));
-        return () => observer.disconnect();
-    }, [pathname]);
-
-    // Ferme le menu mobile quand on clique sur un lien
-    const handleLinkClick = () => {
-        setIsMobileOpen(false);
-    };
 
     return (
         <>
@@ -298,12 +227,12 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                                 rel="noopener noreferrer"
                                 onClick={handleLinkClick}
                                 className="
-                  mt-4 inline-block bg-burgundy
-                  px-8 py-4 text-sm uppercase
-                  tracking-[0.15em] text-cream no-underline
-                  transition-all duration-300
-                  hover:bg-rosewood
-                "
+                                  mt-4 inline-block bg-burgundy
+                                  px-8 py-4 text-sm uppercase
+                                  tracking-[0.15em] text-cream no-underline
+                                  transition-all duration-300
+                                  hover:bg-rosewood
+                                "
                             >
                                 Prendre RDV
                             </Link>
