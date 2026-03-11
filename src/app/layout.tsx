@@ -16,12 +16,22 @@ const jost = Jost({
     display: "swap",
 });
 
-// Metadata SEO (à personnaliser plus tard)
+// Metadata SEO
 export const metadata: Metadata = {
-    title: "Beauty by Aude | Manucure Professionnelle",
-    description:
-        "Manucure professionnelle : pose gel, semi-permanent, nail art. Réservez votre rendez-vous en ligne.",
-    keywords: ["manucure", "nail art", "pose gel", "semi-permanent", "beauté"],
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://beautybyaude.fr"),
+    title: {
+        template: "%s | Beauty by Aude",
+        default: "Beauty by Aude — Prothésiste ongulaire à Villecresnes"
+    },
+    description: "Institut de beauté spécialisé en pose d'ongles, manucure et nail art à Villecresnes. Réservez votre rendez-vous en ligne.",
+    openGraph: {
+        type: "website",
+        locale: "fr_FR",
+        siteName: "Beauty by Aude",
+    },
+    twitter: {
+        card: "summary_large_image",
+    }
 };
 
 // Layout racine : partagé par TOUTES les routes (site + studio)

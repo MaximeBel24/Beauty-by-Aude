@@ -2,6 +2,8 @@ import {getServiceBySlug, getServices, getSiteSettings} from "@/lib/sanity.queri
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import CTA from "@/components/sections/CTA";
+import {Metadata} from "next";
+import {generateBreadcrumbJsonLd, generateServiceJsonLd} from "@/lib/jsonld";
 
 /**
  * Type des props de la page.
@@ -30,19 +32,31 @@ export async function generateStaticParams() {
  * Chaque page /services/[slug] aura son propre <title> et <meta description>.
  * Google verra "Pose Semi-Permanent | Beauty by Aude" au lieu d'un titre générique.
  */
-export async function generateMetadata({ params }: ServicePageProps) {
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
     const { slug } = await params;
     const service = await getServiceBySlug(slug);
 
     if (!service) {
-        return { title: "Service introuvable | Beauty by Aude" };
+        return { title: "Service introuvable" };
     }
 
     return {
-        title: `${service.title} | Beauty by Aude`,
-        description: service.description,
+        title: service.title,
+        description: service.longDescription ?? service.description,
+        alternates: {
+            canonical: `/services/${service.slug}`,
+        },
+        openGraph: {
+            title: service.title,
+            description: service.longDescription ?? service.description,
+            // Si le service a des images dans sa galerie, on prend la première
+            ...(service.gallery?.[0]?.imageUrl && {
+                images: [{ url: service.gallery[0].imageUrl }],
+            }),
+        },
     };
 }
+
 
 /**
  * ServicePage — Page détail d'un service.
@@ -65,6 +79,24 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
     return (
         <main className="bg-[var(--bg-primary)]">
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateBreadcrumbJsonLd([
+                        { label: "Accueil", href: "/" },
+                        { label: "Services", href: "/services" },
+                        { label: service.title },
+                    ])),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateServiceJsonLd(service, settings!)),
+                }}
+            />
+
             {/* Breadcrumb dans le Server Component — pas de JS client,
                 bon pour le SEO (Google indexe le fil d'Ariane). */}
             <div className="mx-auto max-w-[1100px] px-[8%] pt-32">

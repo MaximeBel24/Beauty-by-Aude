@@ -67,6 +67,14 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
     );
 }
 
+export async function getAllServiceSlugs(): Promise<string[]> {
+    return await safeFetch(
+        `*[_type == "service"].slug.current`,
+        []
+    )
+}
+
+
 // ===== PORTFOLIO =====
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return await safeFetch(
@@ -164,6 +172,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       phone,
       email,
       address,
+      city,
+      seoTitle,
+      seoDescription,
       "heroImage1": { "url": heroImage1.asset->url, "alt": heroImage1.alt },
       "heroImage2": { "url": heroImage2.asset->url, "alt": heroImage2.alt },
       "heroImage3": { "url": heroImage3.asset->url, "alt": heroImage3.alt },

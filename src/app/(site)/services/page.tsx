@@ -3,18 +3,35 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import CTA from "@/components/sections/CTA";
 import ServicesList from "@/components/services/ServicesList";
+import {Metadata} from "next";
+import {generateBreadcrumbJsonLd} from "@/lib/jsonld";
 
-export const metadata = {
-    title: "Nos Services | Beauty by Aude",
-    description: "On vera plus tard"
-}
+export const metadata: Metadata = {
+    title: "Nos Services",
+    description: "Découvrez nos prestations de manucure, pose de gel, nail art et soins des pieds à Villecresnes. Tarifs et détails de chaque service.",
+    alternates: {
+        canonical: "/services",
+    },
+};
 
 export default async function ServicesPage() {
 
     const [services, settings] = await Promise.all([getServices(), getSiteSettings()])
 
     return (
+
         <main className="bg-[var(--bg-primary)]">
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateBreadcrumbJsonLd([
+                        { label: "Accueil", href: "/" },
+                        { label: "Services" },
+                    ])),
+                }}
+            />
+
             <div className="px-[8%] pt-32 pb-20">
                 <div className="mx-auto max-w-[1100px]">
                     <Breadcrumb items={[

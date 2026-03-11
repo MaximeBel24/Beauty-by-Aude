@@ -71,6 +71,9 @@ export interface SiteSettings {
     phone?: string;
     email?: string;
     address?: string;
+    city?: string;
+    seoTitle?: string;
+    seoDescription?: string;
 }
 
 export interface SettingsProps {

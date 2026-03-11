@@ -12,6 +12,7 @@ import {
 } from "@/lib/sanity.queries";
 import About from "@/components/sections/About";
 import Salon from "@/components/sections/Salon";
+import {generateLocalBusinessJsonLd} from "@/lib/jsonld";
 
 /**
  * Page d'accueil — Assemble toutes les sections.
@@ -35,7 +36,14 @@ export default async function Home() {
     ]);
 
     return (
-        <>
+        <main>
+            {/* JSON-LD — invisible pour l'utilisateur, lu par Google */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateLocalBusinessJsonLd(settings!)),
+                }}
+            />
             <Hero settings={settings} />
             <About settings={settings} />
             <Services services={services} />
@@ -43,6 +51,6 @@ export default async function Home() {
             <Reviews reviews={reviews} />
             <Salon salon={salon} settings={settings}/>
             <CTA settings={settings} />
-        </>
+        </main>
     );
 }
