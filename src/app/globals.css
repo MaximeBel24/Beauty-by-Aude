@@ -104,6 +104,19 @@ html {
     --bg-cta-gradient-2: rgba(156, 121, 97, 0.12);
 }
 
+/**
+ * Focus visible — Accessibilité clavier
+ *
+ * Affiche un contour taupe uniquement quand l'utilisateur
+ * navigue avec Tab (pas au clic souris grâce à :focus-visible).
+ * Le outline-offset évite que le contour colle à l'élément.
+ */
+*:focus-visible {
+    outline: 2px solid var(--color-taupe);
+    outline-offset: 2px;
+}
+
+
 /* Transition globale pour le toggle dark mode.
    Placée dans @layer base pour que les utilitaires Tailwind
    (transition-transform, transition-opacity, etc.) puissent la surcharger.
