@@ -1,5 +1,6 @@
 import { client } from "./sanity.client";
 import {PortfolioCategory, PortfolioItem, Review, Salon, Service, SiteSettings} from "@/types";
+import * as Sentry from "@sentry/nextjs";
 
 /**
  * Requêtes GROQ centralisées — Beauty by Aude
@@ -15,7 +16,7 @@ async function safeFetch<T>(query: string, fallback: T, params?: object): Promis
     try {
         return await client.fetch(query, params);
     } catch (error) {
-        console.error("Sanity fetch failed:", error);
+        Sentry.captureException(error);
         return fallback;
     }
 }

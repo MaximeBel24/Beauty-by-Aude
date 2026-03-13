@@ -30,17 +30,17 @@ export default function Services({ services }: ServicesProps) {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-12 text-center"
             >
-                <a
+                <Link
                     href="/services"
                     className="
-            text-[0.8rem] font-normal uppercase tracking-[0.15em]
-            text-[var(--text-muted)] no-underline
-            transition-colors duration-300
-            hover:text-[var(--text-heading)]
-          "
+                        text-[0.8rem] font-normal uppercase tracking-[0.15em]
+                        text-[var(--text-muted)] no-underline
+                        transition-colors duration-300
+                        hover:text-[var(--text-heading)]
+                      "
                 >
                     Voir tous les services →
-                </a>
+                </Link>
             </motion.div>
         </section>
     );

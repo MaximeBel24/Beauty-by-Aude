@@ -24,6 +24,7 @@
 import { useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PortfolioItem } from "@/types";
+import Image from "next/image";
 
 interface LightboxProps {
     item: PortfolioItem | null;     // Photo actuellement affichée (null = fermé)
