@@ -26,6 +26,11 @@ export async function generateStaticParams() {
     return services.map((service) => ({ slug: service.slug }));
 }
 
+// Revalide la page toutes les 60 secondes
+// → Si un visiteur arrive 61s après le dernier cache, Next.js
+//   reconstruit la page en arrière-plan avec les données Sanity à jour
+export const revalidate = 60;
+
 /**
  * generateMetadata — SEO dynamique par service.
  *

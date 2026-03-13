@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     },
 };
 
+// Revalide la page toutes les 60 secondes
+// → Si un visiteur arrive 61s après le dernier cache, Next.js
+//   reconstruit la page en arrière-plan avec les données Sanity à jour
+export const revalidate = 60;
+
 export default async function ServicesPage() {
 
     const [services, settings] = await Promise.all([getServices(), getSiteSettings()])

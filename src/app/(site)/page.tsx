@@ -14,6 +14,12 @@ import About from "@/components/sections/About";
 import Salon from "@/components/sections/Salon";
 import {generateLocalBusinessJsonLd} from "@/lib/jsonld";
 
+
+// Revalide la page toutes les 60 secondes
+// → Si un visiteur arrive 61s après le dernier cache, Next.js
+//   reconstruit la page en arrière-plan avec les données Sanity à jour
+export const revalidate = 60;
+
 /**
  * Page d'accueil — Assemble toutes les sections.
  *
