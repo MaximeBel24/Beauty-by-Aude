@@ -147,7 +147,7 @@ export default async function Footer() {
           pt-8 text-xs opacity-50
         "
             >
-                <span>© 2025 Beauty by Aude — Tous droits réservés</span>
+                <span>© 2026 Beauty by Aude — Tous droits réservés</span>
             </div>
         </footer>
     );
