@@ -48,7 +48,7 @@ export default async function Footer() {
                     </Link>
                     <p className="mt-4 max-w-[280px] text-[0.85rem] font-light leading-relaxed text-nude/60">
                         L&apos;art de sublimer vos mains avec passion et minutie.
-                        Manucure professionnelle à domicile.
+                        Manucure professionnelle.
                     </p>
                 </div>
 
