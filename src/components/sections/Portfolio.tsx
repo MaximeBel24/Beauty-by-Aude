@@ -89,10 +89,13 @@ export default function Portfolio({ portfolioItems }: PortfolioProps) {
                 </Link>
             </motion.div>
             <Lightbox
-                item={selectedItem}
-                items={portfolioItems}
+                item={selectedItem ? { id: selectedItem._id, imageUrl: selectedItem.imageUrl, alt: selectedItem.imageAlt, title: selectedItem.title } : null}
+                items={portfolioItems.map((p) => ({ id: p._id, imageUrl: p.imageUrl, alt: p.imageAlt, title: p.title }))}
                 onClose={() => setSelectedItem(null)}
-                onNavigate={(item) => setSelectedItem(item)}
+                onNavigate={(lbItem) => {
+                    const found = portfolioItems.find((p) => p._id === lbItem.id);
+                    if (found) setSelectedItem(found);
+                }}
             />
 
         </section>
