@@ -6,16 +6,14 @@
  * Composant réutilisable "contrôlé" : le parent gère l'état,
  * la Lightbox reçoit tout via ses props.
  *
- * Parallèle Java/Spring :
- * - item + items = comme un Iterator<PortfolioItem> avec index courant
- * - onNavigate = callback pour changer l'élément courant (next/previous)
- * - onClose = callback pour fermer la modale
+ * Accepte n'importe quel type qui implémente LightboxItem
+ * (Portfolio, galerie service, etc.) — comme un <T extends Displayable> en Java.
  *
  * Utilisation :
- *   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+ *   const [selectedItem, setSelectedItem] = useState<LightboxItem | null>(null);
  *   <Lightbox
  *       item={selectedItem}
- *       items={filteredItems}
+ *       items={allItems}
  *       onClose={() => setSelectedItem(null)}
  *       onNavigate={(item) => setSelectedItem(item)}
  *   />
@@ -23,20 +21,19 @@
 
 import { useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PortfolioItem } from "@/types";
-import Image from "next/image";
+import { LightboxItem } from "@/types";
 
 interface LightboxProps {
-    item: PortfolioItem | null;     // Photo actuellement affichée (null = fermé)
-    items: PortfolioItem[];         // Liste complète (filtrée) pour la navigation
+    item: LightboxItem | null;     // Photo actuellement affichée (null = fermé)
+    items: LightboxItem[];         // Liste complète pour la navigation
     onClose: () => void;            // Callback pour fermer la modale
-    onNavigate: (item: PortfolioItem) => void;  // Callback pour changer de photo
+    onNavigate: (item: LightboxItem) => void;  // Callback pour changer de photo
 }
 
 export default function Lightbox({ item, items, onClose, onNavigate }: LightboxProps) {
 
     // Calcul de l'index courant dans la liste
-    const currentIndex = item ? items.findIndex(i => i._id === item._id) : -1;
+    const currentIndex = item ? items.findIndex(i => i.id === item.id) : -1;
     // Navigation visible uniquement si plus d'une photo
     const canNavigate = items.length > 1;
 
@@ -121,7 +118,7 @@ export default function Lightbox({ item, items, onClose, onNavigate }: LightboxP
 
                     {/* Conteneur image avec animation de transition */}
                     <motion.div
-                        key={item._id}
+                        key={item.id}
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
@@ -132,13 +129,13 @@ export default function Lightbox({ item, items, onClose, onNavigate }: LightboxP
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src={item.imageUrl}
-                            alt={item.imageAlt ?? item.title}
+                            alt={item.alt ?? item.title ?? "Photo"}
                             className="max-h-[75vh] max-w-[95vw] object-contain sm:max-h-[85vh] sm:max-w-[90vw]"
                         />
 
                         {/* Titre + compteur (ex: "Nail Art Floral — 3/12") */}
                         <p className="mt-4 text-center font-heading text-lg italic text-cream">
-                            {item.title}
+                            {item.title ?? item.alt ?? ""}
                             <span className="ml-3 font-body text-sm not-italic text-cream/50">
                                 {currentIndex + 1}/{items.length}
                             </span>

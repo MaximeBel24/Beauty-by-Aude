@@ -65,7 +65,7 @@ export default function CTA({ settings }: SettingsProps) {
                         className="
                           bg-cream px-8 py-3.5 sm:px-11 sm:py-4
                           text-burgundy no-underline
-                            hover:bg-[var(--bg-primary)]
+                            hover:bg-cream-dark
                             hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]
                         "
                     />
@@ -75,13 +75,20 @@ export default function CTA({ settings }: SettingsProps) {
                         <a
                             href={`tel:${settings.phone.replace(/\s/g, "")}`}
                             className="
-                              text-[0.9rem] text-nude/80 no-underline
+                              group text-[0.9rem] text-nude/80 no-underline
                               transition-all duration-300
                               hover:text-cream
                             "
                         >
                             Ou appelez-nous au{" "}
-                            <span className="font-medium text-cream underline underline-offset-4">
+                            <span className="
+                                font-medium text-cream
+                                underline underline-offset-4
+                                lg:no-underline lg:bg-[linear-gradient(currentColor,currentColor)]
+                                lg:bg-[length:0%_1px] lg:bg-left-bottom lg:bg-no-repeat
+                                lg:transition-[background-size] lg:duration-300
+                                lg:group-hover:bg-[length:100%_1px]
+                            ">
                                 {settings.phone}
                             </span>
                         </a>

@@ -28,16 +28,16 @@ export default async function Footer() {
     if (!settings) return null;
     return (
         <footer className="bg-[var(--bg-footer)] px-[8%] pt-16 pb-8 text-nude">
-            {/* Grille 3 colonnes */}
+            {/* Grille 3 colonnes desktop / centré 1 colonne mobile */}
             <div
                 className="
-          mx-auto grid max-w-[1100px] gap-8 md:gap-12
-          border-b border-nude/10 pb-12
-          grid-cols-1 md:grid-cols-[2fr_1.5fr_1fr]
-        "
+                  mx-auto grid max-w-[1100px] gap-8 md:gap-12
+                  border-b border-nude/10 pb-12
+                  grid-cols-1 text-center md:text-left md:grid-cols-[2fr_1.5fr_1fr]
+                "
             >
                 {/* Colonne 1 — Branding + slogan */}
-                <div>
+                <div className="flex flex-col items-center md:items-start">
                     <Link href="/" className="no-underline">
                         <span className="font-heading text-2xl font-medium tracking-[0.15em] text-cream">
                             BEAUTY
@@ -55,22 +55,16 @@ export default async function Footer() {
                 {/* Colonne 2 — Navigation */}
                 <div>
                     <h4 className="mb-5 font-heading text-lg font-medium text-cream">Navigation</h4>
-                    {/* grid-flow-col : remplit d'abord en colonne (de haut en bas),
-                        puis passe à la colonne suivante. Avec grid-rows-4, ça donne :
-                        Col 1 : Accueil, Qui suis-je, Services, Portfolio
-                        Col 2 : Avis, Salon, Contact
-                        Comme un tableau à 2 colonnes mais auto-distribué.
-                        💡 Équivalent CSS Grid : grid-auto-flow: column */}
-                    <ul className="grid grid-flow-col grid-rows-4 gap-x-6 gap-y-3">
+                    <ul className="flex flex-col gap-3 md:grid md:grid-flow-col md:grid-rows-4 md:gap-x-6 md:gap-y-3">
                         {navLinks.map((link) => (
                             <li key={link.href}>
                                 <Link
                                     href={link.href}
                                     className="
-                    text-[0.85rem] font-light text-nude no-underline
-                    opacity-70 transition-all duration-300
-                    hover:text-cream hover:opacity-100
-                  "
+                                        text-[0.85rem] font-light text-nude no-underline
+                                        opacity-70 transition-all duration-300
+                                        hover:text-cream hover:opacity-100
+                                      "
                                 >
                                     {link.label}
                                 </Link>
@@ -89,10 +83,10 @@ export default async function Footer() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="
-                  text-[0.85rem] font-light text-nude no-underline
-                  opacity-70 transition-all duration-300
-                  hover:text-cream hover:opacity-100
-                "
+                                  text-[0.85rem] font-light text-nude no-underline
+                                  opacity-70 transition-all duration-300
+                                  hover:text-cream hover:opacity-100
+                                "
                             >
                                 Prendre rendez-vous
                             </Link>
@@ -100,11 +94,13 @@ export default async function Footer() {
                         <li>
                             <Link
                                 href={settings.instagramUrl ?? "#"}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="
-                  text-[0.85rem] font-light text-nude no-underline
-                  opacity-70 transition-all duration-300
-                  hover:text-cream hover:opacity-100
-                "
+                                  text-[0.85rem] font-light text-nude no-underline
+                                  opacity-70 transition-all duration-300
+                                  hover:text-cream hover:opacity-100
+                                "
                             >
                                 Instagram
                             </Link>
@@ -115,10 +111,10 @@ export default async function Footer() {
                                 <Link
                                     href={`tel:${settings.phone.replace(/\s/g, "")}`}
                                     className="
-                      text-[0.85rem] font-light text-nude no-underline
-                      opacity-70 transition-all duration-300
-                      hover:text-cream hover:opacity-100
-                    "
+                                      text-[0.85rem] font-light text-nude no-underline
+                                      opacity-70 transition-all duration-300
+                                      hover:text-cream hover:opacity-100
+                                    "
                                 >
                                     {settings.phone}
                                 </Link>
@@ -128,10 +124,10 @@ export default async function Footer() {
                             <Link
                                 href={settings.email ? `mailto:${settings.email}` : "#"}
                                 className="
-                  text-[0.85rem] font-light text-nude no-underline
-                  opacity-70 transition-all duration-300
-                  hover:text-cream hover:opacity-100
-                "
+                                  text-[0.85rem] font-light text-nude no-underline
+                                  opacity-70 transition-all duration-300
+                                  hover:text-cream hover:opacity-100
+                                "
                             >
                                 {settings.email ?? "contact@beautybyaude.fr"}
                             </Link>
@@ -143,9 +139,9 @@ export default async function Footer() {
             {/* Bas de page — centré */}
             <div
                 className="
-          mx-auto flex max-w-[1100px] justify-center
-          pt-8 text-xs opacity-50
-        "
+                  mx-auto flex max-w-[1100px] justify-center
+                  pt-8 text-xs opacity-50
+                "
             >
                 <span>© 2026 Beauty by Aude — Tous droits réservés</span>
             </div>

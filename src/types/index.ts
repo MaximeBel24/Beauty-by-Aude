@@ -16,6 +16,18 @@ export interface SanityImage {
     alt?: string;
 }
 
+/**
+ * LightboxItem — Type générique pour tout élément affichable dans la Lightbox.
+ * Utilisé par le Portfolio ET la galerie ServiceDetail.
+ * Comme une interface commune en Java (ex: Displayable).
+ */
+export interface LightboxItem {
+    id: string;
+    imageUrl: string;
+    alt?: string;
+    title?: string;
+}
+
 export interface PortfolioItem {
     _id: string;
     title: string;
