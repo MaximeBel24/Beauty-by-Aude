@@ -66,7 +66,7 @@ export default function Navbar({ logoUrl, planityUrl }: NavbarProps) {
                 className={`
           fixed top-0 left-0 right-0 z-50
           flex items-center justify-between
-          px-[4%] py-5
+          px-7 md:px-[4%] py-5
           backdrop-blur-[20px]
           border-b transition-all duration-300
           ${isScrolled ? "border-[var(--border-medium)] bg-[var(--bg-nav)]" : "border-[var(--border-subtle)] bg-[var(--bg-nav)]"}

@@ -16,7 +16,14 @@ export default function Reviews({ reviews }: ReviewsProps) {
         <section id="avis" className="bg-[var(--bg-primary)] px-[8%] py-20">
             <SectionHeader label="Témoignages" title="Ce qu'elles" titleAccent="en pensent" />
 
-            <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
+            <div className="
+                mx-auto max-w-[1100px]
+                flex gap-5 overflow-x-auto snap-x snap-mandatory
+                pb-4 -mx-[8%] px-[8%]
+                sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-auto sm:px-0
+                md:gap-8 lg:grid-cols-3
+                scrollbar-hide
+            ">
                 {reviews.map((review, index) => (
                     <motion.div
                         key={review._id}
@@ -26,6 +33,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                         viewport={viewportConfig}
                         custom={index}
                         className="
+                          min-w-[80vw] snap-center sm:min-w-0
                           border border-[var(--border-subtle)] bg-[var(--bg-card)]
                           p-6 md:p-10
                           transition-all duration-400
@@ -54,6 +62,12 @@ export default function Reviews({ reviews }: ReviewsProps) {
                         <p className="mt-1 text-xs text-[var(--text-accent)]">{review.date}</p>
                     </motion.div>
                 ))}
+            </div>
+
+            {/* Indicateur de swipe — visible uniquement sur mobile */}
+            <div className="mt-2 flex items-center justify-center gap-2 text-[0.75rem] text-[var(--text-muted)] sm:hidden">
+                <span>Glissez pour voir plus</span>
+                <span>→</span>
             </div>
         </section>
     );

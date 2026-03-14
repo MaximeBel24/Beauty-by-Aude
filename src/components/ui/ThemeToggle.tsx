@@ -43,12 +43,16 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
+            style={{
+                backgroundColor: isDark ? "#ffedda" : "#401216",
+                color: isDark ? "#401216" : "#ffedda",
+            }}
             className="
                 fixed bottom-6 right-6 z-50
                 flex h-12 w-12 items-center justify-center
-                rounded-full bg-burgundy text-cream
+                rounded-full
                 shadow-[0_4px_20px_rgba(64,18,22,0.3)]
-                transition-transform duration-300
+                transition-all duration-300
                 hover:scale-110
                 cursor-pointer
             "

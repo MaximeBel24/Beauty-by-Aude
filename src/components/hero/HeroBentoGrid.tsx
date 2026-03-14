@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 /**
@@ -69,6 +70,76 @@ const imageVariants = {
     }),
 };
 
+/**
+ * MobileCarousel — Carousel swipeable pour les images hero en mobile.
+ *
+ * Utilise Framer Motion pour le drag horizontal :
+ * - `drag="x"` active le swipe gauche/droite
+ * - `dragConstraints` empêche de dépasser les bords
+ * - `onDragEnd` détecte la direction du swipe et change d'image
+ *
+ * Le seuil de 50px évite les changements accidentels sur un petit mouvement.
+ */
+function MobileCarousel({ images }: { images: BentoImage[] }) {
+    const [current, setCurrent] = useState(0);
+
+    // Gère le swipe : si le drag dépasse 50px, on change d'image
+    const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
+        if (info.offset.x < -50 && current < images.length - 1) {
+            setCurrent(current + 1);
+        } else if (info.offset.x > 50 && current > 0) {
+            setCurrent(current - 1);
+        }
+    };
+
+    return (
+        <div className="px-[6%] pb-8 lg:hidden">
+            {/* Zone de slide — overflow hidden pour masquer les images adjacentes */}
+            <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={current}
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.3 }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        onDragEnd={handleDragEnd}
+                        className="absolute inset-0 cursor-grab active:cursor-grabbing"
+                    >
+                        <Image
+                            src={images[current].src}
+                            alt={images[current].alt}
+                            fill
+                            sizes="90vw"
+                            className="object-cover"
+                            priority={current === 0}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            {/* Dots — indicateurs de position */}
+            <div className="mt-4 flex justify-center gap-2">
+                {images.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrent(i)}
+                        aria-label={`Image ${i + 1}`}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                            i === current
+                                ? "w-6 bg-[var(--text-accent)]"
+                                : "w-2 bg-[var(--text-accent)]/30"
+                        }`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
 
     // Fallback : si Sanity ne fournit pas d'image pour une position,
@@ -79,33 +150,8 @@ export default function HeroBentoGrid({ images }: HeroBentoGridProps) {
 
     return (
         <>
-        {/* Images hero mobile — mini grille 2 colonnes arrondie, visible sous lg:
-            On montre 2 images (au lieu de 4) pour un aperçu visuel
-            sans surcharger l'écran mobile. Les coins arrondis + gap
-            donnent un rendu "carte photo" premium. */}
-        <div className="grid grid-cols-2 gap-2 px-[6%] pb-8 sm:gap-3 lg:hidden">
-            <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                    src={resolvedImages[0].src}
-                    alt={resolvedImages[0].alt}
-                    fill
-                    sizes="50vw"
-                    className="object-cover"
-                    priority
-                />
-                <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
-            </div>
-            <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                    src={resolvedImages[1].src}
-                    alt={resolvedImages[1].alt}
-                    fill
-                    sizes="50vw"
-                    className="object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-burgundy/[0.06]" />
-            </div>
-        </div>
+        {/* Carousel mobile — swipeable, 1 image à la fois, visible sous lg: */}
+        <MobileCarousel images={resolvedImages} />
 
         {/* Grille bento desktop — visible uniquement à partir de lg: */}
         <div className="relative hidden h-full w-full overflow-hidden lg:block">

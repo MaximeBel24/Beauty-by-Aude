@@ -20,7 +20,7 @@ export default function Services({ services }: ServicesProps)  {
                 <button
                     onClick={() => setActiveCategory("all")}
                     className={`
-                        cursor-pointer rounded-full px-5 py-2.5
+                        cursor-pointer rounded-none px-5 py-2.5
                         text-[0.8rem] tracking-wide
                         transition-all duration-300
                         ${activeCategory === "all"
@@ -36,7 +36,7 @@ export default function Services({ services }: ServicesProps)  {
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
                         className={`
-                            flex cursor-pointer items-center gap-2 rounded-full
+                            flex cursor-pointer items-center gap-2 rounded-none
                             px-5 py-2.5 text-[0.8rem] tracking-wide
                             transition-all duration-300
                             ${activeCategory === cat

@@ -1,12 +1,17 @@
 "use client";
 
-import {PortfolioCategory, PortfolioItem} from "@/types";
-import {useState} from "react";
+import {LightboxItem, PortfolioCategory, PortfolioItem} from "@/types";
+import {useMemo, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import CategoryDropdown from "@/components/ui/CategoryDropdown";
 import {filterTransition} from "@/lib/animations";
+
+/** Convertit un PortfolioItem en LightboxItem — comme un mapper DTO en Spring */
+function toLightboxItem(item: PortfolioItem): LightboxItem {
+    return { id: item._id, imageUrl: item.imageUrl, alt: item.imageAlt, title: item.title };
+}
 
 interface PortfolioGridProps {
     items: PortfolioItem[];
@@ -16,7 +21,7 @@ interface PortfolioGridProps {
 export default function PortfolioGrid({ items, categories }: PortfolioGridProps) {
 
     const [activeCategory, setActiveCategory] = useState<string>("all");
-    const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+    const [selectedItem, setSelectedItem] = useState<LightboxItem | null>(null);
 
     const filteredItems = activeCategory === "all"
         ? items
@@ -47,7 +52,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
                     ) : filteredItems.map((item) => (
                         <motion.div
                             key={item._id}
-                            onClick={() => setSelectedItem(item)}
+                            onClick={() => setSelectedItem(toLightboxItem(item))}
                             className="group relative cursor-pointer overflow-hidden aspect-square"
                         >
                             {/* Image */}
@@ -73,7 +78,7 @@ export default function PortfolioGrid({ items, categories }: PortfolioGridProps)
             </AnimatePresence>
             <Lightbox
                 item={selectedItem}
-                items={filteredItems}
+                items={filteredItems.map(toLightboxItem)}
                 onClose={() => setSelectedItem(null)}
                 onNavigate={(item) => setSelectedItem(item)}
             />

@@ -15,11 +15,28 @@ export default function Services({ services }: ServicesProps) {
         <section id="services" className="bg-[var(--bg-primary)] px-[8%] py-20">
             <SectionHeader label="Prestations" title="Nos" titleAccent="services" />
 
-            {/* Grille de cartes */}
-            <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Scroll horizontal mobile / Grille desktop
+                - Mobile : flex horizontal avec scroll snap pour un swipe naturel
+                - sm+ : grille classique 2 puis 3 colonnes */}
+            <div className="
+                mx-auto max-w-[1100px]
+                flex gap-5 overflow-x-auto snap-x snap-mandatory
+                pb-4 -mx-[8%] px-[8%]
+                sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-auto sm:px-0
+                lg:grid-cols-3
+                scrollbar-hide
+            ">
                 {services.map((service, index) => (
-                    <ServiceCard key={service._id} service={service} index={index} />
+                    <div key={service._id} className="min-w-[80vw] snap-center sm:min-w-0">
+                        <ServiceCard service={service} index={index} />
+                    </div>
                 ))}
+            </div>
+
+            {/* Indicateur de swipe — visible uniquement sur mobile */}
+            <div className="mt-2 flex items-center justify-center gap-2 text-[0.75rem] text-[var(--text-muted)] sm:hidden">
+                <span>Glissez pour voir plus</span>
+                <span>→</span>
             </div>
 
             {/* Lien voir tous les services */}

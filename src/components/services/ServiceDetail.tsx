@@ -1,12 +1,14 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Service, SiteSettings } from "@/types";
+import { Service, SiteSettings, LightboxItem } from "@/types";
 import { formatPrice } from "@/lib/utils";
 import { getCategoryLabel, getCategoryIcon } from "@/lib/categories";
 import PlanityButton from "@/components/ui/PlanityButton";
+import Lightbox from "@/components/ui/Lightbox";
 import {fadeInUp, viewportConfig} from "@/lib/animations";
 
 /**
@@ -30,6 +32,18 @@ interface ServiceDetailProps {
 }
 
 export default function ServiceDetail({ service, settings }: ServiceDetailProps) {
+    const [selectedItem, setSelectedItem] = useState<LightboxItem | null>(null);
+
+    /** Convertit la galerie Sanity en LightboxItem[] — comme un mapper DTO */
+    const lightboxItems: LightboxItem[] = useMemo(() =>
+        (service.gallery ?? []).slice(1).map((image, index) => ({
+            id: `${service._id}-gallery-${index}`,
+            imageUrl: image.imageUrl,
+            alt: image.alt ?? `${service.title} - photo ${index + 2}`,
+            title: service.title,
+        })),
+    [service]);
+
     if (!settings) return null;
     return (
         <div className="px-[8%] pb-20">
@@ -117,6 +131,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                                     whileInView="visible"
                                     viewport={viewportConfig}
                                     custom={index}
+                                    onClick={() => setSelectedItem(lightboxItems[index])}
                                     className="group relative aspect-[4/3] cursor-pointer overflow-hidden sm:h-[250px] sm:aspect-auto lg:h-[350px]"
                                 >
                                     {/* Image — h-full w-full force l'image à remplir le conteneur,
@@ -129,10 +144,7 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
 
-                                    {/* Overlay au hover — même pattern que le Portfolio.
-                                        "group" sur le parent + "group-hover:opacity-100" ici :
-                                        quand on survole le conteneur parent, l'overlay apparaît.
-                                        C'est le même principe qu'un :hover en CSS, mais propagé au parent. */}
+                                    {/* Overlay au hover — même pattern que le Portfolio. */}
                                     <div className="image-overlay">
                                         <span className="font-heading text-base italic text-cream">
                                             {image.alt ?? service.title}
@@ -164,6 +176,14 @@ export default function ServiceDetail({ service, settings }: ServiceDetailProps)
                     </Link>
                 </motion.div>
             </div>
+
+            {/* Lightbox — modale plein écran pour la galerie */}
+            <Lightbox
+                item={selectedItem}
+                items={lightboxItems}
+                onClose={() => setSelectedItem(null)}
+                onNavigate={(item) => setSelectedItem(item)}
+            />
         </div>
     );
 }

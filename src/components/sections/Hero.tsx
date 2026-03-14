@@ -40,8 +40,8 @@ export default function Hero({ settings }: SettingsProps) {
     return (
         <section className="relative grid min-h-screen grid-cols-1 overflow-hidden lg:grid-cols-2">
             {/* Colonne gauche — Contenu */}
-            <div className="z-2 flex flex-col justify-center px-[6%] pt-28 pb-10 md:px-[8%] lg:pt-32 lg:pb-16">
-                {/* Badge */}
+            <div className="z-2 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-[6%] pt-28 pb-10 md:px-[8%] lg:pt-32 lg:pb-16">
+            {/* Badge */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -81,7 +81,7 @@ export default function Hero({ settings }: SettingsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5"
+                    className="flex flex-col items-center lg:items-start gap-4 sm:flex-row sm:items-center sm:gap-5"
                 >
                     {/* CTA Principal */}
                     <PlanityButton

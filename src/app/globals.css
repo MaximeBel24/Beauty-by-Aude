@@ -8,6 +8,15 @@ html {
     scroll-padding-top: 5rem;
 }
 
+/* Masque la scrollbar sur les containers en scroll horizontal */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 /* ===== CHARTE GRAPHIQUE BEAUTY BY AUDE ===== */
 
 @theme {
