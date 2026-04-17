@@ -52,8 +52,11 @@ export default function RootLayout({
                 dangerouslySetInnerHTML={{
                     __html: `
                 (function() {
+                    // Light theme par défaut : c'est l'identité visuelle du salon d'Aude.
+                    // Le dark mode reste disponible via le toggle, mais uniquement sur action
+                    // explicite de l'utilisateur (on ignore volontairement prefers-color-scheme).
                     var theme = localStorage.getItem('theme');
-                    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    if (theme === 'dark') {
                         document.documentElement.classList.add('dark', 'no-transition');
                     } else {
                         document.documentElement.classList.add('no-transition');
