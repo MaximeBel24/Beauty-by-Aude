@@ -61,7 +61,7 @@ export default function CTA({ settings }: SettingsProps) {
                 >
                     <PlanityButton
                         href={settings.planityUrl ?? "#"}
-                        label="Réserver sur Planity"
+                        label="Réserver en ligne"
                         className="
                           bg-cream px-8 py-3.5 sm:px-11 sm:py-4
                           text-burgundy no-underline

@@ -86,7 +86,7 @@ export default function Hero({ settings }: SettingsProps) {
                     {/* CTA Principal */}
                     <PlanityButton
                         href={settings.planityUrl ?? "#"}
-                        label="Réserver sur Planity"
+                        label="Réserver en ligne"
                         className="bg-burgundy text-cream px-7 py-3.5 sm:px-9 sm:py-4 hover:bg-rosewood hover:shadow-[0_8px_30px_rgba(64,18,22,0.2)]"
                     />
 
