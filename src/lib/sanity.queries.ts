@@ -38,7 +38,7 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getFeaturedServices(): Promise<Service[]> {
     return await safeFetch(
-        `*[_type == "service" && featured == true] | order(orderRank) {
+        `*[_type == "service" && featured == true] | order(orderRank) [0...6] {
         _id,
         title,
         "slug": slug.current,

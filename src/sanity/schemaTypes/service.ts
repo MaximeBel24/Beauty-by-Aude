@@ -88,17 +88,19 @@ export default defineType({
             description: "Afficher ce service sur la page d'accueil (6 max recommandé)",
             initialValue: false,
             validation: (rule) =>
-                rule.custom(async (value, context) => {
-                    if (!value) return true;
-                    const client = context.getClient({ apiVersion: "2024-01-01" });
-                    const count = await client.fetch(
-                        `count(*[_type == "service" && featured == true && _id != $id])`,
-                        { id: context.document?._id },
-                    );
-                    return count >= 7
-                        ? "Maximum 6 services peuvent être mis en avant"
-                        : true;
-                }),
+                rule
+                    .custom(async (value, context) => {
+                        if (!value) return true;
+                        const client = context.getClient({ apiVersion: "2024-01-01" });
+                        const count = await client.fetch(
+                            `count(*[_type == "service" && featured == true && _id != $id])`,
+                            { id: context.document?._id },
+                        );
+                        return count >= 6
+                            ? "Maximum 6 services recommandés en avant"
+                            : true;
+                    })
+                    .warning(),
         }),
         defineField({
             name: "gallery",
