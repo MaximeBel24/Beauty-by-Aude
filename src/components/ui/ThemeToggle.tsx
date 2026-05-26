@@ -19,7 +19,7 @@ export default function ThemeToggle() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Lit l'état initial depuis le DOM (le script anti-FOUC a déjà appliqué .dark)
+        // Lit l'état initial depuis le DOM (le scripts anti-FOUC a déjà appliqué .dark)
         setIsDark(document.documentElement.classList.contains("dark"));
         setMounted(true);
     }, []);

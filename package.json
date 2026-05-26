@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "migrate:unset-legacy-service-fields": "tsx scripts/migrations/2026-05-26-unset-legacy-service-fields.ts"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.4",
@@ -30,10 +31,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^4",
+    "tsx": "^4.22.3",
     "typescript": "^5"
   }
 }
